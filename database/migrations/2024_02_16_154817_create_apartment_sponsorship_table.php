@@ -17,8 +17,8 @@ return new class extends Migration
             $table->dateTime('expiration_date');
             $table->unsignedBigInteger('sponsorship_id');
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('sponsorship_id')->references('sponsorships')->on('id');
-            $table->foreign('apartment_id')->references('apartments')->on('id');
+            $table->foreign('sponsorship_id')->references('id')->on('sponsorships')->cascadeOnDelete();
+            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete();
             $table->timestamps();
         });
     }
