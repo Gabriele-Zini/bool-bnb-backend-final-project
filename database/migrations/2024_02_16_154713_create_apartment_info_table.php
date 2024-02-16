@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('apartment_info', function (Blueprint $table) {
             $table->id();
+            $table->string('num_rooms')->nullable();
+            $table->string('num_beds')->nullable();
+            $table->string('num_bathrooms')->nullable();
+            $table->string('mt_square')->nullable();
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
             $table->timestamps();
         });
     }
@@ -22,6 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('apartment_info', function (Blueprint $table) {
+            $table->dropForeign(['apartment_id']);
+        });
         Schema::dropIfExists('apartment_info');
     }
 };
