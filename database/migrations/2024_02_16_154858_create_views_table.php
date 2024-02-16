@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
+            $table->ipAddress('user_ip');
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -22,6 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('views', function (Blueprint $table) {
+            $table->dropForeign(['apartment_id']);
+        });
         Schema::dropIfExists('views');
     }
 };
