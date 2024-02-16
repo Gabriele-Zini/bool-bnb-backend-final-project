@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartment')->cascadeOnDelete();
             $table->text('message_content');
             $table->string('name')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email');
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartment')->cascadeOnDelete();
             $table->timestamps();
         });
     }
