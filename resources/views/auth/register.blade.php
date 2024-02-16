@@ -13,6 +13,14 @@
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
+                    <!-- Lastname -->
+                    <div class="mb-3">
+                        <label for="lastname" class="form-label">{{ __('Lastname') }}</label>
+                        <input id="lastname" class="form-control" type="text" name="lastname"
+                            value="{{ old('lastname') }}" required autofocus autocomplete="lastname">
+                        <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
+                    </div>
+
                     <!-- Email Address -->
                     <div class="mb-3">
                         <label for="email" class="form-label">{{ __('Email') }}</label>
