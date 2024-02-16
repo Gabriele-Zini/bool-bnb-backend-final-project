@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('apartment_sponsorship', function (Blueprint $table) {
             $table->id();
+            $table->dateTime('start_date');
+            $table->dateTime('expiration_date');
+            $table->unsignedBigInteger('sponsorship_id');
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('sponsorship_id')->references('sponsorships')->on('id');
+            $table->foreign('apartment_id')->references('apartments')->on('id');
             $table->timestamps();
         });
     }
@@ -22,6 +28,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('apartment_sponsorship', function (Blueprint $table) {
+            $table->dropForeign(['sponsorship_id']);
+        });
+        Schema::table('apartment_sponsorship', function (Blueprint $table) {
+            $table->dropForeign(['apartment_id']);
+        });
         Schema::dropIfExists('apartment_sponsorship');
     }
 };
