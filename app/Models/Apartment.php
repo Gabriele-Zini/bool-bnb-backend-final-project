@@ -4,11 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Apartment extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'city', 'street_name', 'latitude', 'longitude', 'visibility', 'image_path', 'street_number', 'postal_code', 'country', 'user_id',];
+    protected $fillable = ['title', 'city', 'street_name', 'latitude', 'longitude', 'visibility', 'image_path', 'street_number', 'postal_code', 'country', 'user_id', 'slug'];
+
+    //mutator
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
+
 
     //relations with User
     public function user()
