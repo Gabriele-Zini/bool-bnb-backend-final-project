@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->string('city');
             $table->string('street_name');
             $table->double('latitude', 12, 8);
@@ -33,7 +34,7 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    { 
+    {
         Schema::table('apartments', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
