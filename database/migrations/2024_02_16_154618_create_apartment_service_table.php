@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('apartment_service', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete();
+
+            $table->unsignedBigInteger('service_id');
+            $table->foreign('service_id')->references('id')->on('services')->cascadeOnDelete();
+
+            $table->primary(['apartment_id', 'service_id']);
         });
     }
 
