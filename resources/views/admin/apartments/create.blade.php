@@ -15,13 +15,16 @@
 
             {{-- country --}}
             <div class="mb-3">
-                <label for="country" class="form-label">country</label>
-                <input type="text" class="form-control @error('country') is-invalid @enderror @if (!empty(old('country')) && !$errors->has('country')) is-valid @endif" id="country" name="country"
-                    value="{{ old('country') }}">
-                  @error('country')
-            <p class="invalid-feedback">{{ $message }}</p>
-            @enderror
+                <label class="form-label" for="country">Country</label>
+                <select class="form-select" name="country" id="country">
+                    <option @selected(!old('country')) value="">No Country selected</option>
+                    @foreach ($countryCodes as $countryCode)
+
+                        <option @selected(old('country') == $countryCode['code']) value="{{ $countryCode['code'] }}">{{ $countryCode['name'] }}</option>
+                    @endforeach
+                </select>
             </div>
+
 
             {{-- city --}}
             <div class="mb-3">
@@ -80,17 +83,8 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
-            
-            <div class="mb-3">
-                <label class="form-label" for="country">Country</label>
-                <select class="form-select" name="country" id="country">
-                    <option @selected(!old('country')) value="">No Country selected</option>
-                    @foreach ($countryCodes as $countryCode)
 
-                        <option @selected(old('country') == $countryCode['code']) value="{{ $countryCode['code'] }}">{{ $countryCode['name'] }}</option>
-                    @endforeach
-                </select>
-            </div>
+
 
             <div>
                 <img id="preview-image" class="ms_show-image d-none" src="" alt="">
