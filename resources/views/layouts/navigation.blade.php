@@ -18,6 +18,9 @@
                         Dashboard
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('apartments.index')}}">Tutti gli appartamenti</a>
+                </li>
             </ul>
 
             <!-- Settings Dropdown -->
