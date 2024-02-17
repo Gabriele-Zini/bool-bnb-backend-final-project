@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Apartment;
+use App\Models\Service;
 use App\Models\Apartment_info;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,10 +19,10 @@ class ApartmentsTableSeeder extends Seeder
     public function run(Faker $faker): void
     {
         $title_array = ['monolocale', 'villetta', 'bilocale', 'trilocale', 'baita', 'casa sull\' albero', 'palafitta', 'villa in montagna', 'villa al mare', 'gulag'];
+        $services = Service::all();
 
-        
         foreach ($title_array as $title) {
-            
+
             $new_apartment = new Apartment();
 
             $new_apartment->title = $title;
@@ -45,6 +46,8 @@ class ApartmentsTableSeeder extends Seeder
             $apartment_info->num_bathrooms=$faker->numberBetween(13);
             $apartment_info->num_beds=$faker->numberBetween(1, 5);
             $apartment_info->save();
+            $services = Service::inRandomOrder()->take(rand(1, count($services)))->pluck('id');
+            $new_apartment->services()->attach($services);
         }
     }
 }
