@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Apartment;
 use App\Models\Service;
 use App\Models\Apartment_info;
+use App\Models\Sponsorship;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,6 +21,7 @@ class ApartmentsTableSeeder extends Seeder
     {
         $title_array = ['monolocale', 'villetta', 'bilocale', 'trilocale', 'baita', 'casa sull\' albero', 'palafitta', 'villa in montagna', 'villa al mare', 'gulag'];
         $services = Service::all();
+        $sponsorships = Sponsorship::all();
 
         foreach ($title_array as $title) {
 
@@ -48,6 +50,9 @@ class ApartmentsTableSeeder extends Seeder
             $apartment_info->save();
             $services = Service::inRandomOrder()->take(rand(1, count($services)))->pluck('id');
             $new_apartment->services()->attach($services);
+
+            $sponsorships = Sponsorship::inRandomOrder()->take(rand(1, count($sponsorships)))->pluck('id');
+            $new_apartment->sponsorships()->attach($sponsorships);
         }
     }
 }
