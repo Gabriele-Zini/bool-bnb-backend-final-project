@@ -89,7 +89,7 @@
             <div>
                 <img id="preview-image" class="ms_show-image d-none" src="" alt="">
             </div>
-
+            <button type="submit" class="btn btn-success">send</button>
         </form>
     </div>
 @endsection
