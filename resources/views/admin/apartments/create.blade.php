@@ -86,7 +86,8 @@
                 <select class="form-select" name="country" id="country">
                     <option @selected(!old('country')) value="">No Country selected</option>
                     @foreach ($countryCodes as $countryCode)
-                        <option @selected(old('country') == $countryCodes->code) value="{{ $countryCodes->code }}">{{ $countryCodes->name }}</option>
+
+                        <option @selected(old('country') == $countryCode['code']) value="{{ $countryCode['code'] }}">{{ $countryCode['name'] }}</option>
                     @endforeach
                 </select>
             </div>

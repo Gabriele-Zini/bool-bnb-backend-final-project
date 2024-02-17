@@ -31,12 +31,12 @@ class ApartmentController extends Controller
         $client = new Client(['verify' => false]);
         $response = $client->get('https://restcountries.com/v3.1/all');
         $rows = json_decode($response->getBody());
-        $courtyCodes = [];
+        $countryCodes = [];
         if ($response) {
             
             foreach($rows as $row){
                 
-                $counrtyCodes[] = [
+                $countryCodes[] = [
                     'code' => $row->cca2,
                     'name' => $row->name->common
                 ];
