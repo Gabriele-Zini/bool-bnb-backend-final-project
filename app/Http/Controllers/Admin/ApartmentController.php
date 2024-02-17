@@ -33,18 +33,20 @@ class ApartmentController extends Controller
         $rows = json_decode($response->getBody());
         $countryCodes = [];
         if ($response) {
-            
-            foreach($rows as $row){
-                
+
+            foreach ($rows as $row) {
+
                 $countryCodes[] = [
                     'code' => $row->cca2,
                     'name' => $row->name->common
                 ];
-                
             }
         }
 
-        
+
+        usort($countryCodes,function ($a, $b) {
+            return strcmp($a['name'], $b['name']);
+        });
 
         return view('admin.apartments.create', compact('services', 'countryCodes'));
     }
