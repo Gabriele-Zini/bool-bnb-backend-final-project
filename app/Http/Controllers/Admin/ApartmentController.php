@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 
 class ApartmentController extends Controller
 {
@@ -25,8 +27,26 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        $services=Service::all();
-        return view('admin.apartments.create', compact('services'));
+        $services = Service::all();
+        $client = new Client(['verify' => false]);
+        $response = $client->get('https://restcountries.com/v3.1/all');
+        $rows = json_decode($response->getBody());
+        $courtyCodes = [];
+        if ($response) {
+            
+            foreach($rows as $row){
+                
+                $counrtyCodes[] = [
+                    'code' => $row->cca2,
+                    'name' => $row->name->common
+                ];
+                
+            }
+        }
+
+        
+
+        return view('admin.apartments.create', compact('services', 'countryCodes'));
     }
 
     /**
@@ -34,7 +54,6 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**

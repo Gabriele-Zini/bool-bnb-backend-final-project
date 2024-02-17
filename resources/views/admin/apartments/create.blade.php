@@ -80,6 +80,16 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="country">Country</label>
+                <select class="form-select" name="country" id="country">
+                    <option @selected(!old('country')) value="">No Country selected</option>
+                    @foreach ($countryCodes as $countryCode)
+                        <option @selected(old('country') == $countryCodes->code) value="{{ $countryCodes->code }}">{{ $countryCodes->name }}</option>
+                    @endforeach
+                </select>
+            </div>
 
             <div>
                 <img id="preview-image" class="ms_show-image d-none" src="" alt="">
