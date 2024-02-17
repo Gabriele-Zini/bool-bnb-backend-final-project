@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('apartment_info', function (Blueprint $table) {
+        Schema::create('apartment_infos', function (Blueprint $table) {
             $table->id();
             $table->string('num_rooms')->nullable();
             $table->string('num_beds')->nullable();
@@ -28,9 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('apartment_info', function (Blueprint $table) {
+        Schema::table('apartment_infos', function (Blueprint $table) {
             $table->dropForeign(['apartment_id']);
         });
-        Schema::dropIfExists('apartment_info');
+        Schema::dropIfExists('apartment_infos');
     }
 };

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Apartment;
+use App\Models\Apartment_info;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,9 +19,11 @@ class ApartmentsTableSeeder extends Seeder
     {
         $title_array = ['monolocale', 'villetta', 'bilocale', 'trilocale', 'baita', 'casa sull\' albero', 'palafitta', 'villa in montagna', 'villa al mare', 'gulag'];
 
-        $new_apartment = new Apartment();
-
+        
         foreach ($title_array as $title) {
+            
+            $new_apartment = new Apartment();
+
             $new_apartment->title = $title;
             $new_apartment->slug = Str::slug($new_apartment->title);
             $new_apartment->city = $faker->city();
@@ -32,9 +35,16 @@ class ApartmentsTableSeeder extends Seeder
             $new_apartment->longitude = $faker->longitude($min = -180, $max = 180);
             $new_apartment->visibility = $faker->boolean();
             $new_apartment->user_id = User::all()->first()->id;
-            
-            $new_apartment->save();
-        }
 
+            $new_apartment->save();
+
+            $apartment_info = new Apartment_info();
+            $apartment_info->apartment_id=$new_apartment->id;
+            $apartment_info->mt_square=$faker->numberBetween(30, 200);
+            $apartment_info->num_rooms=$faker->numberBetween(2,10);
+            $apartment_info->num_bathrooms=$faker->numberBetween(13);
+            $apartment_info->num_beds=$faker->numberBetween(1, 5);
+            $apartment_info->save();
+        }
     }
 }
