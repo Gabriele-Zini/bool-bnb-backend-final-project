@@ -18,6 +18,12 @@
                         Dashboard
                     </a>
                 </li>
+                <li>
+                    <a class="nav-link" href="{{route('apartments.index')}}">all {{ Auth::user()->name }} {{ Auth::user()->lastname }}'s Apparments</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{route('apartments.create')}}">add new apartments</a>
+                </li>
             </ul>
 
             <!-- Settings Dropdown -->
