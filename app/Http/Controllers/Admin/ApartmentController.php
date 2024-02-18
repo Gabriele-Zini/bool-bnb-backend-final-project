@@ -18,7 +18,7 @@ class ApartmentController extends Controller
     public function index()
     {
         // $perPage = 10;
-        $apartments = Apartment::all();
+        $apartments = Apartment::where('user_id', '=', Auth::user()->id)->get();
 
         return view('admin.apartments.index', compact('apartments'));
     }
@@ -38,7 +38,7 @@ class ApartmentController extends Controller
             foreach ($rows as $row) {
 
                 $countryCodes[] = [
-                    'code' => $row->cca2,
+                    'code' => $row->cca3,
                     'name' => $row->name->common
                 ];
             }
