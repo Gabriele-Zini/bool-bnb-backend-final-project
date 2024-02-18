@@ -62,21 +62,23 @@ class ApartmentController extends Controller
         $apartment->fill($form_data);
         $apartment->user_id = Auth::user()->id;
 
-        if ($request->has('services')) {
 
-            $apartment->services()->attach($request->services);
-        }
 
         $client = new Client(['verify' => false]);
         $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
         $rows = json_decode($response->getBody());
-       /*  dd($rows->results[0]->position->lat, $rows->results[0]->position->lon,); */
-        if ($rows->results[0]->position->lat &&  $rows->results[0]->position->lon) {
+        /*  dd($rows->results[0]->position->lat, $rows->results[0]->position->lon,); */
+        if ($rows->results && count($rows->results) > 0) {
             $apartment->latitude = $rows->results[0]->position->lat;
             $apartment->longitude = $rows->results[0]->position->lon;
+        } else {
+            return back()->with('error', 'Position not found');
         }
 
         $apartment->save();
+        if ($request->has('services'))
+            $apartment->services()->attach($request->services);
+        return redirect(route('apartments.index'));
     }
 
     /**
