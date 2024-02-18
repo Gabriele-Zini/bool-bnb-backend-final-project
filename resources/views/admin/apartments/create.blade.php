@@ -3,7 +3,7 @@
 @section('content')
     <div class="container my-5">
         <form action="{{ route('apartments.store') }}" enctype="multipart/form-data" method="POST" class="col-12 col-md-5 col-lg-4 m-auto">
-
+            @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror @if (!empty(old('title')) && !$errors->has('title')) is-valid @endif" id="title" name="title"
@@ -39,7 +39,7 @@
 
             {{-- street_name --}}
             <div class="mb-3">
-                <label for="street_name" class="form-label">Title</label>
+                <label for="street_name" class="form-label">Street Name</label>
                 <input type="text" class="form-control @error('street_name') is-invalid @enderror @if (!empty(old('street_name')) && !$errors->has('street_name')) is-valid @endif" id="street_name" name="street_name"
                     value="{{ old('street_name') }}">
                   @error('street_name')
@@ -47,9 +47,9 @@
             @enderror
             </div>
 
-            {{-- street_numbe --}}
+            {{-- street_number --}}
             <div class="mb-3">
-                <label for="street_numer" class="form-label">street_numer</label>
+                <label for="street_numer" class="form-label">street number</label>
                 <input type="text" class="form-control @error('street_numer') is-invalid @enderror @if (!empty(old('street_numer')) && !$errors->has('street_numer')) is-valid @endif" id="street_numer" name="street_numer"
                     value="{{ old('street_numer') }}">
                   @error('street_numer')

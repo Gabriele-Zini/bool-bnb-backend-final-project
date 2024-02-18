@@ -8,6 +8,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -56,6 +57,22 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+        $form_data = $request->all();
+        $apartment=new Apartment();
+        $apartment->fill($form_data);
+        $apartment->user_id = Auth::user()->id;
+        $apartment->save();
+
+        if ($request->has('services')) {
+
+            $apartment->services()->attach($request->services);
+        }
+
+        $client = new Client(['verify' => false]);
+        $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
+        dd($response->getBody());
+
+
     }
 
     /**
