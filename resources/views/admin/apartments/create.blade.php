@@ -61,7 +61,7 @@
             {{-- street_number --}}
             <div class="mb-3">
                 <label for="street_number" class="form-label">street number</label>
-                <input type="number"
+                <input type="text"
                     class="form-control @error('street_number') is-invalid @enderror @if (!empty(old('street_number')) && !$errors->has('street_number')) is-valid @endif"
                     id="street_number" name="street_number" value="{{ old('street_number') }}">
                 @error('street_number')
