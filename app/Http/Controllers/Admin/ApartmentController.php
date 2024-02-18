@@ -45,7 +45,7 @@ class ApartmentController extends Controller
         }
 
 
-        usort($countryCodes,function ($a, $b) {
+        usort($countryCodes, function ($a, $b) {
             return strcmp($a['name'], $b['name']);
         });
 
@@ -58,10 +58,9 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $form_data = $request->all();
-        $apartment=new Apartment();
+        $apartment = new Apartment();
         $apartment->fill($form_data);
         $apartment->user_id = Auth::user()->id;
-        $apartment->save();
 
         if ($request->has('services')) {
 
@@ -70,9 +69,14 @@ class ApartmentController extends Controller
 
         $client = new Client(['verify' => false]);
         $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
-        dd($response->getBody());
+        $rows = json_decode($response->getBody());
+       /*  dd($rows->results[0]->position->lat, $rows->results[0]->position->lon,); */
+        if ($rows->results[0]->position->lat &&  $rows->results[0]->position->lon) {
+            $apartment->latitude = $rows->results[0]->position->lat;
+            $apartment->longitude = $rows->results[0]->position->lon;
+        }
 
-
+        $apartment->save();
     }
 
     /**
