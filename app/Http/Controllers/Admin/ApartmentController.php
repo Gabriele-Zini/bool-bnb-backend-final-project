@@ -67,8 +67,8 @@ class ApartmentController extends Controller
         $client = new Client(['verify' => false]);
         $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
         $rows = json_decode($response->getBody());
-        /*  dd($rows->results[0]->position->lat, $rows->results[0]->position->lon,); */
-        if ($rows->results && count($rows->results) > 0) {
+         /*  dd($rows->results[0]->type); */
+        if (count($rows->results) > 0 && $rows->results[0]->type === "Point Address") {
             $apartment->latitude = $rows->results[0]->position->lat;
             $apartment->longitude = $rows->results[0]->position->lon;
         } else {
