@@ -37,7 +37,7 @@
 
             {{-- city --}}
             <div class="mb-3">
-                <label for="city" class="form-label">Title</label>
+                <label for="city" class="form-label">City</label>
                 <input type="text"
                     class="form-control @error('city') is-invalid @enderror @if (!empty(old('city')) && !$errors->has('city')) is-valid @endif"
                     id="city" name="city" value="{{ old('city') }}">
