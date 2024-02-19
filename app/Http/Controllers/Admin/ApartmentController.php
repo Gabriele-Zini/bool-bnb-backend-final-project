@@ -30,7 +30,7 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-        
+
         $client = new Client(['verify' => false]);
         $response = $client->get('https://restcountries.com/v3.1/all');
         $rows = json_decode($response->getBody());
@@ -116,7 +116,7 @@ class ApartmentController extends Controller
      * Display the specified resource.
      */
     public function show(Apartment $apartment)
-    {        
+    {
         return view('admin.apartments.show', compact('apartment'));
     }
 
@@ -144,7 +144,7 @@ class ApartmentController extends Controller
             $apartment->services()->sync($request->input('services', []));
         }
 
-        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug]);
+        return redirect()->route('apartments.show', ['apartment' => $apartment->slug]);
     }
 
     /**

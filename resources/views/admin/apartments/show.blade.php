@@ -35,8 +35,7 @@
                         <li class="list-group-item">
                             <span class="fw-bold">Services: </span>
                             @foreach ($apartment->services as $service)
-                                <p class="d-inline">{{ $service->name }}@if ($loop->last)
-                                    . @else,
+                                <p class="d-inline">{{ $service->name }}@if ($loop->last). @else,
                                     @endif
                                 </p>
                             @endforeach
