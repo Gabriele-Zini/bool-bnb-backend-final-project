@@ -19,9 +19,6 @@
                         </div>
                         <ul class="list-unstyled list-group list-group-flush">
                             <li class="list-group-item">
-                                <span class="fw-bold">Description:</span> {{ $apartment->title }}
-                            </li>
-                            <li class="list-group-item">
                                 <span class="fw-bold">Municipality:</span> {{ $apartment->city }}
                             </li>
                             <li class="list-group-item">

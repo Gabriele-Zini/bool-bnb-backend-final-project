@@ -51,6 +51,6 @@ class Apartment extends Model
 
     //accessor Title
     public function getTitleAttribute($value) {
-        return ucfirst($this->attributes['title']);
+        return ucwords($this->attributes['title']);
     }
 }
