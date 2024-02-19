@@ -59,7 +59,8 @@
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                                <button type="submit" class="btn btn-danger delete-btn" data-bs-toggle="modal"
+                                    data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
                             </form>
 
                             <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
@@ -75,11 +76,11 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title fw-bold">Delete <span class="apartment-name"></span></h5>
+                        <h5 class="modal-title fw-bold">Delete <span class="apartment-title"></span></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to delete <span class="apartment-name fw-bold"></span>?</p>
+                        <p>Are you sure you want to delete <span class="apartment-title fw-bold"></span>?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
