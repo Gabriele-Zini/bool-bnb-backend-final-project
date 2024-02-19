@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ route('dashboard') }}">
-            Logo
+            BoolBnb
         </a>
 
         <!-- Hamburger Button -->
