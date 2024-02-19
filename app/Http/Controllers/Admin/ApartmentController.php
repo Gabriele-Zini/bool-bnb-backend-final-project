@@ -8,6 +8,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentController extends Controller
 {
@@ -17,7 +18,7 @@ class ApartmentController extends Controller
     public function index()
     {
         // $perPage = 10;
-        $apartments = Apartment::all();
+        $apartments = Apartment::where('user_id', '=', Auth::user()->id)->get();
 
         return view('admin.apartments.index', compact('apartments'));
     }
@@ -37,14 +38,14 @@ class ApartmentController extends Controller
             foreach ($rows as $row) {
 
                 $countryCodes[] = [
-                    'code' => $row->cca2,
+                    'code' => $row->cca3,
                     'name' => $row->name->common
                 ];
             }
         }
 
 
-        usort($countryCodes,function ($a, $b) {
+        usort($countryCodes, function ($a, $b) {
             return strcmp($a['name'], $b['name']);
         });
 
@@ -56,6 +57,28 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+        $form_data = $request->all();
+        $apartment = new Apartment();
+        $apartment->fill($form_data);
+        $apartment->user_id = Auth::user()->id;
+
+
+
+        $client = new Client(['verify' => false]);
+        $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
+        $rows = json_decode($response->getBody());
+         /*  dd($rows->results[0]->type); */
+        if (count($rows->results) > 0 && $rows->results[0]->type === "Point Address") {
+            $apartment->latitude = $rows->results[0]->position->lat;
+            $apartment->longitude = $rows->results[0]->position->lon;
+        } else {
+            return back()->with('error', 'Position not found');
+        }
+
+        $apartment->save();
+        if ($request->has('services'))
+            $apartment->services()->attach($request->services);
+        return redirect(route('apartments.index'));
     }
 
     /**

@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('street_name');
             $table->double('latitude', 12, 8);
             $table->double('longitude', 12, 8);
-            $table->boolean('visibility');
+            $table->boolean('visibility')->nullable();
             $table->text('image_path')->nullable();
             $table->string('street_number', 6);
-            $table->string('postal_code', 10);
+            $table->string('postal_code', 10)->nullable();
             $table->string('country', 20);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
