@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('city');
             $table->string('street_name');
-            $table->double('latitude', 12, 8)->nullable();
-            $table->double('longitude', 12, 8)->nullable();
+            $table->double('latitude', 12, 8);
+            $table->double('longitude', 12, 8);
             $table->boolean('visibility')->nullable();
             $table->text('image_path')->nullable();
             $table->string('street_number', 6);
