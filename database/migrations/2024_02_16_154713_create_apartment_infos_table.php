@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('apartment_infos', function (Blueprint $table) {
             $table->id();
-            $table->string('num_rooms')->nullable();
-            $table->string('num_beds')->nullable();
-            $table->string('num_bathrooms')->nullable();
-            $table->string('mt_square')->nullable();
+            $table->unsignedTinyInteger('num_rooms')->nullable();
+            $table->unsignedTinyInteger('num_beds')->nullable();
+            $table->unsignedTinyInteger('num_bathrooms')->nullable();
+            $table->unsignedSmallInteger('mt_square')->nullable();
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments')->cascadeOnDelete();
             $table->timestamps();

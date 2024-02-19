@@ -48,4 +48,9 @@ class Apartment extends Model
     {
         return $this->hasOne(Apartment_info::class);
     }
+
+    //accessor Title
+    public function getTitleAttribute($value) {
+        return ucfirst($this->attributes['title']);
+    }
 }

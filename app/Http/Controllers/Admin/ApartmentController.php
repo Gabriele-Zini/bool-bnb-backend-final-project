@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
+use App\Models\Apartment_info;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -29,6 +30,7 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
+
         $client = new Client(['verify' => false]);
         $response = $client->get('https://restcountries.com/v3.1/all');
         $rows = json_decode($response->getBody());
@@ -58,8 +60,13 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $form_data = $request->all();
+
         $apartment = new Apartment();
+        $apartment_infos = new Apartment_info();
+
         $apartment->fill($form_data);
+        $apartment_infos->fill($form_data);
+
         $apartment->user_id = Auth::user()->id;
 
 
@@ -96,6 +103,10 @@ class ApartmentController extends Controller
         }
 
         $apartment->save();
+
+        $apartment_infos->apartment_id = $apartment->id;
+        $apartment_infos->save();
+
         if ($request->has('services'))
             $apartment->services()->attach($request->services);
         return redirect(route('apartments.index'));
@@ -104,33 +115,45 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Apartment $apartment)
     {
-        //
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Apartment $apartment)
     {
-        //
+        $services = Service::all();
+
+        return view('admin.apartments.edit', compact('services', 'apartment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        $form_data = $request->all();
+
+        $apartment->update($form_data);
+        $apartment->apartment_info->update($form_data);
+
+        if($request->has('services')) {
+            $apartment->services()->sync($request->input('services', []));
+        }
+
+        return redirect()->route('apartments.show', ['apartment' => $apartment->slug]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->route('apartments.index')->with('message', 'you have deleted '.$apartment->title);
     }
 
     public function controlParams($rows, $request)
