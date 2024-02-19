@@ -150,9 +150,10 @@ class ApartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->route('apartments.index')->with('message', 'you have deleted '.$apartment->title);
     }
 
     public function controlParams($rows, $request)

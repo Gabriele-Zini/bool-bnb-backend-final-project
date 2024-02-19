@@ -3,6 +3,12 @@
 @section('content')
     <div class="container my-5">
         <h1 class="my-4 text-center">Apartments list</h1>
+
+        @if (session('message'))
+            <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="row g-5 justify-content-center">
             @foreach ($apartments as $apartment)
                 <div class="col-12 col-md-5 col-lg-3">
@@ -46,13 +52,41 @@
 
                         </ul>
                         <div class="card-body ">
-                            <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">edit</a>
-                            <a href="#" class="btn btn-danger">delete</a>
-                            <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}" class="btn btn-info">details</a>
+                            <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
+                                class="btn btn-warning">edit</a>
+                            <form class="d-inline"
+                                action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                            </form>
+
+                            <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
+                                class="btn btn-info">details</a>
                         </div>
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        {{-- modal --}}
+        <div class="modal" tabindex="-1" id="delete-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold">Delete <span class="apartment-name"></span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete <span class="apartment-name fw-bold"></span>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="confirm-delete" type="button" class="btn btn-danger">Confirm delete</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
