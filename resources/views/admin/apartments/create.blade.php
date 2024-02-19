@@ -69,6 +69,17 @@
                 @enderror
             </div>
 
+            {{-- postal code --}}
+            <div class="mb-3">
+                <label for="postal_code" class="form-label">postal code</label>
+                <input type="text"
+                    class="form-control @error('postal_code') is-invalid @enderror @if (!empty(old('postal_code')) && !$errors->has('postal_code')) is-valid @endif"
+                    id="postal_code" name="postal_code" value="{{ old('postal_code') }}">
+                @error('postal_code')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                 <div class="row g-2 justify-content-start align-items-center">
                     @foreach ($services as $service)
