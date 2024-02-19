@@ -82,6 +82,28 @@
                     @endforeach
                 </div>
             </div>
+
+            <h4 class="mt-5">visibility</h4>
+            <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
+                <div class="row g-2 justify-content-start align-items-center">
+                        <div class="col">
+                            <input type="radio" class="btn-check" id="visibility" name="visibility"
+                                value="1" autocomplete="off">
+                            <label class="btn btn-outline-dark" for="visibility">
+                              visible
+                            </label>
+                        </div>
+                        <div class="col">
+                            <input type="radio" class="btn-check" id="not-visibility" name="visibility"
+                                value="0" autocomplete="off">
+                            <label class="btn btn-outline-dark" for="not-visibility">
+                              not visible
+                            </label>
+                        </div>
+                </div>
+            </div>
+
+
             @error('servicies')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
