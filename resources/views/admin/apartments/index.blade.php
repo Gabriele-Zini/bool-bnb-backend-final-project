@@ -46,7 +46,7 @@
 
                         </ul>
                         <div class="card-body ">
-                            <a href="#" class="btn btn-warning">edit</a>
+                            <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">edit</a>
                             <a href="#" class="btn btn-danger">delete</a>
                             <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}" class="btn btn-info">details</a>
                         </div>

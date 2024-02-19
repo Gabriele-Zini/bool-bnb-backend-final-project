@@ -43,28 +43,36 @@
                         </li>
                     @endif
 
-                        {{-- @dd($apartment->apartment_info->num_beds) --}}
+                    {{-- @dd($apartment->apartment_info->num_beds) --}}
                     {{-- @foreach ($apartment->apartment_info as $info)
                         <li class="list-group-item">
                             <span class="fw-bold">Num {{ $info->num_rooms }}:</span>
                         </li>
                     @endforeach --}}
 
-                <li class="list-group-item">
-                    <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
-                </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
+                    </li>
 
-                <li class="list-group-item">
-                    <span class="fw-bold">Num. beds:</span> {{ $apartment->apartment_info->num_beds }}
-                </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Num. beds:</span> {{ $apartment->apartment_info->num_beds }}
+                    </li>
 
-                <li class="list-group-item">
-                    <span class="fw-bold">Num. bathrooms:</span> {{ $apartment->apartment_info->num_bathrooms }}
-                </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Num. bathrooms:</span> {{ $apartment->apartment_info->num_bathrooms }}
+                    </li>
 
-                <li class="list-group-item">
-                    <span class="fw-bold">Meters square :</span> {{ $apartment->apartment_info->mt_square }}
-                </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Meters square :</span> {{ $apartment->apartment_info->mt_square }}
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">edit</a>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="#" class="btn btn-danger">delete</a>
+                    </li>
                 </ul>
             </div>
         </div>

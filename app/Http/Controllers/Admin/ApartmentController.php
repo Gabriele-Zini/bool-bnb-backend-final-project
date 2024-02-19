@@ -123,17 +123,28 @@ class ApartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Apartment $apartment)
     {
-        //
+        $services = Service::all();
+
+        return view('admin.apartments.edit', compact('services', 'apartment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Apartment $apartment)
     {
-        //
+        $form_data = $request->all();
+
+        $apartment->update($form_data);
+        $apartment->apartment_info->update($form_data);
+
+        if($request->has('services')) {
+            $apartment->services()->sync($request->input('services', []));
+        }
+
+        return redirect()->route('admin.apartments.show', ['apartment' => $apartment->slug]);
     }
 
     /**
