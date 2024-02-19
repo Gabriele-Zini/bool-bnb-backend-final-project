@@ -38,18 +38,6 @@
                                     <p class=" my-0"><span class="fw-bold">Visibility: </span>off</p>
                                 @endif
                             </li>
-                            @if (count($apartment->services) > 0)
-                                <li class="list-group-item">
-                                    <span class="fw-bold">Services: </span>
-                                    @foreach ($apartment->services as $service)
-                                        <p class="d-inline">{{ $service->name }}@if ($loop->last)
-                                            . @else,
-                                            @endif
-                                        </p>
-                                    @endforeach
-                                </li>
-                            @endif
-
                         </ul>
                         <div class="card-body ">
                             <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
