@@ -115,9 +115,9 @@ class ApartmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show(Apartment $apartment)
+    {        
+        return view('admin.apartments.show', compact('apartment'));
     }
 
     /**
