@@ -30,28 +30,7 @@ class ApartmentController extends Controller
     public function create()
     {
         $services = Service::all();
-
-        $client = new Client(['verify' => false]);
-        $response = $client->get('https://restcountries.com/v3.1/all');
-        $rows = json_decode($response->getBody());
-        $countryCodes = [];
-        if ($response) {
-
-            foreach ($rows as $row) {
-
-                $countryCodes[] = [
-                    'code' => $row->cca3,
-                    'name' => $row->name->common
-                ];
-            }
-        }
-
-
-        usort($countryCodes, function ($a, $b) {
-            return strcmp($a['name'], $b['name']);
-        });
-
-        return view('admin.apartments.create', compact('services', 'countryCodes'));
+        return view('admin.apartments.create', compact('services'));
     }
 
     /**
@@ -76,20 +55,8 @@ class ApartmentController extends Controller
         $rows = json_decode($response->getBody());
         /* dd($rows); */
 
-        function controlParams($rows, $request)
-        {
-            if (/* trim(strtolower($request->street_name)) === trim(strtolower($rows->results[0]->address->streetName)) && */ trim(strtolower($request->street_number)) === trim(strtolower($rows->results[0]->address->streetNumber)) && trim(strtolower($request->city)) === trim(strtolower($rows->results[0]->address->municipality)) && trim(strtolower($request->postal_code)) == trim(strtolower($rows->results[0]->address->postalCode))) {
-                /*  dd(trim(strtolower($rows->results[0]->address->streetName)), trim(strtolower($request->street_name))); */
-                return true;
-            } else {
-                /* dd(trim(strtolower($rows->results[0]->address->streetName)), trim(strtolower($request->street_name))); */
-                return false;
-            }
-        }
 
-
-
-        if (count($rows->results) > 0  /* && trim(strtolower($request->postal_code)) == trim(strtolower($rows->results[0]->address->postalCode)) */) {
+        if (count($rows->results) > 0) {
             $apartment->latitude = $rows->results[0]->position->lat;
             $apartment->longitude = $rows->results[0]->position->lon;
             $apartment->street_name = $rows->results[0]->address->streetName;
@@ -118,6 +85,7 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        $this->checkUser($apartment);
         return view('admin.apartments.show', compact('apartment'));
     }
 
@@ -157,12 +125,10 @@ class ApartmentController extends Controller
         return redirect()->route('apartments.index')->with('message', 'you have deleted '.$apartment->title);
     }
 
-    public function controlParams($rows, $request)
+    private function checkUser(Apartment $apartment)
     {
-        if (trim(strtolower($request->street_name)) === trim(strtolower($rows->results[0]->address->streetName)) && trim(strtolower($request->street_number)) === trim(strtolower($rows->results[0]->address->streetNumber)) && trim(strtolower($request->city)) === trim(strtolower($rows->results[0]->address->municipality)) && trim(strtolower($request->postal_code)) == trim(strtolower($rows->results[0]->address->postalCode))) {
-            return true;
-        } else {
-            return false;
+        if ($apartment->user_id !== Auth::user()->id) {
+            abort(404);
         }
     }
 }
