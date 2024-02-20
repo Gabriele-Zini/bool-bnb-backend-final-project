@@ -21,9 +21,12 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
-
+            
+            <div>
+                <p id="address"></p>
+            </div>
             {{-- country --}}
-            <div class="mb-3">
+            {{-- <div class="mb-3" >
                 <label class="form-label" for="country">Country</label>
                 <select class="form-select" name="country" id="country">
                     <option @selected(!old('country')) value="">No Country selected</option>
@@ -32,11 +35,21 @@
                         </option>
                     @endforeach
                 </select>
+            </div> --}}
+
+            <div class="mb-3 d-none">
+                <label for="country" class="form-label">Country</label>
+                <input type="text"
+                    class="form-control @error('country') is-invalid @enderror @if (!empty(old('country')) && !$errors->has('country')) is-valid @endif"
+                    id="country" name="country" value="{{ old('country') }}">
+                @error('country')
+                    <p class="invalid-feedback">{{ $message }}</p>
+                @enderror
             </div>
 
 
             {{-- city --}}
-            <div class="mb-3">
+            <div class="mb-3 d-none">
                 <label for="city" class="form-label">City</label>
                 <input type="text"
                     class="form-control @error('city') is-invalid @enderror @if (!empty(old('city')) && !$errors->has('city')) is-valid @endif"
@@ -48,7 +61,7 @@
 
 
             {{-- street_name --}}
-            <div class="mb-3">
+            <div class="mb-3 d-none">
                 <label for="street_name" class="form-label">Street Name</label>
                 <input type="text"
                     class="form-control @error('street_name') is-invalid @enderror @if (!empty(old('street_name')) && !$errors->has('street_name')) is-valid @endif"
@@ -59,7 +72,7 @@
             </div>
 
             {{-- street_number --}}
-            <div class="mb-3">
+            <div class="mb-3 d-none">
                 <label for="street_number" class="form-label">street number</label>
                 <input type="text"
                     class="form-control @error('street_number') is-invalid @enderror @if (!empty(old('street_number')) && !$errors->has('street_number')) is-valid @endif"
@@ -70,7 +83,7 @@
             </div>
 
             {{-- postal code --}}
-            <div class="mb-3">
+            <div class="mb-3 d-none">
                 <label for="postal_code" class="form-label">postal code</label>
                 <input type="text"
                     class="form-control @error('postal_code') is-invalid @enderror @if (!empty(old('postal_code')) && !$errors->has('postal_code')) is-valid @endif"
@@ -78,6 +91,11 @@
                 @error('postal_code')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
+            </div>
+            
+            <h5>Select your address</h5>
+            <div class="map" id="map">
+
             </div>
 
             {{-- rooms --}}

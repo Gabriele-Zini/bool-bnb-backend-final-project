@@ -32,7 +32,8 @@ class ApartmentsTableSeeder extends Seeder
             $new_apartment->street_name = $faker->streetName();
             $new_apartment->street_number = $faker->buildingNumber();
             $new_apartment->postal_code = $faker->postcode();
-            $new_apartment->country = $faker->stateAbbr();
+            $new_apartment->country = $faker->country();
+            $new_apartment->country_code = $faker->countryISOAlpha3();
             $new_apartment->latitude = $faker->latitude($min = -90, $max = 90);
             $new_apartment->longitude = $faker->longitude($min = -180, $max = 180);
             $new_apartment->visibility = $faker->boolean();

@@ -89,7 +89,7 @@ class ApartmentController extends Controller
 
 
 
-        if (count($rows->results) > 0 &&  $rows->results[0]->type === "Point Address" &&  controlParams($rows, $request) /* && trim(strtolower($request->postal_code)) == trim(strtolower($rows->results[0]->address->postalCode)) */) {
+        if (count($rows->results) > 0  /* && trim(strtolower($request->postal_code)) == trim(strtolower($rows->results[0]->address->postalCode)) */) {
             $apartment->latitude = $rows->results[0]->position->lat;
             $apartment->longitude = $rows->results[0]->position->lon;
             $apartment->street_name = $rows->results[0]->address->streetName;
@@ -97,6 +97,7 @@ class ApartmentController extends Controller
             $apartment->postal_code = $rows->results[0]->address->postalCode;
             $apartment->city = $rows->results[0]->address->municipality;
             $apartment->country = $rows->results[0]->address->country;
+            $apartment->country_code = $rows->results[0]->address->countryCodeISO3;
 
         } else {
             return back()->with('error', 'Position not found');
@@ -144,7 +145,7 @@ class ApartmentController extends Controller
             $apartment->services()->sync($request->input('services', []));
         }
 
-        return redirect()->route('apartments.show', ['apartment' => $apartment->slug]);
+        return redirect()->route('apartments.show', ['apartment' => $apartment->slug])->with('message', 'Apartment updated!');
     }
 
     /**
