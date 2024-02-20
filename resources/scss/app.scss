@@ -1,2 +1,18 @@
 
 @import "~bootstrap/scss/bootstrap";
+
+
+#map {
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+
+#marker {
+    background-color: black;
+    color: white;
+    background-size: cover;
+    width: 50px;
+    text-align: center;
+    border-radius: 20px;
+}

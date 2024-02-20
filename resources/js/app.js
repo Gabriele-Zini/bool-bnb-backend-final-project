@@ -3,6 +3,11 @@ import "./bootstrap";
 import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**"]);
+//tom tom imports
+import TomTom from '@tomtom-international/web-sdk-maps';
+import { services } from '@tomtom-international/web-sdk-services';
+import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+import '@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.css'
 
 let deleteBtn = document.querySelectorAll(".delete-btn");
 
@@ -26,3 +31,57 @@ deleteBtn.forEach(btn=>{
        })
     })
 })
+
+
+//tom tom code
+const successCallback = (position) => {
+    let center = { lat: position.coords.latitude, lng: position.coords.longitude };
+    console.log("Latitudine: ", position.coords.latitude + " Longitudine: ", position.coords.longitude);
+    console.log(center);
+
+    let map = tt.map({
+        key: 'HAMFczyVGd30ClZCfYGP9To9Y18u6eq7',
+        container: 'map',
+        center: center,
+        zoom: 10,
+    });
+
+    map.on('load', () => {
+        let element = document.createElement("div");
+        element.id = "marker";
+        element.innerHTML = "125$";
+        new tt.Marker({ element: element }).setLngLat(center).addTo(map);
+    });
+
+    let options = {
+        searchOptions: {
+            key: "HAMFczyVGd30ClZCfYGP9To9Y18u6eq7",
+            language: "en-GB",
+            limit: 5,
+            zoom: 10,
+        },
+        autocompleteOptions: {
+            key: "HAMFczyVGd30ClZCfYGP9To9Y18u6eq7",
+            language: "en-GB",
+        },
+    };
+
+    const ttSearchBox = new SearchBox(services, options);
+
+    ttSearchBox.on('tomtom.searchbox.resultselected', (e) => {
+        console.log("Risultato selezionato:", e.data.result);
+        map.flyTo({ center: e.data.result.position });
+
+        let selectedResult = e.data.result;
+        let selectedLocation = selectedResult.position;
+        let selectedAddress = selectedResult.address;
+        console.log("Posizione selezionata:", selectedLocation.lat);
+        console.log("Indirizzo selezionato:", selectedAddress.streetNumber);
+    });
+    map.addControl(ttSearchBox, 'top-left');
+};
+const errorCallback = (error) => {
+    console.log(error);
+};
+
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);

@@ -80,6 +80,10 @@
                 @enderror
             </div>
 
+            <div class="map" id="map">
+
+            </div>
+
             {{-- rooms --}}
             <div class="mb-3">
                 <label for="num_rooms" class="form-label">rooms</label>

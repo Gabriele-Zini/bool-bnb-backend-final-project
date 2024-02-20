@@ -79,6 +79,8 @@
                 </ul>
             </div>
         </div>
+
+
     {{-- modal --}}
     <div class="modal" tabindex="-1" id="delete-modal">
         <div class="modal-dialog">
