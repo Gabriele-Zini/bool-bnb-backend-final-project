@@ -96,7 +96,8 @@ class ApartmentController extends Controller
             $apartment->street_number = $rows->results[0]->address->streetNumber;
             $apartment->postal_code = $rows->results[0]->address->postalCode;
             $apartment->city = $rows->results[0]->address->municipality;
-            $apartment->country = $rows->results[0]->address->countryCodeISO3;
+            $apartment->country = $rows->results[0]->address->country;
+            $apartment->country_code = $rows->results[0]->address->countryCodeISO3;
 
         } else {
             return back()->with('error', 'Position not found');
@@ -144,7 +145,7 @@ class ApartmentController extends Controller
             $apartment->services()->sync($request->input('services', []));
         }
 
-        return redirect()->route('apartments.show', ['apartment' => $apartment->slug]);
+        return redirect()->route('apartments.show', ['apartment' => $apartment->slug])->with('message', 'Apartment updated!');
     }
 
     /**
