@@ -12,6 +12,7 @@
         <form action="{{ route('apartments.store') }}" enctype="multipart/form-data" method="POST"
             class="col-12 col-md-5 col-lg-4 m-auto">
             @csrf
+
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text"
@@ -21,31 +22,20 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
-            
+
             <div>
                 <p id="address"></p>
             </div>
-            {{-- country --}}
-            {{-- <div class="mb-3" >
-                <label class="form-label" for="country">Country</label>
-                <select class="form-select" name="country" id="country">
-                    <option @selected(!old('country')) value="">No Country selected</option>
-                    @foreach ($countryCodes as $countryCode)
-                        <option @selected(old('country') == $countryCode['code']) value="{{ $countryCode['code'] }}">{{ $countryCode['name'] }}
-                        </option>
-                    @endforeach
-                </select>
-            </div> --}}
 
             <div class="mb-3 d-none">
-                <label for="country" class="form-label">Country</label>
+                <label for="country_code" class="form-label">country code</label>
                 <input type="text"
-                    class="form-control @error('country') is-invalid @enderror @if (!empty(old('country')) && !$errors->has('country')) is-valid @endif"
-                    id="country" name="country" value="{{ old('country') }}">
-                @error('country')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
+                    class="form-control @error('country_code') is-invalid @enderror @if (!empty(old('country_code')) && !$errors->has('country_code')) is-valid @endif"
+                    id="country_code" name="country_code" value="{{ old('country_code') }}">
             </div>
+            @error('country_code')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
 
 
             {{-- city --}}
@@ -54,10 +44,10 @@
                 <input type="text"
                     class="form-control @error('city') is-invalid @enderror @if (!empty(old('city')) && !$errors->has('city')) is-valid @endif"
                     id="city" name="city" value="{{ old('city') }}">
-                @error('city')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
             </div>
+            @error('city')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
 
 
             {{-- street_name --}}
@@ -66,10 +56,10 @@
                 <input type="text"
                     class="form-control @error('street_name') is-invalid @enderror @if (!empty(old('street_name')) && !$errors->has('street_name')) is-valid @endif"
                     id="street_name" name="street_name" value="{{ old('street_name') }}">
-                @error('street_name')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
             </div>
+            @error('street_name')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
 
             {{-- street_number --}}
             <div class="mb-3 d-none">
@@ -77,10 +67,12 @@
                 <input type="text"
                     class="form-control @error('street_number') is-invalid @enderror @if (!empty(old('street_number')) && !$errors->has('street_number')) is-valid @endif"
                     id="street_number" name="street_number" value="{{ old('street_number') }}">
-                @error('street_number')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
             </div>
+
+            
+            @error('street_number')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
 
             {{-- postal code --}}
             <div class="mb-3 d-none">
@@ -88,11 +80,11 @@
                 <input type="text"
                     class="form-control @error('postal_code') is-invalid @enderror @if (!empty(old('postal_code')) && !$errors->has('postal_code')) is-valid @endif"
                     id="postal_code" name="postal_code" value="{{ old('postal_code') }}">
-                @error('postal_code')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
             </div>
-            
+            @error('postal_code')
+                <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
+
             <h5>Select your address</h5>
             <div class="map" id="map">
 

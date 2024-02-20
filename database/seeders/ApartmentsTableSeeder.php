@@ -37,7 +37,7 @@ class ApartmentsTableSeeder extends Seeder
             $new_apartment->latitude = $faker->latitude($min = -90, $max = 90);
             $new_apartment->longitude = $faker->longitude($min = -180, $max = 180);
             $new_apartment->visibility = $faker->boolean();
-            $new_apartment->user_id = User::all()->first()->id;
+            $new_apartment->user_id = User::all()->random()->id;
 
             $new_apartment->save();
 

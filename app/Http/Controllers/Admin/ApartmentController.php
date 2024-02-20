@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreApartmentRequest;
 use App\Models\Apartment;
 use App\Models\Apartment_info;
 use App\Models\Service;
@@ -36,9 +37,9 @@ class ApartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreApartmentRequest $request)
     {
-        $form_data = $request->all();
+        $form_data = $request->validate();
 
         $apartment = new Apartment();
         $apartment_infos = new Apartment_info();
@@ -51,7 +52,7 @@ class ApartmentController extends Controller
 
 
         $client = new Client(['verify' => false]);
-        $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
+        $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country_code) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
         $rows = json_decode($response->getBody());
         /* dd($rows); */
 
