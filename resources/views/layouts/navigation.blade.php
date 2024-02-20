@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('apartments.index')}}"> Your Apparments</a>
+                    <a class="nav-link" href="{{route('apartments.index')}}"> My Apparments</a>
                 </li>
                 <li>
                     <a class="nav-link" href="{{route('apartments.create')}}">Add new apartments</a>
