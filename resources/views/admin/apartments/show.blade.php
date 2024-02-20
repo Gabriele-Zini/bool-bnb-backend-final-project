@@ -2,7 +2,11 @@
 
 @section('content')
     <div class="container text-center">
-
+        @if (session('message'))
+        <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
+            {{ session('message') }}
+        </div>
+    @endif
         <div class="col-12 col-md-5 col-lg-3 m-auto">
             <div class="card" style="width: 18rem;">
                 {{-- <img src="..." class="card-img-top" alt="..."> --}}
