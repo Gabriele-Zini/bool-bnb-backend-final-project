@@ -45,9 +45,9 @@
                     class="form-control @error('city') is-invalid @enderror @if (!empty(old('city')) && !$errors->has('city')) is-valid @endif"
                     id="city" name="city" value="{{ old('city') }}">
             </div>
-            @error('city')
+            {{-- @error('city')
                 <p class="invalid-feedback">{{ $message }}</p>
-            @enderror
+            @enderror --}}
 
 
             {{-- street_name --}}
@@ -57,9 +57,9 @@
                     class="form-control @error('street_name') is-invalid @enderror @if (!empty(old('street_name')) && !$errors->has('street_name')) is-valid @endif"
                     id="street_name" name="street_name" value="{{ old('street_name') }}">
             </div>
-            @error('street_name')
+            {{-- @error('street_name')
                 <p class="invalid-feedback">{{ $message }}</p>
-            @enderror
+            @enderror --}}
 
             {{-- street_number --}}
             <div class="mb-3 d-none">
@@ -68,11 +68,9 @@
                     class="form-control @error('street_number') is-invalid @enderror @if (!empty(old('street_number')) && !$errors->has('street_number')) is-valid @endif"
                     id="street_number" name="street_number" value="{{ old('street_number') }}">
             </div>
-
-            
-            @error('street_number')
+            {{-- @error('street_number')
                 <p class="invalid-feedback">{{ $message }}</p>
-            @enderror
+            @enderror --}}
 
             {{-- postal code --}}
             <div class="mb-3 d-none">
@@ -81,14 +79,27 @@
                     class="form-control @error('postal_code') is-invalid @enderror @if (!empty(old('postal_code')) && !$errors->has('postal_code')) is-valid @endif"
                     id="postal_code" name="postal_code" value="{{ old('postal_code') }}">
             </div>
-            @error('postal_code')
+            {{-- @error('postal_code')
                 <p class="invalid-feedback">{{ $message }}</p>
-            @enderror
+            @enderror --}}
 
             <h5>Select your address</h5>
-            <div class="map" id="map">
-
+            <div class="map form-control @error('city') is-invalid @enderror @error('street_name') is-invalid @enderror @error('street_number') is-invalid @enderror @error('postal_code') is-invalid @enderror"
+                id="map">
             </div>
+
+            @error('city')
+                <p class="form-control my-2 is-invalid invalid-feedback">{{ $message }}</p>
+            @enderror
+            @error('street_name')
+                <p class="form-control my-2 is-invalid invalid-feedback">{{ $message }}</p>
+            @enderror
+            @error('street_number')
+                <p class="form-control my-2 is-invalid invalid-feedback">{{ $message }}</p>
+            @enderror
+            @error('postal_code')
+                <p class="form-control my-2 is-invalid invalid-feedback">{{ $message }}</p>
+            @enderror
 
             {{-- rooms --}}
             <div class="mb-3">
@@ -134,17 +145,22 @@
                 @enderror
             </div>
 
+            {{-- services --}}
             <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                 <div class="row g-2 justify-content-start align-items-center">
                     @foreach ($services as $service)
                         <div class="col">
-                            <input type="checkbox" class="btn-check" id="service_{{ $service->id }}" name="services[]"
-                                value="{{ $service->id }}" autocomplete="off" @checked(in_array($service->id, old('services', [])))>
+                            <input type="checkbox" class="btn-check @error('services') invalid feedback @enderror"
+                                id="service_{{ $service->id }}" name="services[]" value="{{ $service->id }}"
+                                autocomplete="off" @checked(in_array($service->id, old('services', [])))>
                             <label class="btn btn-outline-primary" for="service_{{ $service->id }}">
                                 {{ $service->name }}
                             </label>
                         </div>
                     @endforeach
+                    @error('services')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -153,25 +169,28 @@
             <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                 <div class="row g-2 justify-content-start align-items-center">
                     <div class="col">
-                        <input type="radio" class="btn-check" id="visibility" name="visibility" value="1"
-                            autocomplete="off">
+                        <input type="radio"
+                            class="btn-check @error('visibility') form-control is-invalid invalid feedback @enderror"
+                            id="visibility" name="visibility" value="1" autocomplete="off">
                         <label class="btn btn-outline-dark" for="visibility">
                             visible
                         </label>
                     </div>
                     <div class="col">
-                        <input type="radio" class="btn-check" id="not-visibility" name="visibility" value="0"
-                            autocomplete="off">
+                        <input type="radio"
+                            class="btn-check @error('visibility') form-control is-invalid invalid feedback @enderror"
+                            id="not-visibility" name="visibility" value="0" autocomplete="off">
                         <label class="btn btn-outline-dark" for="not-visibility">
                             not visible
                         </label>
+
                     </div>
+
                 </div>
+
             </div>
-
-
-            @error('servicies')
-                <p class="text-danger">{{ $message }}</p>
+            @error('visibility')
+                <p class="invalid-feedback is-invalid">{{ $message }}</p>
             @enderror
 
             {{-- images --}}

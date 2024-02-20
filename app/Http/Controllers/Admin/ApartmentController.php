@@ -39,7 +39,8 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request)
     {
-        $form_data = $request->validate();
+        // dd($request);
+        $form_data = $request->validated();
 
         $apartment = new Apartment();
         $apartment_infos = new Apartment_info();
