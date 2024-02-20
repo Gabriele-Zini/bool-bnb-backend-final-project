@@ -96,7 +96,7 @@ class ApartmentController extends Controller
             $apartment->street_number = $rows->results[0]->address->streetNumber;
             $apartment->postal_code = $rows->results[0]->address->postalCode;
             $apartment->city = $rows->results[0]->address->municipality;
-            $apartment->country = $rows->results[0]->address->country;
+            $apartment->country = $rows->results[0]->address->countryCodeISO3;
 
         } else {
             return back()->with('error', 'Position not found');

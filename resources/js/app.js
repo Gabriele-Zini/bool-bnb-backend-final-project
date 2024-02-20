@@ -33,11 +33,10 @@ deleteBtn.forEach(btn=>{
     })
 })
 
-let country = getElementById('country');
-let city = getElementById('city');
-let streetName = getElementById('street_name');
-let streetNumber = getElementById('street_number');
-let postalCode = getElementById('postal_code');
+let city = document.getElementById('city');
+let streetName = document.getElementById('street_name');
+let streetNumber = document.getElementById('street_number');
+let postalCode = document.getElementById('postal_code');
 //tom tom code
 const successCallback = (position) => {
     let center = { lat: position.coords.latitude, lng: position.coords.longitude };
@@ -82,11 +81,14 @@ const successCallback = (position) => {
         let selectedAddress = selectedResult.address;
         console.log("Posizione selezionata:", selectedLocation.lat);
         console.log("Indirizzo selezionato:", selectedAddress.streetNumber);
-        country.innerHTML = selectedAddress.address.country;
-        city.innerHTML = selectedAddress.address.municipality;
-        streetName.innerHTML = selectedAddress.address.streetName;
-        streetNumber.innerHTML = selectedAddress.address.streetNumber;
-        postalCode.innerHTML = selectedAddress.address.postalCode;
+        let countryCode = document.getElementById('country').value = selectedAddress.countryCode || '';
+        let city = document.getElementById('city').value = selectedAddress.municipality || '';
+        let streetName = document.getElementById('street_name').value = selectedAddress.streetName || '';
+        let streetNumber = document.getElementById('street_number').value = selectedAddress.streetNumber || '';
+        let postalCode = document.getElementById('postal_code').value = selectedAddress.postalCode || '';
+        let region = selectedAddress.countrySubdivision || '';
+        let country = selectedAddress.country || '';
+        document.getElementById('address').innerHTML = `${streetName}, ${streetNumber}, ${postalCode}, ${city}, ${region}, ${country} ` 
     });
     map.addControl(ttSearchBox, 'top-left');
 };
