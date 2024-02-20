@@ -19,10 +19,10 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('apartments.index')}}">all {{ Auth::user()->name }} {{ Auth::user()->lastname }}'s Apparments</a>
+                    <a class="nav-link" href="{{route('apartments.index')}}"> Your Apparments</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('apartments.create')}}">add new apartments</a>
+                    <a class="nav-link" href="{{route('apartments.create')}}">Add new apartments</a>
                 </li>
             </ul>
 
