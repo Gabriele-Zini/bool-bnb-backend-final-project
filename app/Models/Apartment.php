@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Apartment extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'city', 'street_name', 'latitude', 'longitude', 'visibility', 'image_path', 'street_number', 'postal_code', 'country', 'user_id', 'slug'];
+    protected $fillable = ['title', 'city', 'street_name', 'latitude', 'longitude', 'visibility', 'image_path', 'street_number', 'postal_code', 'country', 'country_code', 'user_id', 'slug'];
 
     //mutator
     public function setTitleAttribute($value)
