@@ -11,6 +11,7 @@ import '@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.css'
 
 let deleteBtn = document.querySelectorAll(".delete-btn");
 
+
 deleteBtn.forEach(btn=>{
     btn.addEventListener('click', function(e) {
        e.preventDefault();
@@ -32,7 +33,11 @@ deleteBtn.forEach(btn=>{
     })
 })
 
-
+let country = getElementById('country');
+let city = getElementById('city');
+let streetName = getElementById('street_name');
+let streetNumber = getElementById('street_number');
+let postalCode = getElementById('postal_code');
 //tom tom code
 const successCallback = (position) => {
     let center = { lat: position.coords.latitude, lng: position.coords.longitude };
@@ -77,6 +82,11 @@ const successCallback = (position) => {
         let selectedAddress = selectedResult.address;
         console.log("Posizione selezionata:", selectedLocation.lat);
         console.log("Indirizzo selezionato:", selectedAddress.streetNumber);
+        country.innerHTML = selectedAddress.address.country;
+        city.innerHTML = selectedAddress.address.municipality;
+        streetName.innerHTML = selectedAddress.address.streetName;
+        streetNumber.innerHTML = selectedAddress.address.streetNumber;
+        postalCode.innerHTML = selectedAddress.address.postalCode;
     });
     map.addControl(ttSearchBox, 'top-left');
 };
