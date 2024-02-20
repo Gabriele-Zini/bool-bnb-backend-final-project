@@ -89,7 +89,7 @@ class ApartmentController extends Controller
 
 
 
-        if (count($rows->results) > 0 &&  $rows->results[0]->type === "Point Address" /* && trim(strtolower($request->postal_code)) == trim(strtolower($rows->results[0]->address->postalCode)) */) {
+        if (count($rows->results) > 0  /* && trim(strtolower($request->postal_code)) == trim(strtolower($rows->results[0]->address->postalCode)) */) {
             $apartment->latitude = $rows->results[0]->position->lat;
             $apartment->longitude = $rows->results[0]->position->lon;
             $apartment->street_name = $rows->results[0]->address->streetName;
