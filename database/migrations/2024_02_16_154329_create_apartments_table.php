@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('image_path')->nullable();
             $table->string('street_number', 6);
             $table->string('postal_code', 10)->nullable();
-            $table->string('country', 20);
+            $table->string('country');
             $table->string('country_code');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
