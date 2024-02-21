@@ -194,17 +194,19 @@
             @enderror
 
             {{-- images --}}
-            <div class="mb-3">
+           {{--  <div class="mb-3">
                 <label for="image_path" class="form-label">Apartment images</label>
-                <input type="file"
+                <input type="file" multiple
                     class="form-control @error('image_path') is-invalid @enderror @if (!empty(old('image_path')) && !$errors->has('image_path')) is-valid @endif"
-                    id="image_path" name="image_path" value="{{ old('image_path') }}">
+                    id="image_path" name="image_path"[] value="{{ old('image_path') }}">
                 @error('image_path')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> --}}
 
 
+            <label class="m-2">Images</label>
+            <input type="file" id="input-file-now-custom-3" class="form-control m-2" name="image_path[]" multiple>
 
             <div>
                 <img id="preview-image" class="ms_show-image d-none" src="" alt="">

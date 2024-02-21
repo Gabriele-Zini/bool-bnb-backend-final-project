@@ -3,86 +3,134 @@
 @section('content')
     <div class="container text-center">
         @if (session('message'))
-        <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
-            {{ session('message') }}
-        </div>
-    @endif
-        <div class="col-12 col-md-5 col-lg-3 m-auto">
-            <div class="card" style="width: 18rem;">
-                {{-- <img src="..." class="card-img-top" alt="..."> --}}
-                <div class="card-body">
-                    <h5 class="card-title">{{ $apartment->title }}</h5>
+            <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
+                {{ session('message') }}
+            </div>
+        @endif
+
+
+        {{-- <div class="d-flex">
+            @foreach ($apartment->images as $image)
+                <div class="col-3">
+                    <img id="apartment-image"
+                        src="{{ asset('storage/image_path/' . $apartment->slug . '/' . $image->image_path) }}" alt="">
                 </div>
-                <ul class="list-unstyled list-group list-group-flush">
-                    <li class="list-group-item">
-                        <span class="fw-bold">Description:</span> {{ $apartment->title }}
-                    </li>
-                    <li class="list-group-item">
-                        <span class="fw-bold">Municipality:</span> {{ $apartment->city }}
-                    </li>
-                    <li class="list-group-item">
-                        <span class="fw-bold">Address:</span> {{ $apartment->street_name }},
-                        {{ $apartment->street_number }}
-                    </li>
-                    <li class="list-group-item">
-                        <span class="fw-bold">Postal code:</span> {{ $apartment->postal_code }}
-                    </li>
-                    <li class="list-group-item">
-                        @if ($apartment->visibility === 1)
-                            <p class=" my-0"><span class="fw-bold">Visibility: </span>on</p>
-                        @else
-                            <p class=" my-0"><span class="fw-bold">Visibility: </span>off</p>
-                        @endif
-                    </li>
+            @endforeach
+        </div> --}}
 
-                    @if (count($apartment->services) > 0)
-                        <li class="list-group-item">
-                            <span class="fw-bold">Services: </span>
-                            @foreach ($apartment->services as $service)
-                                <p class="d-inline">{{ $service->name }}@if ($loop->last). @else,
-                                    @endif
-                                </p>
-                            @endforeach
-                        </li>
+
+
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                @foreach ($apartment->images as $image)
+                    <div class="carousel-item active">
+                        <img class="apartment-image col-3"
+                            src="{{ asset('storage/image_path/' . $apartment->slug . '/' . $image->image_path) }}"
+                            alt="">
+                    </div>
+                    {{-- @dd($image->image_path) --}}
+                @endforeach
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
+    <div class="col-12 col-md-5 col-lg-3 m-auto">
+        <div class="card" style="width: 18rem;">
+            {{-- <img src="..." class="card-img-top" alt="..."> --}}
+            <div class="card-body">
+                <h5 class="card-title">{{ $apartment->title }}</h5>
+            </div>
+            <ul class="list-unstyled list-group list-group-flush">
+                <li class="list-group-item">
+                    <span class="fw-bold">Description:</span> {{ $apartment->title }}
+                </li>
+                <li class="list-group-item">
+                    <span class="fw-bold">Municipality:</span> {{ $apartment->city }}
+                </li>
+                <li class="list-group-item">
+                    <span class="fw-bold">Address:</span> {{ $apartment->street_name }},
+                    {{ $apartment->street_number }}
+                </li>
+                <li class="list-group-item">
+                    <span class="fw-bold">Postal code:</span> {{ $apartment->postal_code }}
+                </li>
+                <li class="list-group-item">
+                    @if ($apartment->visibility === 1)
+                        <p class=" my-0"><span class="fw-bold">Visibility: </span>on</p>
+                    @else
+                        <p class=" my-0"><span class="fw-bold">Visibility: </span>off</p>
                     @endif
+                </li>
 
-                    {{-- @dd($apartment->apartment_info->num_beds) --}}
-                    {{-- @foreach ($apartment->apartment_info as $info)
+                @if (count($apartment->services) > 0)
+                    <li class="list-group-item">
+                        <span class="fw-bold">Services: </span>
+                        @foreach ($apartment->services as $service)
+                            <p class="d-inline">{{ $service->name }}@if ($loop->last)
+                                . @else,
+                                @endif
+                            </p>
+                        @endforeach
+                    </li>
+                @endif
+
+                {{-- @dd($apartment->apartment_info->num_beds) --}}
+                {{-- @foreach ($apartment->apartment_info as $info)
                         <li class="list-group-item">
                             <span class="fw-bold">Num {{ $info->num_rooms }}:</span>
                         </li>
                     @endforeach --}}
 
-                    <li class="list-group-item">
-                        <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
-                    </li>
+                <li class="list-group-item">
+                    <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
+                </li>
 
-                    <li class="list-group-item">
-                        <span class="fw-bold">Num. beds:</span> {{ $apartment->apartment_info->num_beds }}
-                    </li>
+                <li class="list-group-item">
+                    <span class="fw-bold">Num. beds:</span> {{ $apartment->apartment_info->num_beds }}
+                </li>
 
-                    <li class="list-group-item">
-                        <span class="fw-bold">Num. bathrooms:</span> {{ $apartment->apartment_info->num_bathrooms }}
-                    </li>
+                <li class="list-group-item">
+                    <span class="fw-bold">Num. bathrooms:</span> {{ $apartment->apartment_info->num_bathrooms }}
+                </li>
 
-                    <li class="list-group-item">
-                        <span class="fw-bold">Meters square :</span> {{ $apartment->apartment_info->mt_square }}
-                    </li>
+                <li class="list-group-item">
+                    <span class="fw-bold">Meters square :</span> {{ $apartment->apartment_info->mt_square }}
+                </li>
 
-                    <li class="list-group-item">
-                        <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">edit</a>
-                        <form class="d-inline"
-                        action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
+                <li class="list-group-item">
+                    <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
+                        class="btn btn-warning">edit</a>
+                    <form class="d-inline" action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
                         method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger delete-btn" data-bs-toggle="modal"
                             data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
                     </form>
-                    </li>
-                </ul>
-            </div>
+                </li>
+            </ul>
         </div>
+    </div>
 
 
     {{-- modal --}}
