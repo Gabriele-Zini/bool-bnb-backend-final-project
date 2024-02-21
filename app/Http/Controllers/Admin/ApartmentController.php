@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Apartment;
 use App\Models\Apartment_info;
 use App\Models\Service;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
@@ -78,9 +79,24 @@ class ApartmentController extends Controller
         $apartment_infos->apartment_id = $apartment->id;
         $apartment_infos->save();
 
+        // images storing
+        if ($request->hasFile("image_path")) {
+            $files = $request->file("image_path");
+            foreach ($files as $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path("storage/image_path/$apartment->slug"), $imageName);
+
+                $image = new Image([
+                    'image_path' => $imageName,
+                    'apartment_id' => $apartment->id
+                ]);
+                $image->save();
+            }
+        }
         if ($request->has('services'))
             $apartment->services()->attach($request->services);
         return redirect(route('apartments.index'));
+
     }
 
     /**

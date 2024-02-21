@@ -20,7 +20,7 @@ return new class extends Migration
             $table->double('latitude', 12, 8);
             $table->double('longitude', 12, 8);
             $table->boolean('visibility')->nullable();
-            $table->text('image_path')->nullable();
+            /* $table->text('image_path')->nullable(); */
             $table->string('street_number', 6);
             $table->string('postal_code', 14)->nullable();
             $table->string('country');
