@@ -43,11 +43,11 @@ class ApartmentsTableSeeder extends Seeder
             $new_apartment->save();
 
             $apartment_info = new Apartment_info();
-            $apartment_info->apartment_id=$new_apartment->id;
-            $apartment_info->mt_square=$faker->numberBetween(30, 2499);
-            $apartment_info->num_rooms=$faker->numberBetween(2,10);
-            $apartment_info->num_bathrooms=$faker->numberBetween(1,5);
-            $apartment_info->num_beds=$faker->numberBetween(1, 5);
+            $apartment_info->apartment_id = $new_apartment->id;
+            $apartment_info->mt_square = $faker->numberBetween(30, 500);
+            $apartment_info->num_rooms = round($apartment_info->mt_square / 20, 0, PHP_ROUND_HALF_UP);
+            $apartment_info->num_bathrooms = round($apartment_info->mt_square / 60, 0, PHP_ROUND_HALF_UP);
+            $apartment_info->num_beds = round($apartment_info->num_rooms * 0.75, 0, PHP_ROUND_HALF_UP);
             $apartment_info->save();
             $services = Service::inRandomOrder()->take(rand(1, count($services)))->pluck('id');
             $new_apartment->services()->attach($services);
