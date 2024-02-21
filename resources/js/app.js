@@ -33,10 +33,6 @@ deleteBtn.forEach(btn=>{
     })
 })
 
-let city = document.getElementById('city');
-let streetName = document.getElementById('street_name');
-let streetNumber = document.getElementById('street_number');
-let postalCode = document.getElementById('postal_code');
 //tom tom code
 const successCallback = (position) => {
     let center = { lat: position.coords.latitude, lng: position.coords.longitude };
@@ -81,7 +77,7 @@ const successCallback = (position) => {
         let selectedAddress = selectedResult.address;
         console.log("Posizione selezionata:", selectedLocation.lat);
         console.log("Indirizzo selezionato:", selectedAddress.streetNumber);
-        let countryCode = document.getElementById('country').value = selectedAddress.countryCode || '';
+        let countryCode = document.getElementById('country_code').value = selectedAddress.countryCode || '';
         let city = document.getElementById('city').value = selectedAddress.municipality || '';
         let streetName = document.getElementById('street_name').value = selectedAddress.streetName || '';
         let streetNumber = document.getElementById('street_number').value = selectedAddress.streetNumber || '';
