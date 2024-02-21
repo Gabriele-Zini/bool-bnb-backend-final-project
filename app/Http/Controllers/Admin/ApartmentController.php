@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
+use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Apartment;
 use App\Models\Apartment_info;
@@ -39,10 +40,11 @@ class ApartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreApartmentRequest $request)
+    public function store(StoreApartmentRequest $request,  StoreImageRequest $imageRequest)
     {
         // dd($request);
         $form_data = $request->validated();
+        $imageData = $imageRequest->validated();
 
         $apartment = new Apartment();
         $apartment_infos = new Apartment_info();
@@ -80,8 +82,8 @@ class ApartmentController extends Controller
         $apartment_infos->save();
 
         // images storing
-        if ($request->hasFile("image_path")) {
-            $files = $request->file("image_path");
+        if ($imageRequest->hasFile("image_path")) {
+            $files = $imageRequest->file("image_path");
             foreach ($files as $file) {
                 $imageName = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path("storage/image_path/$apartment->slug"), $imageName);
