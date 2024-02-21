@@ -22,8 +22,8 @@ class StoreApartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'title' => ['required', 'min:5', 'max:50', 'unique:apartments'],
             'title' => ['required', 'min:5', 'max:50'],
-            /* 'image_path' => ['image', 'nullable'], */
             'visibility' => ['required', 'boolean'],
             'city' => ['required', 'min:2', 'max:200'],
             'street_name' => ['required', 'min:5', 'max:200'],
@@ -38,10 +38,4 @@ class StoreApartmentRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'title.min' => 'gay',
-        ];
-    }
 }
