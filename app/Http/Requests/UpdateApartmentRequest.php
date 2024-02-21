@@ -27,9 +27,9 @@ class UpdateApartmentRequest extends FormRequest
             'title' => ['required', 'min:5', 'max:50', Rule::unique('apartments')->ignore($this->apartment)],
             'visibility' => ['required', 'boolean'],
             'services' => ['nullable', 'exists:services,id'],
-            'num_rooms' => ['nullable', 'numeric', 'min:0', 'max:254'],
-            'num_beds' => ['nullable', 'numeric', 'min:0', 'max:254'],
-            'num_bathrooms' => ['nullable', 'numeric', 'min:0', 'max:254'],
+            'num_rooms' => ['nullable', 'numeric', 'min:1', 'max:254'],
+            'num_beds' => ['nullable', 'numeric', 'min:1', 'max:254'],
+            'num_bathrooms' => ['nullable', 'numeric', 'min:1', 'max:254'],
             'mt_square' => ['nullable', 'numeric', 'min:10', 'max:2500'],
         ];
     }
