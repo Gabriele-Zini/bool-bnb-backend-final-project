@@ -21,21 +21,22 @@ class ApartmentsTableSeeder extends Seeder
     {
         $title_array = ['monolocale', 'villetta', 'bilocale', 'trilocale', 'baita', 'casa sull\' albero', 'palafitta', 'villa in montagna', 'villa al mare', 'gulag'];
         $services = Service::all();
+        $apartmentsData = config('apartments');
 
-        foreach ($title_array as $title) {
+        foreach ($apartmentsData as $data) {
 
             $new_apartment = new Apartment();
 
-            $new_apartment->title = $title;
+            $new_apartment->title = $data['title'];
             $new_apartment->slug = Str::slug($new_apartment->title);
-            $new_apartment->city = $faker->city();
-            $new_apartment->street_name = $faker->streetName();
-            $new_apartment->street_number = $faker->buildingNumber();
-            $new_apartment->postal_code = $faker->postcode();
-            $new_apartment->country = $faker->country();
-            $new_apartment->country_code = $faker->countryISOAlpha3();
-            $new_apartment->latitude = $faker->latitude($min = -90, $max = 90);
-            $new_apartment->longitude = $faker->longitude($min = -180, $max = 180);
+            $new_apartment->city = $data['city'];
+            $new_apartment->street_name = $data['street_name'];
+            $new_apartment->street_number = $data['street_number'];
+            $new_apartment->postal_code = $data['postal_code'];
+            $new_apartment->country = $data['country'];
+            $new_apartment->country_code = $data['country_code'];
+            $new_apartment->latitude = $data['latitude'];
+            $new_apartment->longitude = $data['longitude'];
             $new_apartment->visibility = $faker->boolean();
             $new_apartment->user_id = User::all()->random()->id;
 
