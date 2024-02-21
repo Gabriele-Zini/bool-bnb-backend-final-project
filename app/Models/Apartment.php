@@ -15,7 +15,7 @@ class Apartment extends Model
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
+        $this->attributes['slug'] = Str::slug($value) . random_int(1,10000);
     }
 
 
