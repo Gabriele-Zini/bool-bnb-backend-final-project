@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreApartmentRequest;
+use App\Http\Requests\UpdateApartmentRequest;
 use App\Models\Apartment;
 use App\Models\Apartment_info;
 use App\Models\Service;
@@ -104,9 +105,9 @@ class ApartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Apartment $apartment)
+    public function update(UpdateApartmentRequest $request, Apartment $apartment)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
 
         $apartment->update($form_data);
         $apartment->apartment_info->update($form_data);
