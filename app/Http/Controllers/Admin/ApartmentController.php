@@ -95,6 +95,7 @@ class ApartmentController extends Controller
                 $image->save();
             }
         }
+
         if ($request->has('services'))
             $apartment->services()->attach($request->services);
         return redirect(route('apartments.index'));
@@ -129,6 +130,21 @@ class ApartmentController extends Controller
 
         $apartment->update($form_data);
         $apartment->apartment_info->update($form_data);
+
+        // images storing
+        if ($request->hasFile("image_path")) {
+            $files = $request->file("image_path");
+            foreach ($files as $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path("storage/image_path/$apartment->slug"), $imageName);
+
+                $image = new Image([
+                    'image_path' => $imageName,
+                    'apartment_id' => $apartment->id
+                ]);
+                $image->save();
+            }
+        }
 
         if($request->has('services')) {
             $apartment->services()->sync($request->input('services', []));

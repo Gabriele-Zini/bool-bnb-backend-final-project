@@ -23,6 +23,7 @@ class StoreApartmentRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:5', 'max:50', 'unique:apartments'],
+            'title' => ['required', 'min:5', 'max:50'],
             'visibility' => ['required', 'boolean'],
             'city' => ['required', 'min:2', 'max:200'],
             'street_name' => ['required', 'min:5', 'max:200'],
