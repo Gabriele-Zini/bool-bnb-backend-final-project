@@ -43,6 +43,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('http://localhost:5173/');
+        return redirect('homepage');
     }
 }

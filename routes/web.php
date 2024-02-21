@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $port = request()->getPort();
+    if ($port >= 5173 && $port <= 5179) {
+        return redirect()->to("http://localhost:$port/");
+    } else {
+        abort(404);
+    }
+})->name('homepage');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
