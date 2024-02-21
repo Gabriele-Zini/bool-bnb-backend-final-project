@@ -113,11 +113,11 @@
             <div class="mb-3">
                 <label for="image_path" class="form-label">Apartment images</label>
                 <input type="file"
-                    class="form-control @error('image_path') is-invalid @enderror @if (!empty(old('image_path')) && !$errors->has('image_path')) is-valid @endif"
+                    class="form-control @error('image_path.*') is-invalid @enderror @if (!empty(old('image_path')) && !$errors->has('image_path')) is-valid @endif"
                     id="image_path" name="image_path[]" value="{{ old('image_path') }}" multiple>
-                @error('image_path')
+                    @error('image_path.*')
                     <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
+            @enderror
             </div>
 
 

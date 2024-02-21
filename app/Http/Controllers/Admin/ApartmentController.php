@@ -82,8 +82,8 @@ class ApartmentController extends Controller
         $apartment_infos->save();
 
         // images storing
-        if ($imageRequest->hasFile("image_path")) {
-            $files = $imageRequest->file("image_path");
+        if ($request->hasFile("image_path")) {
+            $files = $request->file("image_path");
             foreach ($files as $file) {
                 $imageName = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path("storage/image_path/$apartment->slug"), $imageName);
@@ -124,9 +124,10 @@ class ApartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateApartmentRequest $request, Apartment $apartment)
+    public function update(UpdateApartmentRequest $request, Apartment $apartment, StoreImageRequest $imageRequest)
     {
         $form_data = $request->validated();
+        $imageData = $imageRequest->validated();
 
         $apartment->update($form_data);
         $apartment->apartment_info->update($form_data);
