@@ -28,3 +28,12 @@ img {
     height: 300px;
     object-fit: cover;
 }
+
+.ms_carousel {
+    position: relative  !important;;
+}
+
+.ms_trash {
+    position: absolute  !important;;
+    z-index: 999 !important;
+}

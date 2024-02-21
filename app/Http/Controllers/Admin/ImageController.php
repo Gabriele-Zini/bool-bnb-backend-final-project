@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Apartment;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -58,8 +60,9 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Image $image)
     {
-        //
+        $image->delete();
+        return redirect()->route('apartments.show', ['apartment'=>$image->apartment->slug]);
     }
 }

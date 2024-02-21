@@ -14,7 +14,19 @@
                 @foreach ($apartments as $apartment)
                     <div class="col-12 col-md-5 col-lg-3">
                         <div class="card" style="width: 18rem;">
-                            {{-- <img src="..." class="card-img-top" alt="..."> --}}
+                            {{-- first image --}}
+                            <div id="carouselExampleIndicators" class="carousel slide">
+                                <div class="carousel-inner">
+                                    @foreach ($apartment->images as $image)
+                                        <div class="carousel-item active">
+                                            <img class="apartment-image"
+                                                src="{{ asset('storage/image_path/' . $apartment->slug . '/' . $image->image_path) }}"
+                                                alt="">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            {{-- end first image --}}
                             <div class="card-body">
                                 <h5 class="card-title">{{ $apartment->title }}</h5>
                             </div>

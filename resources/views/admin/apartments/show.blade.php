@@ -25,15 +25,20 @@
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
                             aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-inner">
+                    <div class="carousel-inner ms_carousel">
                         @foreach ($apartment->images as $image)
                             <div class="carousel-item active">
                                 <img class="apartment-image"
                                     src="{{ asset('storage/image_path/' . $apartment->slug . '/' . $image->image_path) }}"
                                     alt="">
                             </div>
+                            <form action="{{ route('images.destroy', ['image'=>$image->id])}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class=" ms_trash">delete</button></form>
                         @endforeach
                     </div>
+
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev">
