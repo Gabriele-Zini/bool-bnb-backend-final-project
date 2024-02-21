@@ -31,10 +31,10 @@ class StoreApartmentRequest extends FormRequest
             'postal_code' => ['required', 'min:2', 'max:14'],
             'country_code' => ['required'],
             'services' => ['nullable', 'exists:services,id'],
-            'num_rooms' => ['nullable', 'numeric', 'max:254'],
-            'num_beds' => ['nullable', 'numeric', 'max:254'],
-            'num_bathrooms' => ['nullable', 'numeric', 'max:254'],
-            'mt_square' => ['nullable', 'numeric', 'max:2500'],
+            'num_rooms' => ['nullable','min:1', 'numeric', 'max:254'],
+            'num_beds' => ['nullable','min:1', 'numeric', 'max:254'],
+            'num_bathrooms' => ['nullable',' min:1', 'numeric', 'max:254'],
+            'mt_square' => ['nullable', 'numeric', 'min:10', 'max:2500'],
         ];
     }
 
