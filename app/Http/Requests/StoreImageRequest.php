@@ -22,8 +22,16 @@ class StoreImageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image_path.*' => ['image'],
+            'image_path.*' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+
+
         ];
     }
 
+    public function messages()
+{
+    return [
+        'image_path.*.image' => 'ciccio che cazzo fai',
+    ];
+}
 }
