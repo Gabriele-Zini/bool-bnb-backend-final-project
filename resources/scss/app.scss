@@ -22,8 +22,21 @@ img {
 
 .apartment-image {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    object-fit: cover; 
+    
+    .ms_img-show {
+        position: relative;
+
+    }
+    .ms-trash {
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: calc(.2);
+        &:hover {
+            opacity: calc(1);
+        }
+    }
 }
 
 
