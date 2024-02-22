@@ -4,19 +4,20 @@
     <div class="container my-5">
 
         @if (session('message'))
-            <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
+            <div class="alert alert-success col-12 col-md-10 col-lg-9 col-xl-8 m-auto my-3">
                 {{ session('message') }}
             </div>
         @endif
 
         <form action="{{ route('apartments.update', ['apartment' => $apartment->slug]) }}" enctype="multipart/form-data"
-            method="POST" class="col-12 col-md-5 col-lg-4 m-auto">
+            method="POST" class="col-12 col-md-10 col-lg-9 col-xl-8 m-auto">
             @csrf
             @method('PUT')
 
+            {{-- title --}}
             <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text"
+                <h5>Title</h5>
+                <input placeholder="Short description" type="text"
                     class="form-control @error('title') is-invalid @enderror @if (!empty(old('title')) && !$errors->has('title')) is-valid @endif"
                     id="title" name="title" value="{{ $apartment->title ?? old('title') }}">
                 @error('title')
@@ -24,6 +25,7 @@
                 @enderror
             </div>
 
+            <h5 class="mt-4">Apartment info</h5>
 
             {{-- rooms --}}
             <div class="mb-3">
@@ -72,13 +74,15 @@
             </div>
 
             {{-- services --}}
+            <h5 class="mt-4">Services</h5>
+
             <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                 <div class="row g-2 justify-content-start align-items-center">
                     @foreach ($services as $service)
                         <div class="col">
                             <input type="checkbox" class="btn-check" id="service_{{ $service->id }}" name="services[]"
                                 value="{{ $service->id }}" autocomplete="off" @checked($errors->any() ? in_array($service->id, old('services', [])) : $apartment->services->contains($service))>
-                            <label class="btn btn-outline-primary" for="service_{{ $service->id }}">
+                            <label class="btn btn-outline-primary ms_whitespace" for="service_{{ $service->id }}">
                                 {{ $service->name }}
                             </label>
                         </div>
@@ -96,14 +100,14 @@
                     <div class="col">
                         <input type="radio" class="btn-check" id="visibility" name="visibility" value="1"
                             autocomplete="off" @checked($errors->any() ? old('visibility') : $apartment->visibility)>
-                        <label class="btn btn-outline-dark" for="visibility">
+                        <label class="btn btn-outline-primary ms_whitespace" for="visibility">
                             visible
                         </label>
                     </div>
                     <div class="col">
                         <input type="radio" class="btn-check" id="not-visibility" name="visibility" value="0"
                             autocomplete="off" @checked(!($errors->any() ? old('visibility') : $apartment->visibility))>
-                        <label class="btn btn-outline-dark" for="not-visibility">
+                        <label class="btn btn-outline-primary ms_whitespace" for="not-visibility">
                             not visible
                         </label>
                     </div>
@@ -114,6 +118,8 @@
             </div>
 
             {{-- images --}}
+            <h5 class="mt-4">Images</h5>
+
             <div class="mb-3">
                 <label for="image_path" class="form-label">Apartment images</label>
                 <input type="file"

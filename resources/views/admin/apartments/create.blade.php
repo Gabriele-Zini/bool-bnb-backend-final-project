@@ -13,6 +13,7 @@
             class="col-12 col-md-10 col-lg-9 col-xl-8 m-auto">
             @csrf
 
+            {{-- title --}}
             <div class="mb-3">
                 <h5>Title</h5>
                 <input placeholder="Short description" type="text"
@@ -27,6 +28,7 @@
                 <p id="address" class="lh-lg"></p>
             </div>
 
+            {{-- country code --}}
             <div class="mb-3 d-none">
                 <label for="country_code" class="form-label">country code</label>
                 <input type="text"
@@ -90,6 +92,7 @@
 
 
             <h5 class="mt-4">Apartment info</h5>
+
             {{-- rooms --}}
             <div class="mb-3">
                 <label for="num_rooms" class="form-label">rooms</label>
@@ -136,6 +139,7 @@
                         
             {{-- services --}}
             <h5 class="mt-4">Services</h5>
+            
             <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                 <div class="row g-2 justify-content-start align-items-center">
                     @foreach ($services as $service)
@@ -143,7 +147,7 @@
                             <input type="checkbox" class="btn-check @error('services') invalid feedback @enderror"
                                 id="service_{{ $service->id }}" name="services[]" value="{{ $service->id }}"
                                 autocomplete="off" @checked(in_array($service->id, old('services', [])))>
-                            <label class="btn btn-outline-primary" for="service_{{ $service->id }}">
+                            <label class="btn btn-outline-primary ms_whitespace" for="service_{{ $service->id }}">
                                 {{ $service->name }}
                             </label>
                         </div>
@@ -162,7 +166,7 @@
                         <input type="radio"
                             class="btn-check @error('visibility') form-control is-invalid invalid feedback @enderror"
                             id="visibility" name="visibility" value="1" autocomplete="off">
-                        <label class="btn btn-outline-dark" for="visibility">
+                        <label class="btn btn-outline-primary ms_whitespace" for="visibility">
                             visible
                         </label>
                     </div>
@@ -170,7 +174,7 @@
                         <input type="radio"
                             class="btn-check @error('visibility') form-control is-invalid invalid feedback @enderror"
                             id="not-visibility" name="visibility" value="0" autocomplete="off">
-                        <label class="btn btn-outline-dark" for="not-visibility">
+                        <label class="btn btn-outline-primary ms_whitespace" for="not-visibility">
                             not visible
                         </label>
                     </div>
@@ -180,9 +184,11 @@
                 </div>
             </div>
 
+            {{-- images --}}
             <h5 class="mt-4">Images</h5>
+
             <input type="file" id="input-file-now-custom-3"
-                class="form-control m-2 @error('image_path.*') is-invalid @enderror" name="image_path[]" multiple>
+                class="form-control my-4 @error('image_path.*') is-invalid @enderror" name="image_path[]" multiple>
 
             @error('image_path.*')
                 <p class="invalid-feedback">{{ $message }}</p>

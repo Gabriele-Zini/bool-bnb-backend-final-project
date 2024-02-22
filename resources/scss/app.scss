@@ -1,14 +1,11 @@
-
 @use "./partials/navigation" as *;
 @import "~bootstrap/scss/bootstrap";
-
 
 
 #map {
     width: 100%;
     aspect-ratio: 1/1;
 }
-
 
 #marker {
     background-color: black;
@@ -29,11 +26,8 @@ img {
     object-fit: cover;
 }
 
-.ms_carousel {
-    position: relative  !important;;
-}
 
-.ms_trash {
-    position: absolute  !important;;
-    z-index: 999 !important;
+// CUSTOM
+.ms_whitespace {
+    white-space: nowrap;
 }
