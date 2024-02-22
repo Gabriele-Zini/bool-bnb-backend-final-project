@@ -86,7 +86,7 @@ class ApartmentController extends Controller
             $files = $request->file("image_path");
             foreach ($files as $file) {
                 $imageName = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path("storage/image_path/$apartment->slug"), $imageName);
+                $file->move(public_path("storage/image_path"), $imageName);
 
                 $image = new Image([
                     'image_path' => $imageName,
@@ -137,7 +137,7 @@ class ApartmentController extends Controller
             $files = $request->file("image_path");
             foreach ($files as $file) {
                 $imageName = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path("storage/image_path/$apartment->slug"), $imageName);
+                $file->move(public_path("storage/image_path"), $imageName);
 
                 $image = new Image([
                     'image_path' => $imageName,

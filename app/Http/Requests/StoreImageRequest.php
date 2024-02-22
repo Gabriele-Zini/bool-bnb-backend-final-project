@@ -31,7 +31,7 @@ class StoreImageRequest extends FormRequest
     public function messages()
 {
     return [
-        'image_path.*.image' => 'ciccio che cazzo fai',
+        'image_path.*.image' => 'the file must be an image',
     ];
 }
 }
