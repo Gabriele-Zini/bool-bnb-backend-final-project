@@ -8,54 +8,25 @@
             </div>
         @endif
 
+        @foreach ($apartment->images as $image)
+            <div class="">
+                <img class="apartment-image"
+                    src="{{ asset('storage/image_path/' . $apartment->slug . '/' . $image->image_path) }}" alt="">
+            </div>
+            <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class=" ms_trash">delete</button>
+            </form>
+        @endforeach
 
-
-
+        {{-- card info --}}
         <div class="col-12 col-md-5 col-lg-3 m-auto">
             <div class="card w-100">
-
-
-                {{-- caoursel --}}
-                <div id="carouselExampleIndicators" class="carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner ms_carousel">
-                        @foreach ($apartment->images as $image)
-                            <div class="carousel-item active">
-                                <img class="apartment-image"
-                                    src="{{ asset('storage/image_path/' . $apartment->slug . '/' . $image->image_path) }}"
-                                    alt="">
-                            </div>
-                            <form action="{{ route('images.destroy', ['image'=>$image->id])}}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class=" ms_trash">delete</button></form>
-                        @endforeach
-                    </div>
-
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-
-                {{-- end caoursel --}}
-
                 <div class="card-body">
                     <h5 class="card-title">{{ $apartment->title }}</h5>
                 </div>
+
                 <ul class="list-unstyled list-group list-group-flush">
                     <li class="list-group-item">
                         <span class="fw-bold">Description:</span> {{ $apartment->title }}
@@ -78,6 +49,7 @@
                         @endif
                     </li>
 
+                    {{-- service --}}
                     @if (count($apartment->services) > 0)
                         <li class="list-group-item">
                             <span class="fw-bold">Services: </span>
@@ -89,13 +61,6 @@
                             @endforeach
                         </li>
                     @endif
-
-                    {{-- @dd($apartment->apartment_info->num_beds) --}}
-                    {{-- @foreach ($apartment->apartment_info as $info)
-                        <li class="list-group-item">
-                            <span class="fw-bold">Num {{ $info->num_rooms }}:</span>
-                        </li>
-                    @endforeach --}}
 
                     <li class="list-group-item">
                         <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
@@ -114,8 +79,13 @@
                     </li>
 
                     <li class="list-group-item">
+
+                        {{-- edit btn --}}
                         <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
-                            class="btn btn-warning">edit</a>
+                            class="btn btn-warning">edit
+                        </a>
+
+                        {{-- delete btn --}}
                         <form class="d-inline"
                             action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}" method="POST">
                             @csrf
@@ -123,6 +93,7 @@
                             <button type="submit" class="btn btn-danger delete-btn" data-bs-toggle="modal"
                                 data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
                         </form>
+
                     </li>
                 </ul>
             </div>
@@ -148,5 +119,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection

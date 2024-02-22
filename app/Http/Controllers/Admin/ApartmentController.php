@@ -42,7 +42,6 @@ class ApartmentController extends Controller
      */
     public function store(StoreApartmentRequest $request,  StoreImageRequest $imageRequest)
     {
-        // dd($request);
         $form_data = $request->validated();
         $imageData = $imageRequest->validated();
 
@@ -52,14 +51,13 @@ class ApartmentController extends Controller
         $apartment->fill($form_data);
         $apartment_infos->fill($form_data);
 
+        // autentication
         $apartment->user_id = Auth::user()->id;
 
-
-
+        // api tomtom get-request
         $client = new Client(['verify' => false]);
         $response = $client->get("https://api.tomtom.com/search/2/structuredGeocode.json?key=HAMFczyVGd30ClZCfYGP9To9Y18u6eq7&countryCode=" . urlencode($request->country_code) . "&streetName=" . urlencode($request->street_name) . "&municipality=" . urlencode($request->city) . "&streetNumber=" . urlencode($request->street_number));
         $rows = json_decode($response->getBody());
-        /* dd($rows); */
 
 
         if (count($rows->results) > 0) {

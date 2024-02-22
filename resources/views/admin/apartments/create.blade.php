@@ -4,18 +4,18 @@
     <div class="container my-5">
 
         @if (session('error'))
-            <div class="alert alert-danger col-12 col-md-5 col-lg-4 m-auto my-3">
+            <div class="alert alert-danger col-12 col-md-10 col-lg-9 col-xl-8 m-auto my-3">
                 {{ session('error') }}
             </div>
         @endif
 
         <form action="{{ route('apartments.store') }}" enctype="multipart/form-data" method="POST"
-            class="col-12 col-md-5 col-lg-4 m-auto">
+            class="col-12 col-md-10 col-lg-9 col-xl-8 m-auto">
             @csrf
 
             <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text"
+                <h5>Title</h5>
+                <input placeholder="Short description" type="text"
                     class="form-control @error('title') is-invalid @enderror @if (!empty(old('title')) && !$errors->has('title')) is-valid @endif"
                     id="title" name="title" value="{{ old('title') }}">
                 @error('title')
@@ -23,8 +23,8 @@
                 @enderror
             </div>
 
-            <div>
-                <p id="address"></p>
+            <div id="address-container" class="card px-2 py-1 mb-3 d-none">
+                <p id="address" class="lh-lg"></p>
             </div>
 
             <div class="mb-3 d-none">
@@ -45,10 +45,6 @@
                     class="form-control @error('city') is-invalid @enderror @if (!empty(old('city')) && !$errors->has('city')) is-valid @endif"
                     id="city" name="city" value="{{ old('city') }}">
             </div>
-            {{-- @error('city')
-                <p class="invalid-feedback">{{ $message }}</p>
-            @enderror --}}
-
 
             {{-- street_name --}}
             <div class="mb-3 d-none">
@@ -57,9 +53,6 @@
                     class="form-control @error('street_name') is-invalid @enderror @if (!empty(old('street_name')) && !$errors->has('street_name')) is-valid @endif"
                     id="street_name" name="street_name" value="{{ old('street_name') }}">
             </div>
-            {{-- @error('street_name')
-                <p class="invalid-feedback">{{ $message }}</p>
-            @enderror --}}
 
             {{-- street_number --}}
             <div class="mb-3 d-none">
@@ -68,9 +61,6 @@
                     class="form-control @error('street_number') is-invalid @enderror @if (!empty(old('street_number')) && !$errors->has('street_number')) is-valid @endif"
                     id="street_number" name="street_number" value="{{ old('street_number') }}">
             </div>
-            {{-- @error('street_number')
-                <p class="invalid-feedback">{{ $message }}</p>
-            @enderror --}}
 
             {{-- postal code --}}
             <div class="mb-3 d-none">
@@ -79,11 +69,8 @@
                     class="form-control @error('postal_code') is-invalid @enderror @if (!empty(old('postal_code')) && !$errors->has('postal_code')) is-valid @endif"
                     id="postal_code" name="postal_code" value="{{ old('postal_code') }}">
             </div>
-            {{-- @error('postal_code')
-                <p class="invalid-feedback">{{ $message }}</p>
-            @enderror --}}
 
-            <h5>Select your address</h5>
+            <h5 class="mt-4">Select your address</h5>
             <div class="map form-control @error('city') is-invalid @enderror @error('street_name') is-invalid @enderror @error('street_number') is-invalid @enderror @error('postal_code') is-invalid @enderror"
                 id="map">
             </div>
@@ -101,6 +88,8 @@
                 <p class="form-control my-2 is-invalid invalid-feedback">{{ $message }}</p>
             @enderror
 
+
+            <h5 class="mt-4">Apartment info</h5>
             {{-- rooms --}}
             <div class="mb-3">
                 <label for="num_rooms" class="form-label">rooms</label>
@@ -144,8 +133,9 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
-
+                        
             {{-- services --}}
+            <h5 class="mt-4">Services</h5>
             <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                 <div class="row g-2 justify-content-start align-items-center">
                     @foreach ($services as $service)
@@ -165,7 +155,7 @@
             </div>
 
             {{-- visibility --}}
-            <h4 class="mt-5">visibility</h4>
+            <h5 class="mt-4">Visibility</h5>
             <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                 <div class="row g-2 justify-content-start align-items-center">
                     <div class="col">
@@ -183,34 +173,19 @@
                         <label class="btn btn-outline-dark" for="not-visibility">
                             not visible
                         </label>
-
                     </div>
-
+                    @error('visibility')
+                        <p class="invalid-feedback is-invalid">{{ $message }}</p>
+                    @enderror
                 </div>
-
             </div>
-            @error('visibility')
-                <p class="invalid-feedback is-invalid">{{ $message }}</p>
-            @enderror
 
-            {{-- images --}}
-            {{--  <div class="mb-3">
-                <label for="image_path" class="form-label">Apartment images</label>
-                <input type="file" multiple
-                    class="form-control @error('image_path') is-invalid @enderror @if (!empty(old('image_path')) && !$errors->has('image_path')) is-valid @endif"
-                    id="image_path" name="image_path"[] value="{{ old('image_path') }}">
-                @error('image_path')
-                    <p class="invalid-feedback">{{ $message }}</p>
-                @enderror
-            </div> --}}
-
-
-            <label class="m-2">Images</label>
+            <h5 class="mt-4">Images</h5>
             <input type="file" id="input-file-now-custom-3"
                 class="form-control m-2 @error('image_path.*') is-invalid @enderror" name="image_path[]" multiple>
 
             @error('image_path.*')
-                    <p class="invalid-feedback">{{ $message }}</p>
+                <p class="invalid-feedback">{{ $message }}</p>
             @enderror
 
             <div>
