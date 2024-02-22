@@ -7,19 +7,20 @@
                 {{ session('message') }}
             </div>
         @endif
-            <div class="row justify-content-center gap-2">
-                @foreach ($apartment->images as $image)
-                    <div class="col-12 col-md-6 apartment-image">
-                        <img class="p-0 m-0"
-                            src="{{ asset('storage/image_path/' .  $image->image_path) }}" alt="">
-                            <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class=" ms_trash btn btn-light">delete</button>
-                            </form>
-                    </div>
-                @endforeach
-            </div>
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
+            @foreach ($apartment->images as $image)
+                <div class="col-4 apartment-image p-0">
+                    <img class="ms_image-show" src="{{ asset('storage/image_path/' . $image->image_path) }}"
+                        alt="">
+                    <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class=" ms_trash btn btn-light">delete</button>
+                    </form>
+                </div>
+            @endforeach
+        </div>
         {{-- card info --}}
         <div class="col-12 col-md-5 col-lg-3 m-auto">
             <div class="card w-100">

@@ -21,14 +21,16 @@ img {
 }
 
 .apartment-image {
-    width: 100%;
-    object-fit: cover; 
-    
-    .ms_img-show {
-        position: relative;
+    position: relative;
+    height: 300px;
+    aspect-ratio: 1/1;
 
+    .ms_img-show {
+       width: 100%;
+       padding: 0;
+       margin: 0;
     }
-    .ms-trash {
+    .ms_trash {
         position: absolute;
         top: 0;
         right: 0;
