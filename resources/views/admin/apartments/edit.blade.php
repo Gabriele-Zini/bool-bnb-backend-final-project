@@ -17,7 +17,7 @@
             {{-- title --}}
             <div class="mb-3">
                 <h5>Title</h5>
-                <input placeholder="Short description" type="text"
+                <input placeholder="Short description" type="text" required minlength="5" maxlength="50"
                     class="form-control @error('title') is-invalid @enderror @if (!empty(old('title')) && !$errors->has('title')) is-valid @endif"
                     id="title" name="title" value="{{ $apartment->title ?? old('title') }}">
                 @error('title')
@@ -30,7 +30,7 @@
             {{-- rooms --}}
             <div class="mb-3">
                 <label for="num_rooms" class="form-label">rooms</label>
-                <input type="number"
+                <input type="number" min="1" max="254"
                     class="form-control @error('num_rooms') is-invalid @enderror @if (!empty(old('num_rooms')) && !$errors->has('num_rooms')) is-valid @endif"
                     id="num_rooms" name="num_rooms" value="{{ $apartment->apartment_info->num_rooms ?? old('num_rooms') }}">
                 @error('num_rooms')
@@ -41,7 +41,7 @@
             {{-- beds --}}
             <div class="mb-3">
                 <label for="num_beds" class="form-label">beds</label>
-                <input type="number"
+                <input type="number" min="1" max="254"
                     class="form-control @error('num_beds') is-invalid @enderror @if (!empty(old('num_beds')) && !$errors->has('num_beds')) is-valid @endif"
                     id="num_beds" name="num_beds" value="{{ $apartment->apartment_info->num_beds ?? old('num_beds') }}">
                 @error('num_beds')
@@ -52,7 +52,7 @@
             {{-- bathrooms --}}
             <div class="mb-3">
                 <label for="num_bathrooms" class="form-label">bathrooms</label>
-                <input type="number"
+                <input type="number" min="1" max="254"
                     class="form-control @error('num_bathrooms') is-invalid @enderror @if (!empty(old('num_bathrooms')) && !$errors->has('num_bathrooms')) is-valid @endif"
                     id="num_bathrooms" name="num_bathrooms"
                     value="{{ $apartment->apartment_info->num_bathrooms ?? old('num_bathrooms') }}">
@@ -64,7 +64,7 @@
             {{-- meters square --}}
             <div class="mb-3">
                 <label for="mt_square" class="form-label">meters square</label>
-                <input type="number"
+                <input type="number" min="10" max="2500"
                     class="form-control @error('mt_square') is-invalid @enderror @if (!empty(old('mt_square')) && !$errors->has('mt_square')) is-valid @endif"
                     id="mt_square" name="mt_square"
                     value="{{ $apartment->apartment_info->mt_square ?? old('mt_square') }}">
