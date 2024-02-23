@@ -15,8 +15,7 @@
                 <h3 class="text-center title-link">Cover Image</h3>
                 <div class="d-flex justify-content-center mt-3 mb-5">
                     <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
-                        class="rounded ms_img-index">
-
+                        class="rounded col-12 col-md-6 ">
                 </div>
             @endif
         @endforeach
