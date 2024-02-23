@@ -135,7 +135,7 @@
 
 
                 @if (count($apartment->images) > 0)
-                    <h5 class="text-center my-3">Your images</h5>
+                    <h5 class="text-center my-3">Check to delete</h5>
                     <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 my-5">
                         @foreach ($apartment->images as $image)
                             <div class="card col-12 col-md-6 col-lg-4">

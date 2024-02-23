@@ -52,7 +52,6 @@ class ImageController extends Controller
      */
     public function edit(string $id)
     {
-
     }
 
     /**
@@ -60,15 +59,18 @@ class ImageController extends Controller
      */
     public function update(Image $image, StoreImageRequest $storeImageRequest)
     {
-        $previousCoverImage = Image::where('cover_image', 1)->first();
+        $previousCoverImage = Image::where('apartment_id', $image->apartment_id)
+            ->where('cover_image', 1)
+            ->first();
+
         if ($previousCoverImage) {
             $previousCoverImage->update(['cover_image' => 0]);
         }
 
         $image->update(['cover_image' => 1]);
 
-        return redirect()->back()->with('success', 'Immagine impostata come immagine di copertina.');
 
+        return redirect()->back()->with('success', 'Immagine impostata come immagine di copertina.');
     }
 
     /**

@@ -20,10 +20,13 @@
                             <div id="carouselExampleIndicators" class="carousel slide">
                                 <div class="carousel-inner">
                                     @foreach ($apartment->images as $image)
-                                        <div class="carousel-item active">
-                                            <img class="apartment-image"
-                                                src="{{ asset('storage/image_path/' . $image->image_path) }}"
-                                                alt="">
+                                        <div class="">
+                                            @if ($image->cover_image)
+                                                <img class="apartment-image"
+                                                    src="{{ asset('storage/image_path/' . $image->image_path) }}"
+                                                    alt="">
+                                            @endif
+
                                         </div>
                                     @endforeach
                                 </div>
@@ -103,6 +106,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 @endsection
