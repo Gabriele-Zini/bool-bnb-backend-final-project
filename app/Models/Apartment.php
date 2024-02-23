@@ -15,7 +15,7 @@ class Apartment extends Model
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
-        $this->attributes['slug'] = Str::slug($value) . random_int(1,10000);
+        $this->attributes['slug'] = Str::slug($value) . random_int(1, 10000);
     }
 
 
@@ -29,6 +29,12 @@ class Apartment extends Model
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    //relations with Views
+    public function views()
+    {
+        return $this->hasMany(View::class);
     }
 
     //relations with images
@@ -49,6 +55,12 @@ class Apartment extends Model
         return $this->belongsToMany(Sponsorship::class);
     }
 
+    //relations with Apartment_Sponsorship
+    public function apartment_sponsorships()
+    {
+        return $this->belongsToMany(ApartmentSponsorship::class);
+    }
+
     //relations with Apartment_info
     public function apartment_info()
     {
@@ -56,7 +68,8 @@ class Apartment extends Model
     }
 
     //accessor Title
-    public function getTitleAttribute($value) {
+    public function getTitleAttribute($value)
+    {
         return ucwords($this->attributes['title']);
     }
 }

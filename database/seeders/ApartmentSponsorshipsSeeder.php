@@ -8,7 +8,7 @@ use App\Models\Apartment;
 use App\Models\Sponsorship;
 use Carbon\Carbon;
 
-class ApartmentSponsorshipSeeder extends Seeder
+class ApartmentSponsorshipsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,7 +21,9 @@ class ApartmentSponsorshipSeeder extends Seeder
         foreach ($apartments as $apartment) {
             $randomSponsorship = $sponsorships->random();
             $startDate = Carbon::now()->subDays(rand(0, 30));
-            $expirationDate = $startDate->addDays($randomSponsorship->duration / 24);
+            // $expirationDate = $startDate->addDays($randomSponsorship->duration / 24);
+            $expirationDate = Carbon::parse($startDate)->addDays($randomSponsorship->duration / 24);
+            // dd($randomSponsorship->duration / 24, $startDate, $expirationDate);
 
             $apartment->sponsorships()->attach($randomSponsorship, [
                 'start_date' => $startDate,
