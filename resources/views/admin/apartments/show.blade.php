@@ -85,6 +85,10 @@
                         <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
                             class="btn btn-warning">edit
                         </a>
+                        {{-- show messages --}}
+                        <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
+                            class="btn btn-warning">Messages
+                        </a>
 
                         {{-- delete btn --}}
                         <form class="d-inline"
