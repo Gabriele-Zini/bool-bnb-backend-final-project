@@ -1,5 +1,7 @@
 @use "./partials/navigation" as *;
 @import "~bootstrap/scss/bootstrap";
+@import '@fortawesome/fontawesome-free/css/all.css';
+
 
 
 #map {
@@ -24,7 +26,7 @@ img {
     position: relative;
     // height: 300px;
     aspect-ratio: 1/1;
-    
+
     .ms_img-show {
        width: 100%;
        padding: 0;
@@ -45,4 +47,188 @@ img {
 // CUSTOM
 .ms_whitespace {
     white-space: nowrap;
+}
+
+
+//preview images and delet-btn
+
+.ms_img-preview-container {
+    position: relative;
+
+
+    .ms_btn-delete-preview {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        opacity: calc(.3);
+        transition: border-radius 1.2s;
+        transition: opacity 1.2s;
+
+        &:hover {
+            opacity: calc(1.2);
+            border-radius: 50%;
+        }
+    }
+
+}
+
+
+.visually-hidden {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+
+.checkbox-custom {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.checkbox-custom::after {
+    content: "\2713";
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.form-check-input:checked + .form-check-label .checkbox-custom::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+
+.ms_img-preview {
+   width: 100%;
+   margin: 0;
+   padding: 0;
+   object-fit: cover;
+}
+
+.ms_img {
+   width: 100%;
+   height: 200px;
+   margin: 0;
+   padding: 0;
+   object-fit: cover;
+}
+
+.ms_size-img {
+position: absolute;
+color: white;
+background-color: rgba(0, 0, 0, 0.338);
+border-radius: 10px;
+top: 10px;
+left: 10px;
+padding: 0 10px;
+transition: background-color 1s;
+
+&:hover {
+    background-color: black;
+}
+}
+
+
+.ms_img-index {
+    height: 200px;
+
+}
+
+
+
+//popover image-controller
+
+ .image-controller-container {
+    position: relative;
+
+    .popover {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: rgba(255, 255, 255, 0.504);
+        opacity: calc(.8);
+        transition: background-color 1s;
+        transition: opacity 1s;
+        transition: transform 1s;
+
+        &:hover {
+            background-color: rgb(255, 252, 252);
+            opacity: calc(1);
+            transform: scale(1.1);
+        }
+
+        .popover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.504);
+            transition: background-color 1s, transform 1s;
+            z-index: -1;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        .popover:hover::before {
+            background-color: rgb(255, 252, 252);
+            transform: scaleX(1);
+        }
+
+        .popover-content {
+            background-color: white;
+            position: absolute;
+            top: 100%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            width: 150px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+
+            button {
+                border: 2px solid transparent;
+                background-color: white;
+                width: 100%;
+                border-radius: 10px;
+
+                &:hover {
+                   color: red;
+                }
+            }
+        }
+        .popover-icon {
+           display: inline-block;
+           padding: 0;
+           text-align: center;
+
+       }
+    }
 }

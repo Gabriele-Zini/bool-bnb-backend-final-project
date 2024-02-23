@@ -136,7 +136,7 @@
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
             </div>
-                        
+
             {{-- services --}}
             <h5 class="mt-4">Services</h5>
 
@@ -164,8 +164,9 @@
                 <div class="row g-2 justify-content-start align-items-center">
                     <div class="col">
                         <input type="radio"
-                            class="btn-check @error('visibility') form-control is-invalid invalid feedback @enderror" @checked(true) 
-                            id="visibility" name="visibility" value="1" autocomplete="off">
+                            class="btn-check @error('visibility') form-control is-invalid invalid feedback @enderror"
+                            @checked(true) id="visibility" name="visibility" value="1"
+                            autocomplete="off">
                         <label class="btn btn-outline-primary ms_whitespace" for="visibility">
                             visible
                         </label>
@@ -188,16 +189,17 @@
             {{-- images --}}
             <h5 class="mt-4">Images</h5>
 
-            <input type="file" id="input-file-now-custom-3"
-                class="form-control my-4 @error('image_path.*') is-invalid @enderror" name="image_path[]" multiple>
+            <input type="file" id="image_path" class="form-control my-4 @error('image_path.*') is-invalid @enderror"
+                name="image_path[]" multiple>
 
             @error('image_path.*')
                 <p class="invalid-feedback">{{ $message }}</p>
             @enderror
 
-            <div>
-                <img id="preview-image" class="ms_show-image d-none" src="" alt="">
+            <div class="images-container col-8 my-5 gap-5 flex-column mx-auto">
             </div>
+
+
             <button type="submit" class="btn btn-success">send</button>
         </form>
     </div>

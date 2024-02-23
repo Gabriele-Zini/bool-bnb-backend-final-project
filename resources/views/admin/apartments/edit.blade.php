@@ -128,12 +128,37 @@
                 @error('image_path.*')
                     <p class="invalid-feedback">{{ $message }}</p>
                 @enderror
-            </div>
 
-            <div>
-                <img id="preview-image" class="ms_show-image d-none" src="" alt="">
-            </div>
-            <button type="submit" class="btn btn-success">send</button>
+                <div class="images-container col-8 my-5 gap-5 flex-column mx-auto">
+
+                </div>
+
+
+                @if (count($apartment->images) > 0)
+                    <h5 class="text-center my-3">Your images</h5>
+                    <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 my-5">
+                        @foreach ($apartment->images as $image)
+                            <div class="card col-12 col-md-6 col-lg-4">
+                                <img src="{{ asset('storage/image_path/' . $image->image_path) }}"
+                                    class="ms_img card-img-top " alt="...">
+                                <div class="card-body">
+                                    <div class="form-check flex-grow-1">
+                                        <input class="form-check-input visually-hidden" type="checkbox" name="images[]"
+                                            id="image{{ $image->id }}" value="{{ $image->id }}">
+                                        <label class="form-check-label" for="image{{ $image->id }}">
+                                            <span class="checkbox-custom"></span>
+                                            {{ $image->name }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+
+                <button type="submit" class="btn btn-success">send</button>
+
+
         </form>
     </div>
 @endsection

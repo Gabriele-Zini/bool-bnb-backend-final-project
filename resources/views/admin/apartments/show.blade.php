@@ -10,8 +10,7 @@
         <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
             @foreach ($apartment->images as $image)
                 <div class="col-4 apartment-image p-0">
-                    <img class="ms_image-show" src="{{ asset('storage/image_path/' . $image->image_path) }}"
-                        alt="">
+                    <img class="ms_image-show" src="{{ asset('storage/image_path/' . $image->image_path) }}" alt="">
                     <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
@@ -20,7 +19,9 @@
                     </form>
                 </div>
             @endforeach
+
         </div>
+        <a href="{{ route('images.index', ['apartment' => $apartment->slug]) }}">images</a>
         {{-- card info --}}
         <div class="col-12 col-md-5 col-lg-3 m-auto">
             <div class="card w-100">
