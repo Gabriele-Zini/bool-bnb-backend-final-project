@@ -37,7 +37,6 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -53,7 +52,7 @@ class ImageController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -61,6 +60,14 @@ class ImageController extends Controller
      */
     public function update(Image $image, StoreImageRequest $storeImageRequest)
     {
+        $previousCoverImage = Image::where('cover_image', 1)->first();
+        if ($previousCoverImage) {
+            $previousCoverImage->update(['cover_image' => 0]);
+        }
+
+        $image->update(['cover_image' => 1]);
+
+        return redirect()->back()->with('success', 'Immagine impostata come immagine di copertina.');
 
     }
 
@@ -70,10 +77,10 @@ class ImageController extends Controller
     public function destroy(Image $image, Apartment $apartment)
     {
 
-        $apartment=Apartment::where('id', $image->apartment_id)->get();
-        dd($apartment, $image);
+        $apartments = Apartment::where('id', $image->apartment_id)->get();
+        $apartment = $apartments[0];
 
-        /* $image->delete(); */
+        $image->delete();
         return redirect()->route('images.index', ['apartment' => $apartment->slug]);
     }
 }
