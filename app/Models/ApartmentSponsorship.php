@@ -5,15 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class View extends Model
+class ApartmentSponsorship extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_ip', 'apartment_id'];
 
+    //relations with Sponsorship
+    public function sponsorship()
+    {
+        return $this->belongsTo(Sponsorship::class);
+    }
 
     //relations with Apartment
     public function apartment()
     {
-        return $this->hasOne(Apartment::class);
+        return $this->belongsTo(Apartment::class);
     }
 }
