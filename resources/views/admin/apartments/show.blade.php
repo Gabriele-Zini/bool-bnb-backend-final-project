@@ -7,11 +7,12 @@
                 {{ session('message') }}
             </div>
         @endif
+
+        {{-- apartment images --}}
         <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
             @foreach ($apartment->images as $image)
                 <div class="col-4 apartment-image p-0">
-                    <img class="ms_image-show" src="{{ asset('storage/image_path/' . $image->image_path) }}"
-                        alt="">
+                    <img class="ms_image-show" src="{{ asset('storage/image_path/' . $image->image_path) }}" alt="">
                     <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
@@ -21,6 +22,7 @@
                 </div>
             @endforeach
         </div>
+
         {{-- card info --}}
         <div class="col-12 col-md-5 col-lg-3 m-auto">
             <div class="card w-100">
@@ -29,6 +31,8 @@
                 </div>
 
                 <ul class="list-unstyled list-group list-group-flush">
+
+                    {{-- apartment address --}}
                     <li class="list-group-item">
                         <span class="fw-bold">Description:</span> {{ $apartment->title }}
                     </li>
@@ -50,7 +54,7 @@
                         @endif
                     </li>
 
-                    {{-- service --}}
+                    {{-- services --}}
                     @if (count($apartment->services) > 0)
                         <li class="list-group-item">
                             <span class="fw-bold">Services: </span>
@@ -63,6 +67,7 @@
                         </li>
                     @endif
 
+                    {{-- apartment infos --}}
                     <li class="list-group-item">
                         <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
                     </li>
@@ -76,9 +81,32 @@
                     </li>
 
                     <li class="list-group-item">
-                        <span class="fw-bold">Meters square :</span> {{ $apartment->apartment_info->mt_square }}
+                        <span class="fw-bold">Meters square:</span> {{ $apartment->apartment_info->mt_square }}
                     </li>
 
+                    {{-- apartment views --}}
+                    <li class="list-group-item">
+                        <span class="fw-bold">Views:</span> {{ count($apartment->views) }}
+                    </li>
+
+                    {{-- apartment sponsorhip active --}}
+                    {{-- @foreach ($apartment->sponsorships as $sponsorship)
+                        <li class="list-group-item">
+                            <span class="fw-bold">Sponsorship:</span>
+                            {{ $sponsorship->name }}
+                        </li>
+                    @endforeach --}}
+                    <li class="list-group-item">
+                        <span class="fw-bold">Expiration date:</span>
+                        {{ $sponsorship_type === 0 ? 'No sponsorizations' : $sponsorship_type[0]->name }}
+                    </li>
+
+                    <li class="list-group-item">
+                        <span class="fw-bold">Expiration date:</span>
+                        {{ $sponsorship_active[0]->expiration_date ?? 'No sponsorizations' }}
+                    </li>
+
+                    {{-- buttons --}}
                     <li class="list-group-item">
 
                         {{-- edit btn --}}
