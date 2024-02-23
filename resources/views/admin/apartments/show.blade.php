@@ -8,23 +8,59 @@
             </div>
         @endif
 
-        {{-- apartment images --}}
-        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3">
-            @foreach ($apartment->images as $image)
-                <div class="col-4 apartment-image p-0">
-                    <img class="ms_image-show" src="{{ asset('storage/image_path/' . $image->image_path) }}" alt="">
-                    <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class=" ms_trash btn btn-light">delete</button>
-                    </form>
+
+
+        @foreach ($apartment->images as $image)
+            @if ($image->cover_image)
+                <h3 class="text-center title-link">Cover Image</h3>
+                <div class="d-flex justify-content-center mt-3 mb-5">
+                    <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
+                        class="rounded ms_img-index">
+
                 </div>
+            @endif
+        @endforeach
+
+        {{-- to the gallery --}}
+        <a href="{{ route('images.index', ['apartment' => $apartment->slug]) }}" class="title-link ">Gallery</a>
+
+
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-3">
+            @foreach ($apartment->images as $image)
+                @if (!$image->cover_image)
+                    <div class="image-controller-container">
+                        <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
+                            class="rounded ms_img-index">
+
+
+                        <div class="popover">
+                            <i class="fas fa-ellipsis-h popover-icon"></i>
+                            <div class="popover-content d-none">
+
+                                <form action="{{ route('images.update', ['image' => $image->id]) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Set as cover image</button>
+                                </form>
+                                <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                @endif
             @endforeach
+
         </div>
 
         {{-- card info --}}
-        <div class="col-12 col-md-5 col-lg-3 m-auto">
+        <div class="col-12 col-md-6 mt-5  m-auto">
             <div class="card w-100">
                 <div class="card-body">
                     <h5 class="card-title">{{ $apartment->title }}</h5>

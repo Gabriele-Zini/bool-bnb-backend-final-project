@@ -86,15 +86,30 @@ class ApartmentController extends Controller
         // images storing
         if ($request->hasFile("image_path")) {
             $files = $request->file("image_path");
-            foreach ($files as $file) {
-                $imageName = time() . '_' . $file->getClientOriginalName();
-                $file->move(public_path("storage/image_path"), $imageName);
+            if (count($files) === 1) {
+                foreach ($files as $file) {
+                    $imageName = time() . '_' . $file->getClientOriginalName();
+                    $file->move(public_path("storage/image_path"), $imageName);
 
-                $image = new Image([
-                    'image_path' => $imageName,
-                    'apartment_id' => $apartment->id
-                ]);
-                $image->save();
+                    $image = new Image([
+                        'image_path' => $imageName,
+                        'apartment_id' => $apartment->id,
+                        'cover_image' => 1,
+                    ]);
+                    $image->save();
+                }
+            } else {
+                foreach ($files as $file) {
+                    $imageName = time() . '_' . $file->getClientOriginalName();
+                    $file->move(public_path("storage/image_path"), $imageName);
+
+                    $image = new Image([
+                        'image_path' => $imageName,
+                        'apartment_id' => $apartment->id,
+                        'cover_image' => 0,
+                    ]);
+                    $image->save();
+                }
             }
         }
 
@@ -141,13 +156,19 @@ class ApartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateApartmentRequest $request, Apartment $apartment, StoreImageRequest $imageRequest)
+    public function update(UpdateApartmentRequest $request, Apartment $apartment, StoreImageRequest $imageRequest, Image $image)
     {
         $form_data = $request->validated();
         $imageData = $imageRequest->validated();
 
         $apartment->update($form_data);
         $apartment->apartment_info->update($form_data);
+
+        // delete images
+        if ($request->has('images')) {
+            $selectedImages = $request->input('images');
+            Image::whereIn('id', $selectedImages)->delete();
+        }
 
         // images storing
         if ($request->hasFile("image_path")) {

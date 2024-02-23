@@ -9,7 +9,6 @@ import { services } from "@tomtom-international/web-sdk-services";
 import SearchBox from "@tomtom-international/web-sdk-plugin-searchbox";
 import "@tomtom-international/web-sdk-plugin-searchbox/dist/SearchBox.css";
 
-
 // delete modal
 let deleteBtn = document.querySelectorAll(".delete-btn");
 
@@ -32,7 +31,6 @@ deleteBtn.forEach((btn) => {
         });
     });
 });
-
 
 //tom tom api code
 const successCallback = (position) => {
@@ -93,8 +91,8 @@ const successCallback = (position) => {
         console.log("Indirizzo selezionato:", selectedAddress.streetNumber);
 
         // remove d-none on address card
-        let addressCard = document.getElementById('address-container');
-        addressCard.classList.remove('d-none');
+        let addressCard = document.getElementById("address-container");
+        addressCard.classList.remove("d-none");
 
         // init position search infos
         let countryCode = (document.getElementById("country_code").value =
@@ -111,7 +109,21 @@ const successCallback = (position) => {
         let country = selectedAddress.country || "";
         document.getElementById(
             "address"
-        ).innerHTML = `<strong>Street name: </strong>${streetName ? streetName + '<br>' : '<span class="text-danger my-1 py-1 px-2 border border-1 border-danger rounded">missing street name</span><br>'}<strong>Street number: </strong>${streetNumber ? streetNumber + '<br>' : '<span class="text-danger my-1 py-1 px-2 border border-1 border-danger rounded">missing street number</span><br>'}<strong>Postal code: </strong>${postalCode ? postalCode + '<br>' : '<span class="text-danger my-1 py-1 px-2 border border-1 border-danger rounded">missing postal code</span><br>'}<strong>City: </strong>${city + '<br>'}<strong>Region: </strong>${region + '<br>'}<strong>Country: </strong>${country + '<br>'} `;
+        ).innerHTML = `<strong>Street name: </strong>${
+            streetName
+                ? streetName + "<br>"
+                : '<span class="text-danger my-1 py-1 px-2 border border-1 border-danger rounded">missing street name</span><br>'
+        }<strong>Street number: </strong>${
+            streetNumber
+                ? streetNumber + "<br>"
+                : '<span class="text-danger my-1 py-1 px-2 border border-1 border-danger rounded">missing street number</span><br>'
+        }<strong>Postal code: </strong>${
+            postalCode
+                ? postalCode + "<br>"
+                : '<span class="text-danger my-1 py-1 px-2 border border-1 border-danger rounded">missing postal code</span><br>'
+        }<strong>City: </strong>${city + "<br>"}<strong>Region: </strong>${
+            region + "<br>"
+        }<strong>Country: </strong>${country + "<br>"} `;
     });
     map.addControl(ttSearchBox, "top-left");
 };
@@ -121,3 +133,87 @@ const errorCallback = (error) => {
 
 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
+// previewImage
+
+const previewImgContainer = document.querySelector(".images-container");
+const imageInput = document.getElementById("image_path");
+
+if (imageInput) {
+    imageInput.addEventListener("change", function () {
+        const files = this.files;
+
+        for (let i = 0; i < files.length; i++) {
+            const selectedFile = files[i];
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                const imgContainer = document.createElement("div");
+                imgContainer.classList.add("image-container", "col-5", "my-2");
+
+                const imgElement = document.createElement("img");
+                imgElement.src = reader.result;
+                imgElement.classList.add("rounded", "ms_img-preview");
+                imgContainer.classList.add(
+                    "ms_img-preview-container",
+                    "col-12",
+                    "my-4"
+                    /* "col-md-6",
+                    "col-lg-4" */
+                );
+
+                const fileSize = document.createElement("span");
+                fileSize.classList.add('ms_size-img');
+                const fileSizeinKb = selectedFile.size / 1024;
+                const fileSizeinMb = fileSizeinKb / 1024;
+                if (fileSizeinKb < 1024) {
+                    fileSize.textContent = (fileSizeinKb).toFixed(2) + " Kb";
+                } else {
+                    fileSize.textContent = (fileSizeinMb.toFixed(2)) + " Mb";
+                }
+
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "X";
+                deleteButton.classList.add(
+                    "btn",
+                    "btn-light",
+                    "btn-sm",
+                    "ms-2",
+                    "ms_btn-delete-preview",
+                    "m-0",
+                    "p-0"
+                );
+                deleteButton.addEventListener("click", function () {
+                    imgContainer.remove();
+                });
+
+                imgContainer.appendChild(imgElement);
+                imgContainer.appendChild(deleteButton);
+                imgContainer.appendChild(fileSize);
+                previewImgContainer.appendChild(imgContainer);
+            });
+
+            reader.readAsDataURL(selectedFile);
+        }
+    });
+}
+
+
+let imageControllerContainer = document.querySelectorAll('.image-controller-container');
+let popovers = document.querySelectorAll('.popover');
+
+popovers.forEach(popover => {
+    popover.addEventListener('click', function() {
+        let popOverContent = this.querySelector('.popover-content');
+        popOverContent.classList.toggle('d-none');
+    });
+
+});
+
+
+imageControllerContainer.forEach(element=> {
+    element.addEventListener('mouseleave', function() {
+        let popOverContent = this.querySelector('.popover-content');
+        popOverContent.classList.add('d-none');
+    });
+
+})
