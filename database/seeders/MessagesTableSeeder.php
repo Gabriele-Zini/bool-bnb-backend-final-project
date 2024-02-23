@@ -15,12 +15,14 @@ class MessagesTableSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        for($i = 0; $i < 10; $i++){
+        $messagesData = config('messages');
+        foreach($messagesData as $message){
             $newMessage = new Message();
-            $newMessage->message_content = $faker->paragraph();
-            $newMessage->name = $faker->name();
-            $newMessage->lastname = $faker->lastName();
-            $newMessage->email = $faker->email();
+            $newMessage->message_content = $message['message_content'];
+            $newMessage->name = $message['name'];
+            $newMessage->lastname = $message['lastname'];
+            $newMessage->email = $message['email'];
+            $newMessage->readed = $message['readed'];
             $newMessage->apartment_id = Apartment::all()->random()->id;
             $newMessage->save();
         }
