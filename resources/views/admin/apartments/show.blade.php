@@ -22,7 +22,7 @@
 
         {{-- to the gallery --}}
         @if (count($apartment->images) > 0)
-            <a href="{{ route('images.index', ['apartment' => $apartment->slug]) }}" class="title-link ">Gallery</a>
+            <h4 class="title-link ">Gallery</h4>
         @endif
 
 
