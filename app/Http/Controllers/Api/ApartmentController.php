@@ -17,14 +17,14 @@ class ApartmentController extends Controller
         $services=Service::all();
         
         if($request->has('services')){
-            $servicesSelected = $request->get('services');
-               $apartmentsQuery = $apartmentsQuery->join('apartment_service', 'services.id', '=','apartment_service.apartment_id')->join('apartments','apartment_service.id', '=','apartments.id')->select('apartmens.*');
-               foreach($servicesSelected as $service){
-                  $apartmentsQuery = $apartmentsQuery->where($service, '=', 'service.id');
-               }
-        }else{
-            $apartments = $apartmentsQuery->paginate(20);
+            // $servicesSelected = $request->get('services');
+            //    $apartmentsQuery = $apartmentsQuery->join('apartment_service', 'services.id', '=','apartment_service.apartment_id')->join('apartments','apartment_service.id', '=','apartments.id')->select('apartmens.*');
+            //    foreach($servicesSelected as $service){
+            //       $apartmentsQuery = $apartmentsQuery->where($service, '=', 'service.id');
+            //    }
         }
+            $apartments = $apartmentsQuery->paginate(20);
+        
         
         
 
