@@ -72,15 +72,15 @@ class ApartmentController extends Controller
         $query = Apartment::where('visibility', 1);
 
         // Filtri per i servizi
-        if ($request->has('services')) {
+        /*    if ($request->has('services')) {
             $servicesSelected = $request->get('services');
             $query->whereHas('services', function ($q) use ($servicesSelected) {
                 $q->whereIn('service_id', $servicesSelected);
             });
         }
-
+ */
         // Filtri per i servizi se vogliamo che prenda solo quelli con tutti e due
-    /*     if ($request->has('services')) {
+        if ($request->has('services')) {
             $servicesSelected = $request->get('services');
             foreach ($servicesSelected as $service) {
                 $query->whereHas('services', function ($q) use ($service) {
@@ -88,7 +88,7 @@ class ApartmentController extends Controller
                 });
             }
         }
- */
+
 
 
         // Filtri avanzati
