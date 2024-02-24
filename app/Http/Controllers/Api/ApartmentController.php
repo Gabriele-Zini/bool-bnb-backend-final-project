@@ -67,38 +67,66 @@ class ApartmentController extends Controller
     public function getFilteredApartments(Request $request)
     {
 
+
+        $userLatitude = $request->input('latitude');
+        $userLongitude = $request->input('longitude');
+        $radius = 20;
+
+
+
         $query = Apartment::where('visibility', 1);
 
         if ($request->has('num_beds')) {
             $query->whereHas('apartment_info', function ($q) use ($request) {
-                $q->where('num_beds', '<=', $request->num_beds);
+                $q->where('num_beds', $request->num_beds);
             });
         }
 
         if ($request->has('num_rooms')) {
             $query->whereHas('apartment_info', function ($q) use ($request) {
-                $q->where('num_rooms', '<=', $request->num_rooms);
+                $q->where('num_rooms', $request->num_rooms);
             });
         }
 
         if ($request->has('num_bathrooms')) {
             $query->whereHas('apartment_info', function ($q) use ($request) {
-                $q->where('num_bathrooms', '<=', $request->num_bathrooms);
+                $q->where('num_bathrooms', $request->num_bathrooms);
             });
         }
 
         if ($request->has('mt_square')) {
             $query->whereHas('apartment_info', function ($q) use ($request) {
-                $q->where('mt_square', '<=', $request->mt_square);
+                $q->where('mt_square', $request->mt_square);
             });
         }
 
-        $query->with('apartment_info', 'services');
+        if ($userLatitude && $userLongitude) {
+            $query->whereRaw("(
+                6378 * acos(
+                    cos(radians($userLatitude)) * cos(radians(latitude)) * cos(radians(longitude) - radians($userLongitude)) +
+                    sin(radians($userLatitude)) * sin(radians(latitude))
+                )
+            ) <= $radius");
+        }
 
+        $query->with('apartment_info', 'services');
         $apartments = $query->get();
 
-        return response()->json(['apartments' => $apartments]);
-    }
 
+        $query->with('apartment_info', 'services');
+        $apartments = $query->get();
+
+        if ($apartments->count() > 0) {
+            return response()->json([
+                'result' => $apartments,
+                'success' => true,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'No apartments found within ' . $radius . ' km radius',
+            ]);
+        }
+    }
 
 }
