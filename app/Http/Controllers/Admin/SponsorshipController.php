@@ -56,13 +56,12 @@ class SponsorshipController extends Controller
         //Calculation of expiration date
         $expirationDate = Carbon::parse($startDate)->addDays($selectedSponsorship->duration / 24);
 
-        //Controllare se la data di inizio di form data è tra una della date delle sponsorship già acquistate
+        //Check if the start date is between the start and expiration date of another sponsorship
         $flag = true;
         foreach ($allSponsorships as $checkSponsorship) {
             $from = $checkSponsorship->start_date;
             $to = $checkSponsorship->expiration_date;
             $check = $startDate;
-            // dd($allSponsorships[4]->start_date, $allSponsorships[4]->expiration_date);
             if (($check >= $from) && ($check <= $to)) {
                 $flag = false;
             }
