@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\ApartmentController;
+use App\Http\Controllers\Api\ServiceController;
+use App\Models\Apartment_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +25,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/apartments', [ApartmentController::class, 'index']);
 Route::get('/apartments/{slug}', [ApartmentController::class, 'show']);
 Route::get('/apartments', [ApartmentController::class, 'getFilteredApartments']);
+Route::get('/services', [ServiceController::class, 'index']);
