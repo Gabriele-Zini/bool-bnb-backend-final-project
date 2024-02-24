@@ -21,11 +21,19 @@
            <label for="startDate">Start date:</label>
             <input type="date" class="form-control w-50 mx-auto mt-2" name="start_date" id="startDate" min="{{date('Y-m-d')}}" required> 
         </div>
+        <div class="text-center mt-2">
+            <label for="startTime">Start time:</label>
+             <input type="time" class="form-control w-25 mx-auto mt-2" name="start_time" id="startTime" required> 
+         </div>
 
+         <div class="d-none">
+             <input type="number" name="apartment_id" value="{{$apartment->id}}"> 
+         </div>
         <div class="text-center mt-2">
             <button type="submit" class="btn btn-success">Buy</button>
          </div>
         
+
     </form>
 </div>
     
