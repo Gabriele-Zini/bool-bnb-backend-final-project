@@ -107,8 +107,13 @@ class SponsorshipController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(ApartmentSponsorship $sponsorship)
     {
-        //
+        
+        $apartmentData = Apartment::where("id", $sponsorship->apartment_id)->get();
+        $apartment=$apartmentData[0];
+        $sponsorship->delete();
+
+        return redirect()->route('sponsorships.index', ['apartment' => $apartment->slug])->with('message', 'Sponsorship deleted!');
     }
 }

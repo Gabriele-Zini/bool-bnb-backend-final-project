@@ -20,6 +20,7 @@
                     <th scope="col">From</th>
                     <th scope="col">To</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +64,15 @@
                                     <span class="badge bg-warning">Started</span>
                                 @endif
                             @endif
+                        </td>
+                        <td>
+                            <form class="d-inline"
+                            action="{{ route('sponsorships.destroy', ['sponsorship' => $sponsor->id]) }}"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                         </td>
 
                     </tr>
