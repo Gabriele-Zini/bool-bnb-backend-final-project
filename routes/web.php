@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
     Route::resource('images', ImageController::class)->parameters(['images' => 'image:id']);
     Route::resource('messages', MessageController::class)->parameters(['message' => 'message:id']);
-    Route::delete('/images', [ImageController::class, 'destroyToShow'])->name('images.destroyToShow');
 });
 
 
