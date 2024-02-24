@@ -236,14 +236,12 @@ transition: background-color 1s;
 
 .title-link {
     text-decoration: none;
+    text-align: center;
     color: #333;
     font-size: 2rem;
     font-weight: bold;
     letter-spacing: 1px;
-    transition: transform 0.3s ease;
     margin-bottom: 20px;
-    transition: transform .3s;
-    display: inline-block;
 
     &:hover {
         color: #000000;

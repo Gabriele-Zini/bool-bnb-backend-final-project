@@ -15,13 +15,15 @@
                 <h3 class="text-center title-link">Cover Image</h3>
                 <div class="d-flex justify-content-center mt-3 mb-5">
                     <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
-                        class="rounded col-12 col-md-6 ">
+                        class="rounded col-12 col-md-6 col-lg-5">
                 </div>
             @endif
         @endforeach
 
         {{-- to the gallery --}}
-        <a href="{{ route('images.index', ['apartment' => $apartment->slug]) }}" class="title-link ">Gallery</a>
+        @if (count($apartment->images) > 0)
+            <a href="{{ route('images.index', ['apartment' => $apartment->slug]) }}" class="title-link ">Gallery</a>
+        @endif
 
 
         <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-3">

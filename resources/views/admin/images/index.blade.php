@@ -9,12 +9,12 @@
                 <h3 class="text-center title-link">Cover Image</h3>
                 <div class="d-flex justify-content-center mt-3 mb-5">
                     <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
-                        class="rounded col-12 col-md-6">
+                        class="rounded col-12 col-md-6 col-lg-5">
                 </div>
             @endif
         @endforeach
 
-
+        <h4 class="text-center title-link">Your Images</h4>
         <div class="d-flex justify-content-center flex-wrap gap-2">
             @foreach ($images as $image)
                 @if (!$image->cover_image)
