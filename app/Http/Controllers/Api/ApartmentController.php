@@ -16,13 +16,6 @@ class ApartmentController extends Controller
         $apartmentsQuery = Apartment::with(['services', 'apartment_info', 'user', 'images'])->where('visibility', "=", 1);
         $services = Service::all();
 
-        if ($request->has('services')) {
-            /*  $servicesSelected = $request->get('services');
-               $apartmentsQuery = $apartmentsQuery->join('apartment_service', 'services.id', '=','apartment_service.apartment_id')->join('apartments','apartment_service.id', '=','apartments.id')->select('apartmens.*');
-               foreach($servicesSelected as $service){
-                  $apartmentsQuery = $apartmentsQuery->where($service, '=', 'service.id');
-               } */
-        }
         $apartments = $apartmentsQuery->paginate(20);
 
 
@@ -34,6 +27,7 @@ class ApartmentController extends Controller
                     'result' => $apartments,
                     'services' => $services,
                     'success' => true,
+                    "message"=>'ciccio pasticcio'
                 ]
             );
         } else {
