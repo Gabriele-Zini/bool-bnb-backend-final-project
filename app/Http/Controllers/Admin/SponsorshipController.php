@@ -45,24 +45,40 @@ class SponsorshipController extends Controller
         $apartment_sponsorship = new ApartmentSponsorship;
         $sponsorship = Sponsorship::where("id", $form_data["sponsorship_id"])->get();
         $apartment = Apartment::where("id", $form_data["apartment_id"])->get();
-        
+        $allSponsorships = ApartmentSponsorship::where("apartment_id", $apartment[0]->id)->get();
+
         //sponsorship selected by the user
         $selectedSponsorship = $sponsorship[0];
         //Merging the date and the time selected
-        $date=$form_data['start_date'];
-        $time=$form_data['start_time'];
+        $date = $form_data['start_date'];
+        $time = $form_data['start_time'];
         $startDate = date('Y-m-d H:i:s', strtotime("$date $time"));
         //Calculation of expiration date
         $expirationDate = Carbon::parse($startDate)->addDays($selectedSponsorship->duration / 24);
 
-        //Inserting the new sponsorship_apartment row in the table
-        $apartment_sponsorship->start_date = $startDate;
-        $apartment_sponsorship->expiration_date = $expirationDate;
-        $apartment_sponsorship->sponsorship_id = $selectedSponsorship->id;
-        $apartment_sponsorship->apartment_id = $form_data['apartment_id'];
-        $apartment_sponsorship->save();
+        //Controllare se la data di inizio di form data è tra una della date delle sponsorship già acquistate
+        $flag = true;
+        foreach ($allSponsorships as $checkSponsorship) {
+            $from = $checkSponsorship->start_date;
+            $to = $checkSponsorship->expiration_date;
+            $check = $startDate;
+            // dd($allSponsorships[4]->start_date, $allSponsorships[4]->expiration_date);
+            if (($check >= $from) && ($check <= $to)) {
+                $flag = false;
+            }
+        }
 
-        return redirect()->route('sponsorships.index', ['apartment' => $apartment[0]->slug]);
+        //Inserting the new sponsorship_apartment row in the table
+        if ($flag) {
+            $apartment_sponsorship->start_date = $startDate;
+            $apartment_sponsorship->expiration_date = $expirationDate;
+            $apartment_sponsorship->sponsorship_id = $selectedSponsorship->id;
+            $apartment_sponsorship->apartment_id = $form_data['apartment_id'];
+            $apartment_sponsorship->save();
+
+            return redirect()->route('sponsorships.index', ['apartment' => $apartment[0]->slug])->with('message', 'Successfull purchase!');
+        }
+        return redirect()->route('sponsorships.index', ['apartment' => $apartment[0]->slug])->with('error', 'Something went wrong, please check the dates');
     }
 
     /**
