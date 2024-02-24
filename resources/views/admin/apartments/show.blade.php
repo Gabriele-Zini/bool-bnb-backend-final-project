@@ -44,7 +44,7 @@
                                     @method('PUT')
                                     <button type="submit">Set as cover image</button>
                                 </form>
-                                <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST"
+                                <form action="{{ route('images.destroyToShow', ['image' => $image->id]) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('DELETE')
