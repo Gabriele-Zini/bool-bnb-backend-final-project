@@ -75,9 +75,21 @@ class ApartmentController extends Controller
         if ($request->has('services')) {
             $servicesSelected = $request->get('services');
             $query->whereHas('services', function ($q) use ($servicesSelected) {
-                $q->whereIn('name', $servicesSelected);
+                $q->whereIn('service_id', $servicesSelected);
             });
         }
+
+        // Filtri per i servizi se vogliamo che prenda solo quelli con tutti e due
+    /*     if ($request->has('services')) {
+            $servicesSelected = $request->get('services');
+            foreach ($servicesSelected as $service) {
+                $query->whereHas('services', function ($q) use ($service) {
+                    $q->where('name', $service);
+                });
+            }
+        }
+ */
+
 
         // Filtri avanzati
         if ($request->has('num_beds')) {
