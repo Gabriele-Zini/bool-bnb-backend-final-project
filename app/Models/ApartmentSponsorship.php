@@ -9,6 +9,7 @@ class ApartmentSponsorship extends Model
 {
     use HasFactory;
 
+    protected $table = 'apartment_sponsorship';
     //relations with Sponsorship
     public function sponsorship()
     {
