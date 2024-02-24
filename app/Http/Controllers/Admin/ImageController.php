@@ -76,13 +76,9 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Image $image, Apartment $apartment)
+    public function destroy(Image $image)
     {
-
-        $apartments = Apartment::where('id', $image->apartment_id)->get();
-        $apartment = $apartments[0];
-
         $image->delete();
-        return redirect()->route('images.index', ['apartment' => $apartment->slug]);
+        return redirect()->route('apartments.show', ['apartment'=>$image->apartment->slug]);
     }
 }
