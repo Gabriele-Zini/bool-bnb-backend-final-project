@@ -85,4 +85,9 @@ class ImageController extends Controller
         $image->delete();
         return redirect()->route('images.index', ['apartment' => $apartment->slug]);
     }
+
+    public function destroyToShow(Image $image) {
+        $image->delete();
+        return redirect()->route('apartments.show', ['apartment'=>$image->apartment->slug]);
+    }
 }
