@@ -81,7 +81,7 @@
         </table>
 
         <a href="{{ route('sponsorships.create', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">Activate a
-            new sponsorship for this apartment
+            new sponsorship for this apartment </a>
 
 
     </div>
