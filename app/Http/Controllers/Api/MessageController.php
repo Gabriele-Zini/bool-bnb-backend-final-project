@@ -9,24 +9,28 @@ use App\Models\Message;
 
 class MessageController extends Controller
 {
-public function sendMessage(Request $request, Apartment $apartment) {
-    $request->validate([
-        'message_content' => 'required|string',
-        'email' => 'required|email',
-        'name' => 'required|string',
-        'lastname' => 'required|string',
-    ]);
+    public function sendMessage(Request $request, Apartment $apartment)
+    {
+        $request->validate([
+            'message_content' => 'required|string',
+            'email' => 'required|email',
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+        ]);
 
-    $apartment = Apartment::where('slug', $apartment->slug)->firstOrFail();
+        if ($request->has('slug')) {
 
-    $message = new Message();
-    $message->message_content = $request->input('message_content');
-    $message->email = $request->input('email');
-    $message->name = $request->input('name');
-    $message->lastname = $request->input('lastname');
-    $message->apartment_id = $apartment->id;
-    $message->save();
+            $apartment = Apartment::where('slug', $request->input('slug'))->firstOrFail();
+        }
 
-    return response()->json(['message' => 'Messaggio inviato con successo']);
-}
+        $message = new Message();
+        $message->message_content = $request->input('message_content');
+        $message->email = $request->input('email');
+        $message->name = $request->input('name');
+        $message->lastname = $request->input('lastname');
+        $message->apartment_id = $apartment->id;
+        $message->save();
+
+        return response()->json(['message' => 'Messaggio inviato con successo', 'result' => $message,]);
+    }
 }
