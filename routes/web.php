@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\SponsorshipController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('apartments', ApartmentController::class)->parameters(['apartments' => 'apartment:slug']);
     Route::resource('images', ImageController::class)->parameters(['images' => 'image:id']);
     Route::resource('messages', MessageController::class)->parameters(['message' => 'message:id']);
+    Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorship' => 'sponsorship:id']);
 });
 
 

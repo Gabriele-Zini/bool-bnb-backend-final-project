@@ -154,6 +154,10 @@
                         <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
                             class="btn btn-warning">Messages
                         </a>
+                        {{-- sponsorships --}}
+                        <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
+                            class="btn btn-warning">Sonsorships
+                        </a>
 
                         {{-- delete btn --}}
                         <form class="d-inline"
