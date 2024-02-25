@@ -27,7 +27,6 @@ class ApartmentController extends Controller
                     'result' => $apartments,
                     'services' => $services,
                     'success' => true,
-                    "message"=>'ciccio pasticcio'
                 ]
             );
         } else {
@@ -61,7 +60,12 @@ class ApartmentController extends Controller
     {
         $userLatitude = $request->input('latitude');
         $userLongitude = $request->input('longitude');
-        $radius = 20;
+        if ($request->has('radius')) {
+            $radius = $request->get('radius');
+        } else {
+            $radius = 20;
+        }
+
 
         $query = Apartment::where('visibility', 1);
 
@@ -120,7 +124,7 @@ class ApartmentController extends Controller
         ) <= $radius");
         }
 
-        $query->with('apartment_info', 'services');
+        $query->with('apartment_info', 'services', 'images');
         $apartments = $query->get();
 
         if ($apartments->count() > 0) {
