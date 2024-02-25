@@ -20,7 +20,7 @@ class MessageController extends Controller
 
         if ($request->has('slug')) {
 
-            $apartment = Apartment::where('slug', $request->input('slug'))->firstOrFail();
+            $apartment = Apartment::where('slug', $request->input('slug'))->with('user')->firstOrFail();
         }
 
         $message = new Message();
@@ -32,6 +32,6 @@ class MessageController extends Controller
         $message->readed = 0;
         $message->save();
 
-        return response()->json(['message' => 'Messaggio inviato con successo', 'result' => $message, 'success' => true]);
+        return response()->json(['message' => 'Messaggio inviato con successo', 'result' => $message, 'success' => true, 'user'=>$apartment->user]);
     }
 }
