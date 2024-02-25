@@ -23,11 +23,10 @@
                                         <div class="">
 
                                             @if ($image->cover_image == 1)
-
                                                 <img class="apartment-image"
                                                     src="{{ asset('storage/image_path/' . $image->image_path) }}"
                                                     alt="">
-
+                                            @endif
                                         </div>
                                     @endforeach
                                 </div>
