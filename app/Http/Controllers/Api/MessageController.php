@@ -29,8 +29,9 @@ class MessageController extends Controller
         $message->name = $request->input('name');
         $message->lastname = $request->input('lastname');
         $message->apartment_id = $apartment->id;
+        $message->readed = 0;
         $message->save();
 
-        return response()->json(['message' => 'Messaggio inviato con successo', 'result' => $message,]);
+        return response()->json(['message' => 'Messaggio inviato con successo', 'result' => $message, 'success' => true]);
     }
 }
