@@ -15,9 +15,11 @@ class ApartmentController extends Controller
 
     public function index(Request $request)
     {
-        
+
         $apartmentsQuery = DB::table('apartments')
         ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+        ->join('images', 'apartments.id', '=', 'images.apartment_id')
+        ->where('images.cover_image', '=', '1')
         ->where('apartments.visibility', '=', 1)
         ->where('apartment_sponsorship.start_date', '<=', Carbon::now())
         ->where('apartment_sponsorship.expiration_date', '>=', Carbon::now());
