@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSponsorshipRequest;
 use App\Models\Apartment;
 use App\Models\ApartmentSponsorship;
 use App\Models\Sponsorship;
@@ -37,7 +38,7 @@ class SponsorshipController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSponsorshipRequest $request)
     {
         //Form data
         $form_data = $request->all();
@@ -109,7 +110,7 @@ class SponsorshipController extends Controller
      */
     public function destroy(ApartmentSponsorship $sponsorship)
     {
-        
+
         $apartmentData = Apartment::where("id", $sponsorship->apartment_id)->get();
         $apartment=$apartmentData[0];
         $sponsorship->delete();
