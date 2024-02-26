@@ -9,7 +9,7 @@
         {{-- Sponsorization type --}}
         <div class="text-center mt-2">
             <label for="sponsorship">Type:</label>
-            <select class="form-control w-50 text-center mx-auto " name="sponsorship_id" id="sponsorship">
+            <select class="form-control w-50 text-center mx-auto " name="sponsorship_id" id="sponsorship" required>
                 <option value="">Select a sponsorization type</option>
                 @foreach ($sponsorship as $sponsor)
                 <option value="{{$sponsor->id}}" required>{{@ucwords($sponsor->name)}} - € {{$sponsor->price}}</option>
