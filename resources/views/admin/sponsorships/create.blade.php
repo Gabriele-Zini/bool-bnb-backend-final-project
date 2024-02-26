@@ -9,26 +9,36 @@
         {{-- Sponsorization type --}}
         <div class="text-center mt-2">
             <label for="sponsorship">Type:</label>
-            <select class="form-control w-50 text-center mx-auto " name="sponsorship_id" id="sponsorship" required>
+            <select class="form-control w-50 text-center mx-auto @error('sponsorship_id') is-invalid @enderror @if (!empty(old('sponsorship_id')) && !$errors->has('sponsorship_id')) is-valid @endif" name="sponsorship_id" id="sponsorship" required>
                 <option value="">Select a sponsorization type</option>
                 @foreach ($sponsorship as $sponsor)
                 <option value="{{$sponsor->id}}" required>{{@ucwords($sponsor->name)}} - € {{$sponsor->price}}</option>
                 @endforeach
             </select>
+            @error('sponsorship_id')
+            <p class="invalid-feedback">{{ $message }}</p>
+        @enderror
         </div>
         
         <div class="text-center mt-2">
            <label for="startDate">Start date:</label>
-            <input type="date" class="form-control w-50 mx-auto mt-2" name="start_date" id="startDate" min="{{date('Y-m-d')}}" required> 
+            <input type="date" class="form-control w-50 mx-auto mt-2 @error('start_date') is-invalid @enderror @if (!empty(old('start_date')) && !$errors->has('start_date')) is-valid @endif" name="start_date" id="startDate" min="{{date('Y-m-d')}}" required> 
+            @error('start_date')
+            <p class="invalid-feedback">{{ $message }}</p>
+        @enderror
         </div>
         <div class="text-center mt-2">
             <label for="startTime">Start time:</label>
-             <input type="time" class="form-control w-25 mx-auto mt-2" name="start_time" id="startTime" required> 
+             <input type="time" class="form-control w-25 mx-auto mt-2 @error('start_time') is-invalid @enderror @if (!empty(old('start_time')) && !$errors->has('start_time')) is-valid @endif" name="start_time" id="startTime" required> 
+             @error('start_time')
+            <p class="invalid-feedback">{{ $message }}</p>
+        @enderror
          </div>
 
          <div class="d-none">
              <input type="number" name="apartment_id" value="{{$apartment->id}}"> 
          </div>
+
         <div class="text-center mt-2">
             <button type="submit" class="btn btn-success">Buy</button>
          </div>

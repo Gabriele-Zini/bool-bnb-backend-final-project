@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSponsorshipRequest extends FormRequest
@@ -23,8 +24,15 @@ class StoreSponsorshipRequest extends FormRequest
     {
         return [
           'sponsorship_id'=>['required'],
-          'start_date'=>['required'],
+          'start_date'=>['required', 'after:yesterday'],
           'start_time'=>['required'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'sponsorship_id' => 'Please select a sponsorship',
         ];
     }
 }

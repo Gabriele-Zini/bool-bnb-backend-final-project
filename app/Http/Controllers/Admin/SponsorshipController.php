@@ -59,6 +59,13 @@ class SponsorshipController extends Controller
 
         //Check if the start date is between the start and expiration date of another sponsorship
         $flag = true;
+
+       
+
+        if($startDate < Carbon::now()){
+            $flag = false;
+        }
+
         foreach ($allSponsorships as $checkSponsorship) {
             $from = $checkSponsorship->start_date;
             $to = $checkSponsorship->expiration_date;
