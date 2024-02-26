@@ -24,7 +24,7 @@ class UpdateApartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:5', 'max:50'],
+            'title' => ['required', 'min:5', 'max:100'],
             'visibility' => ['required', 'boolean'],
             'services' => ['nullable', 'exists:services,id'],
             'num_rooms' => ['nullable', 'numeric', 'min:1', 'max:254'],
