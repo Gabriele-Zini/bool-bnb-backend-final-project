@@ -19,7 +19,6 @@ class ApartmentsTableSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $title_array = ['monolocale', 'villetta', 'bilocale', 'trilocale', 'baita', 'casa sull\' albero', 'palafitta', 'villa in montagna', 'villa al mare', 'gulag'];
         $services = Service::all();
         $apartmentsData = config('apartments');
 
