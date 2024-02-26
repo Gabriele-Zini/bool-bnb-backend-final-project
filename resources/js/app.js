@@ -187,7 +187,7 @@ if (imageInput) {
                 });
 
                 imgContainer.appendChild(imgElement);
-                imgContainer.appendChild(deleteButton);
+                /* imgContainer.appendChild(deleteButton); */
                 imgContainer.appendChild(fileSize);
                 previewImgContainer.appendChild(imgContainer);
             });
@@ -197,6 +197,8 @@ if (imageInput) {
     });
 }
 
+
+//popver
 
 let imageControllerContainer = document.querySelectorAll('.image-controller-container');
 let popovers = document.querySelectorAll('.popover');
