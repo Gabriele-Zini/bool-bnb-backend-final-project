@@ -7,6 +7,7 @@ use App\Http\Requests\StoreImageRequest;
 use App\Models\Apartment;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -79,6 +80,7 @@ class ImageController extends Controller
     public function destroy(Image $image)
     {
         $image->delete();
+        Storage::delete('image_path/'.$image->image_path);
         return redirect()->route('apartments.show', ['apartment'=>$image->apartment->slug]);
     }
 }
