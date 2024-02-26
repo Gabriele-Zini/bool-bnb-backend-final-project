@@ -29,7 +29,7 @@ class ApartmentController extends Controller
     {
         // $perPage = 10;
         $apartments = Apartment::where('user_id', '=', Auth::user()->id)->get();
-        
+
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -86,30 +86,16 @@ class ApartmentController extends Controller
         // images storing
         if ($request->hasFile("image_path")) {
             $files = $request->file("image_path");
-            if (count($files) === 1) {
-                foreach ($files as $file) {
-                    $imageName = time() . '_' . $file->getClientOriginalName();
-                    $file->move(public_path("storage/image_path"), $imageName);
+            foreach ($files as $key => $file) {
+                $imageName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path("storage/image_path"), $imageName);
 
-                    $image = new Image([
-                        'image_path' => $imageName,
-                        'apartment_id' => $apartment->id,
-                        'cover_image' => 1,
-                    ]);
-                    $image->save();
-                }
-            } else {
-                foreach ($files as $file) {
-                    $imageName = time() . '_' . $file->getClientOriginalName();
-                    $file->move(public_path("storage/image_path"), $imageName);
-
-                    $image = new Image([
-                        'image_path' => $imageName,
-                        'apartment_id' => $apartment->id,
-                        'cover_image' => 0,
-                    ]);
-                    $image->save();
-                }
+                $image = new Image([
+                    'image_path' => $imageName,
+                    'apartment_id' => $apartment->id,
+                    'cover_image' => ($key === 0) ? 1 : 0,
+                ]);
+                $image->save();
             }
         }
 
@@ -132,11 +118,9 @@ class ApartmentController extends Controller
             ->where('expiration_date', '>', Carbon::now())
             ->get();
 
-        if(count($sponsorship_active) > 0) {
+        if (count($sponsorship_active) > 0) {
             $sponsorship_type = Sponsorship::where('id', '=', $sponsorship_active[0]->sponsorship_id)->get();
-        }
-
-        else {
+        } else {
             $sponsorship_type = 0;
         }
 
