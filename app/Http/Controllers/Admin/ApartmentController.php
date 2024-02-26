@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -151,6 +152,15 @@ class ApartmentController extends Controller
         // delete images
         if ($request->has('images')) {
             $selectedImages = $request->input('images');
+
+            foreach ($selectedImages as $imageId) {
+                $image = Image::find($imageId);
+
+                if ($image && $image->image_path) {
+                    Storage::delete('image_path/' . $image->image_path);
+                }
+            }
+
             Image::whereIn('id', $selectedImages)->delete();
         }
 
