@@ -145,9 +145,9 @@
                                     <div class="form-check flex-grow-1">
                                         <input class="form-check-input visually-hidden" type="checkbox" name="images[]"
                                             id="image{{ $image->id }}" value="{{ $image->id }}">
-                                        <label class="form-check-label" for="image{{ $image->id }}">
+                                        <label class="form-check-label d-flex align-items-center" for="image{{ $image->id }}">
                                             <span class="checkbox-custom"></span>
-                                            {{ $image->name }}
+                                            <span>Check to delete</span>
                                         </label>
                                     </div>
                                 </div>
