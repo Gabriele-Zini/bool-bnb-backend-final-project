@@ -1,7 +1,7 @@
 <?php
 return [
     [
-        "title" => "Appartamento nel centro storico",
+        "title" => "Apartment in the historic center",
         "city" => "Roma",
         "street_name" => "Via del Corso",
         "street_number" => "123",
@@ -12,7 +12,7 @@ return [
         "country_code" => "IT"
     ],
     [
-        "title" => "Appartamento panoramico vicino al Colosseo",
+        "title" => "Panoramic apartment near the Colosseum",
         "city" => "Roma",
         "street_name" => "Via dei Fori Imperiali",
         "street_number" => "45",
@@ -23,7 +23,7 @@ return [
         "country_code" => "IT"
     ],
     [
-        "title" => "Accogliente monolocale nel quartiere Trastevere",
+        "title" => "Cozy studio in the Trastevere district",
         "city" => "Roma",
         "street_name" => "Via della Lungaretta",
         "street_number" => "67",
@@ -34,7 +34,7 @@ return [
         "country_code" => "IT"
     ],
     [
-        "title" => "Appartamento moderno vicino alla Stazione Termini",
+        "title" => "Modern apartment near Termini Station",
         "city" => "Roma",
         "street_name" => "Via Giovanni Giolitti",
         "street_number" => "10",
@@ -45,7 +45,7 @@ return [
         "country_code" => "IT"
     ],
     [
-        "title" => "Bilocale elegante nel quartiere Parioli",
+        "title" => "Elegant one-bedroom apartment in the Parioli district",
         "city" => "Roma",
         "street_name" => "Via Archimede",
         "street_number" => "15",
@@ -56,7 +56,7 @@ return [
         "country_code" => "IT"
     ],
     [
-        "title" => "Attico con terrazza vista Pantheon",
+        "title" => "Attic with terrace overlooking the Pantheon",
         "city" => "Roma",
         "street_name" => "Via della Rotonda",
         "street_number" => "12",
@@ -67,7 +67,7 @@ return [
         "country_code" => "IT"
     ],
     [
-        "title" => "Monolocale luminoso a Trastevere",
+        "title" => "Bright studio in Trastevere",
         "city" => "Roma",
         "street_name" => "Via dei Salumi",
         "street_number" => "32",
@@ -78,36 +78,322 @@ return [
         "country_code" => "IT"
     ],
     [
-        "title" => "Villetta panoramica",
-        "city" => "Atene",
-        "street_name" => "Leof. Vasileos Konstantinou",
-        "street_number" => "5678",
-        "postal_code" => "11635",
-        "latitude" => 37.9795,
-        "longitude" => 23.7162,
-        "country" => "Grecia",
-        "country_code" => "GR",
+        "title" => "Cozy apartment in the historic center of Florence",
+        "city" => "Firenze",
+        "street_name" => "Via dei Calzaiuoli",
+        "street_number" => "10",
+        "postal_code" => "50122",
+        "latitude" => 43.7696,
+        "longitude" => 11.2558,
+        "country" => "Italia",
+        "country_code" => "IT"
     ],
     [
-        "title" => "Appartamento sul lago",
-        "city" => "Zurigo",
-        "street_name" => "Seestrasse",
-        "street_number" => "910",
-        "postal_code" => "8002",
-        "latitude" => 47.3574,
-        "longitude" => 8.5497,
-        "country" => "Svizzera",
-        "country_code" => "CH",
+        "title" => "Apartment in the historic Santo Spirito district",
+        "city" => "Firenze",
+        "street_name" => "Via Maggio",
+        "street_number" => "12",
+        "postal_code" => "50125",
+        "latitude" => 43.7673,
+        "longitude" => 11.2496,
+        "country" => "Italia",
+        "country_code" => "IT"
     ],
     [
-        "title" => "Casa di campagna",
-        "city" => "Dublino",
-        "street_name" => "Merrion Square",
-        "street_number" => "1112",
-        "postal_code" => "D02 K224",
-        "latitude" => 53.3404,
-        "longitude" => -6.2577,
-        "country" => "Irlanda",
-        "country_code" => "IE",
+        "title" => "Cozy studio near the Duomo of Florence",
+        "city" => "Firenze",
+        "street_name" => "Via de' Cerretani",
+        "street_number" => "6",
+        "postal_code" => "50123",
+        "latitude" => 43.7735,
+        "longitude" => 11.2486,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Apartment with panoramic terrace over Florence",
+        "city" => "Firenze",
+        "street_name" => "Piazza del Duomo",
+        "street_number" => "1",
+        "postal_code" => "50122",
+        "latitude" => 43.7738,
+        "longitude" => 11.2559,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Apartment in the artistic Oltrarno district",
+        "city" => "Firenze",
+        "street_name" => "Via Santa Monaca",
+        "street_number" => "6",
+        "postal_code" => "50124",
+        "latitude" => 43.7679,
+        "longitude" => 11.2511,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Studio with a view of the Arno River",
+        "city" => "Firenze",
+        "street_name" => "Lungarno degli Acciaiuoli",
+        "street_number" => "8",
+        "postal_code" => "50123",
+        "latitude" => 43.7695,
+        "longitude" => 11.2546,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Apartment with garden in the heart of Florence",
+        "city" => "Firenze",
+        "street_name" => "Via de' Bardi",
+        "street_number" => "14",
+        "postal_code" => "50125",
+        "latitude" => 43.7657,
+        "longitude" => 11.2533,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Modern apartment in the heart of Milan",
+        "city" => "Milano",
+        "street_name" => "Via della Spiga",
+        "street_number" => "20",
+        "postal_code" => "20121",
+        "latitude" => 45.4699,
+        "longitude" => 9.1946,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Bright room in a shared apartment near Corso Buenos Aires",
+        "city" => "Milano",
+        "street_name" => "Corso Buenos Aires",
+        "street_number" => "135",
+        "postal_code" => "20124",
+        "latitude" => 45.4788,
+        "longitude" => 9.2089,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Elegant apartment near Parco Sempione",
+        "city" => "Milano",
+        "street_name" => "Via Filippo Turati",
+        "street_number" => "8",
+        "postal_code" => "20121",
+        "latitude" => 45.4747,
+        "longitude" => 9.1841,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Renovated studio near the central station",
+        "city" => "Milano",
+        "street_name" => "Via Vittor Pisani",
+        "street_number" => "28",
+        "postal_code" => "20124",
+        "latitude" => 45.4867,
+        "longitude" => 9.2024,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Modern apartment in the Porta Nuova district",
+        "city" => "Milano",
+        "street_name" => "Corso Como",
+        "street_number" => "10",
+        "postal_code" => "20124",
+        "latitude" => 45.4836,
+        "longitude" => 9.1872,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Elegant studio near Central Station",
+        "city" => "Milano",
+        "street_name" => "Via Vitruvio",
+        "street_number" => "23",
+        "postal_code" => "20124",
+        "latitude" => 45.4853,
+        "longitude" => 9.2038,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Bright apartment overlooking Parco Indro Montanelli",
+        "city" => "Milano",
+        "street_name" => "Via Palestro",
+        "street_number" => "16",
+        "postal_code" => "20121",
+        "latitude" => 45.4742,
+        "longitude" => 9.2024,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Modern apartment in the Trastevere district",
+        "city" => "Roma",
+        "street_name" => "Via della Lungara",
+        "street_number" => "26",
+        "postal_code" => "00165",
+        "latitude" => 41.8921,
+        "longitude" => 12.4687,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Apartment overlooking the Grand Canal",
+        "city" => "Venezia",
+        "street_name" => "Calle Larga Rosa",
+        "street_number" => "12",
+        "postal_code" => "30125",
+        "latitude" => 45.4341,
+        "longitude" => 12.3394,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Luxury apartment near the Ponte Vecchio",
+        "city" => "Firenze",
+        "street_name" => "Piazza de' Pitti",
+        "street_number" => "8",
+        "postal_code" => "50125",
+        "latitude" => 43.7652,
+        "longitude" => 11.2528,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Cozy studio in the historic center of Naples",
+        "city" => "Napoli",
+        "street_name" => "Via San Gregorio Armeno",
+        "street_number" => "12",
+        "postal_code" => "80138",
+        "latitude" => 40.8527,
+        "longitude" => 14.2504,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Elegant apartment near Galleria Vittorio Emanuele II",
+        "city" => "Milano",
+        "street_name" => "Via Tommaso Grossi",
+        "street_number" => "10",
+        "postal_code" => "20121",
+        "latitude" => 45.4656,
+        "longitude" => 9.1903,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Modern apartment near Corso Buenos Aires",
+        "city" => "Milano",
+        "street_name" => "Via Lecco",
+        "street_number" => "15",
+        "postal_code" => "20124",
+        "latitude" => 45.4793,
+        "longitude" => 9.2068,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Apartment with panoramic terrace near the Vatican",
+        "city" => "Roma",
+        "street_name" => "Via della Conciliazione",
+        "street_number" => "25",
+        "postal_code" => "00193",
+        "latitude" => 41.9024,
+        "longitude" => 12.4541,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Renovated studio in the San Lorenzo district",
+        "city" => "Firenze",
+        "street_name" => "Via dei Ginori",
+        "street_number" => "8",
+        "postal_code" => "50123",
+        "latitude" => 43.7765,
+        "longitude" => 11.2539,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Traditional apartment in the Cannaregio district",
+        "city" => "Venezia",
+        "street_name" => "Calle delle Rasse",
+        "street_number" => "10",
+        "postal_code" => "30121",
+        "latitude" => 45.4421,
+        "longitude" => 12.3203,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Bright apartment overlooking the Gulf of Naples",
+        "city" => "Napoli",
+        "street_name" => "Via Caracciolo",
+        "street_number" => "18",
+        "postal_code" => "80122",
+        "latitude" => 40.8293,
+        "longitude" => 14.2445,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Elegant studio near the Quadrilatero della Moda",
+        "city" => "Milano",
+        "street_name" => "Via Manzoni",
+        "street_number" => "12",
+        "postal_code" => "20121",
+        "latitude" => 45.4688,
+        "longitude" => 9.1918,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Apartment with balcony in the Monti district",
+        "city" => "Roma",
+        "street_name" => "Via dei Serpenti",
+        "street_number" => "16",
+        "postal_code" => "00184",
+        "latitude" => 41.8942,
+        "longitude" => 12.4919,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Spacious apartment overlooking Piazza Santa Croce",
+        "city" => "Firenze",
+        "street_name" => "Via de' Benci",
+        "street_number" => "14",
+        "postal_code" => "50122",
+        "latitude" => 43.7684,
+        "longitude" => 11.2607,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Studio overlooking the Grand Canal",
+        "city" => "Venezia",
+        "street_name" => "Calle Larga Rosa",
+        "street_number" => "22",
+        "postal_code" => "30125",
+        "latitude" => 45.4346,
+        "longitude" => 12.3399,
+        "country" => "Italia",
+        "country_code" => "IT"
+    ],
+    [
+        "title" => "Apartment in the historic Spaccanapoli district",
+        "city" => "Napoli",
+        "street_name" => "Via Benedetto Croce",
+        "street_number" => "10",
+        "postal_code" => "80134",
+        "latitude" => 40.8489,
+        "longitude" => 14.2574,
+        "country" => "Italia",
+        "country_code" => "IT"
     ],
 ];
