@@ -99,19 +99,19 @@ class ApartmentController extends Controller
         // Filtri avanzati
         if ($request->has('num_beds')) {
             $query->whereHas('apartment_info', function ($q) use ($request) {
-                $q->where('num_beds','<=', $request->num_beds);
+                $q->where('num_beds', $request->num_beds);
             });
         }
 
         if ($request->has('num_rooms')) {
             $query->whereHas('apartment_info', function ($q) use ($request) {
-                $q->where('num_rooms', '<=', $request->num_rooms);
+                $q->where('num_rooms', $request->num_rooms);
             });
         }
 
         if ($request->has('num_bathrooms')) {
             $query->whereHas('apartment_info', function ($q) use ($request) {
-                $q->where('num_bathrooms', '<=',$request->num_bathrooms);
+                $q->where('num_bathrooms', $request->num_bathrooms);
             });
         }
 
