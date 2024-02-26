@@ -156,7 +156,7 @@
                         </a>
                         {{-- sponsorships --}}
                         <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
-                            class="btn btn-warning">Sonsorships
+                            class="btn btn-warning">Spnsorships
                         </a>
 
                         {{-- delete btn --}}
