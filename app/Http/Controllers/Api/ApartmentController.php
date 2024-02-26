@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use App\Models\ApartmentSponsorship;
 use App\Models\Service;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ApartmentController extends Controller
@@ -13,13 +15,16 @@ class ApartmentController extends Controller
 
     public function index(Request $request)
     {
-        $apartmentsQuery = Apartment::with(['services', 'apartment_info', 'user', 'images'])->where('visibility', "=", 1);
+        
+        $apartmentsQuery = DB::table('apartments')
+        ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+        ->where('apartments.visibility', '=', 1)
+        ->where('apartment_sponsorship.start_date', '<=', Carbon::now())
+        ->where('apartment_sponsorship.expiration_date', '>=', Carbon::now());
+
         $services = Service::all();
 
         $apartments = $apartmentsQuery->paginate(20);
-
-
-
 
         if ($apartments) {
             return response()->json(
@@ -139,5 +144,4 @@ class ApartmentController extends Controller
             ]);
         }
     }
-
 }
