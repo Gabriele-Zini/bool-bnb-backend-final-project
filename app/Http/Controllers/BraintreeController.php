@@ -11,12 +11,12 @@ class BraintreeController extends Controller
     public function token(Request $request)
     {
 
-        $gateway = new \Braintree\Gateway([
+        $gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'ympkctn64j5ws654',
             'publicKey' => '4g4bdtcpcxxtz3xj',
             'privateKey' => 'eeaae14db9451cbf55bec4b30dd00b23'
-        ]);
+          ]);
 
         $clientToken = $gateway->clientToken()->generate();
         return view('admin.braintree', ['token' => $clientToken]);
@@ -24,13 +24,12 @@ class BraintreeController extends Controller
 
     public function processTransaction(Request $request)
     {
-        $gateway = new \Braintree\Gateway([
+        $gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'ympkctn64j5ws654',
             'publicKey' => '4g4bdtcpcxxtz3xj',
             'privateKey' => 'eeaae14db9451cbf55bec4b30dd00b23'
-        ]);
-
+          ]);
         $nonceFromTheClient = $request->input('nonce');
         $nonceFromTheClient = $request->input('nonce');
 
@@ -47,6 +46,7 @@ class BraintreeController extends Controller
                 'success' => false,
                 'message' => "Transazione Fallita!!",
                 'result'=> $result,
+                'result2'=> $result->params,
             ];
             return response()->json($data, 200);
     }
