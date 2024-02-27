@@ -43,9 +43,6 @@
                                 @default
                                     Not sponsorizated yet
                             @endswitch
-                            @if ($sponsor->sponsorship_id == $typeSponsorship[0]->id)
-                                {{ $typeSponsorship[0]->id }}
-                            @endif
                         </td>
                         <td>
                             {{ $sponsor->start_date }}
