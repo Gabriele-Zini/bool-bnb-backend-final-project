@@ -60,19 +60,22 @@ class SponsorshipController extends Controller
         //Check if the start date is between the start and expiration date of another sponsorship
         $flag = true;
 
-       
 
-        if($startDate < Carbon::now()){
+
+        if ($startDate < Carbon::now()) {
             $flag = false;
         }
 
         foreach ($allSponsorships as $checkSponsorship) {
             $from = $checkSponsorship->start_date;
             $to = $checkSponsorship->expiration_date;
-            $check = $startDate;
-            if (($check >= $from) && ($check <= $to)) {
-                $flag = false;
+            for ($i = 0; $i <= $selectedSponsorship->duration; $i++) {
+                $check = Carbon::parse($startDate)->addHours($i);
+                if (($check >= $from) && ($check <= $to)) {
+                    $flag = false;
+                }
             }
+            
         }
 
         //Inserting the new sponsorship_apartment row in the table
@@ -119,7 +122,7 @@ class SponsorshipController extends Controller
     {
 
         $apartmentData = Apartment::where("id", $sponsorship->apartment_id)->get();
-        $apartment=$apartmentData[0];
+        $apartment = $apartmentData[0];
         $sponsorship->delete();
 
         return redirect()->route('sponsorships.index', ['apartment' => $apartment->slug])->with('message', 'Sponsorship deleted!');
