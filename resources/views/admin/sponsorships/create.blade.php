@@ -72,7 +72,7 @@
 
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div id="dropin-container"></div>
-            <button type="submit" class="btn btn-success" id="submit-button">Buy</button>
+            <button type="button" class="btn btn-success" id="submit-button">Buy</button>
 
 
                 {{-- <div class="my-4 col-12 col-md-8 col-lg-7 mx-auto">
@@ -97,7 +97,7 @@
 
 
     <script>
-        let route = 'http://localhost:8000/process-transaction'
+        let route = 'http://localhost:8000/payment;
         let button = document.querySelector('#submit-button');
             braintree.dropin.create({
                 authorization: '{{ $token }}',
