@@ -13,6 +13,19 @@ use Braintree\Gateway;
 
 class SponsorshipController extends Controller
 {
+
+    protected $gateway;
+
+    public function __construct()
+    {
+        $this->gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -33,13 +46,13 @@ class SponsorshipController extends Controller
         $apartmentSelected = Apartment::where("slug", "=", $request->apartment)->get();
         $apartment = $apartmentSelected[0];
         $sponsorship = Sponsorship::all();
-        $gateway = new Gateway([
+        $this->gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => env('BRAINTREE_MERCHANT_ID'),
             'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
             'privateKey' => env('BRAINTREE_PRIVATE_KEY')
         ]);
-        $token = $gateway->clientToken()->generate();
+        $token = $this->gateway->clientToken()->generate();
         //  dd($token);
         return view("admin.sponsorships.create", compact('apartment', 'sponsorship', 'token'));
     }
@@ -132,5 +145,34 @@ class SponsorshipController extends Controller
         $sponsorship->delete();
 
         return redirect()->route('sponsorships.index', ['apartment' => $apartment->slug])->with('message', 'Sponsorship deleted!');
+    }
+
+
+
+    public function processPayment(Request $request)
+    {
+        $nonce = $request->input('payment_method_nonce');
+
+        // Ottenere il prezzo della sponsorizzazione dal database
+        $sponsorship = Sponsorship::findOrFail($request->sponsorship_id); // Supponendo che ci sia un campo 'sponsorship_id' nel tuo modulo di pagamento
+        $amount = $sponsorship->price;
+
+        // Utilizza il nonce di pagamento per elaborare il pagamento tramite Braintree Gateway
+        $result = $this->gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+
+        // Gestisci il risultato del pagamento
+        if ($result->success) {
+            // Pagamento completato con successo
+            return redirect()->back()->with('success_message', 'Pagamento completato con successo!');
+        } else {
+            // Errore durante il pagamento
+            return redirect()->back()->with('error_message', 'Errore durante il pagamento: ' . $result->message);
+        }
     }
 }

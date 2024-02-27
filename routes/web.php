@@ -6,6 +6,9 @@ use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SponsorshipController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BraintreeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('images', ImageController::class)->parameters(['images' => 'image:id']);
     Route::resource('messages', MessageController::class)->parameters(['message' => 'message:id']);
     Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorship' => 'sponsorship:id']);
-    Route::post('/checkout', 'CheckoutController@checkout')->name('checkout');
+    Route::get('/payment', [BraintreeController::class, 'token']);
+    Route::post('/process-transaction', [BraintreeController::class, 'processTransaction']);
+
+
 });
 
 

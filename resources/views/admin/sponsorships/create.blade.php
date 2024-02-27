@@ -70,10 +70,12 @@
             </div> --}}
 
 
-                <input type="hidden" id="braintree-token" name="braintree_token" value="{{ $token }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <div id="dropin-container"></div>
+            <button type="submit" class="btn btn-success" id="submit-button">Buy</button>
 
 
-                <div class="my-4 col-12 col-md-8 col-lg-7 mx-auto">
+                {{-- <div class="my-4 col-12 col-md-8 col-lg-7 mx-auto">
                     <div class="">
                         <div id="dropin-wrapper">
                             <div id="checkout-message"></div>
@@ -81,15 +83,45 @@
                             <button class="btn btn-primary" type="submit" id="submit-button">
                                 Submit payment
                             </button>
-                            {{-- sponsorships --}}
                             <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
                                 class="btn btn-warning">Return to sponsorships
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+
+
 
 
             </form>
+
+
+    <script>
+        let route = 'http://localhost:8000/process-transaction'
+        let button = document.querySelector('#submit-button');
+            braintree.dropin.create({
+                authorization: '{{ $token }}',
+                container: '#dropin-container'
+            }, function(createErr, instance) {
+                button.addEventListener('click', function() {
+                    instance.requestPaymentMethod(function(err, payload) {
+                        axios.post(route, {
+                                nonce: payload.nonce
+                            }, {
+                                headers: {
+                                    'X-CSRF-TOKEN': document.querySelector(
+                                        'meta[name="csrf-token"]').getAttribute('content')
+                                }
+                            })
+                            .then(function(response) {
+                                console.log('success', payload.nonce);
+                            })
+                            .catch(function(error) {
+                                console.log('error', payload.nonce);
+                            });
+                    });
+                });
+            });
+    </script>
         @endif
     @endsection
