@@ -225,7 +225,6 @@ imageControllerContainer.forEach(element=> {
 
 // sandbox_gpsxh9yg_ympkctn64j5ws654
 
-
 let button = document.querySelector('#submit-button');
 
 braintree.dropin.create({
@@ -233,25 +232,32 @@ braintree.dropin.create({
   authorization: 'sandbox_gpsxh9yg_ympkctn64j5ws654',
   container: '#dropin-container'
 }, function (createErr, instance) {
-  button.addEventListener('click', function () {
+  button.addEventListener('click', function (event) {
     instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
       // When the user clicks on the 'Submit payment' button this code will send the
       // encrypted payment information in a variable called a payment method nonce
       $.ajax({
         type: 'POST',
         url: '/checkout',
-        data: {'paymentMethodNonce': payload.nonce}
+        data: {
+            'paymentMethodNonce': payload.nonce,
+            'sponsorship_id': sponsorshipId,
+            'price': price
+          }
       }).done(function(result) {
         // Tear down the Drop-in UI
-        instance.teardown(function (teardownErr) {
-          if (teardownErr) {
-            console.error('Could not tear down Drop-in UI!');
-          } else {
-            console.info('Drop-in UI has been torn down!');
-            // Remove the 'Submit payment' button
-            $('#submit-button').remove();
-          }
-        });
+        if(result.success) {
+
+            instance.teardown(function (teardownErr) {
+              if (teardownErr) {
+                console.error('Could not tear down Drop-in UI!');
+              } else {
+                console.info('Drop-in UI has been torn down!');
+                // Remove the 'Submit payment' button
+                $('#submit-button').remove();
+              }
+            });
+        }
 
         if (result.success) {
           $('#checkout-message').html('<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
@@ -259,7 +265,35 @@ braintree.dropin.create({
           console.log(result);
           $('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
         }
+
+        document.querySelector('#braintree-token').value = payload.nonce;
+        form.submit();
       });
     });
   });
 });
+
+
+
+
+/* var button = document.querySelector('#submit-button');
+var form = document.querySelector('#payment-form');
+
+braintree.dropin.create({
+    authorization: '{{ $token }}',
+    container: '#dropin-container'
+}, function (createErr, instance) {
+    button.addEventListener('click', function (event) {
+        event.preventDefault();
+        instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+            if (requestPaymentMethodErr) {
+                console.error('Request payment method error', requestPaymentMethodErr);
+                return;
+            }
+
+            document.querySelector('#braintree-token').value = payload.nonce;
+            form.submit(); // Invia il modulo di pagamento
+        });
+    });
+});
+ */

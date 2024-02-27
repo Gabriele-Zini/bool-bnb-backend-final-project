@@ -9,6 +9,7 @@ use App\Models\ApartmentSponsorship;
 use App\Models\Sponsorship;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Braintree\Gateway;
 
 class SponsorshipController extends Controller
 {
@@ -32,7 +33,15 @@ class SponsorshipController extends Controller
         $apartmentSelected = Apartment::where("slug", "=", $request->apartment)->get();
         $apartment = $apartmentSelected[0];
         $sponsorship = Sponsorship::all();
-        return view("admin.sponsorships.create", compact('apartment', 'sponsorship'));
+        $gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+        ]);
+        $token = $gateway->clientToken()->generate();
+        //  dd($token);
+        return view("admin.sponsorships.create", compact('apartment', 'sponsorship', 'token'));
     }
 
     /**
@@ -60,9 +69,9 @@ class SponsorshipController extends Controller
         //Check if the start date is between the start and expiration date of another sponsorship
         $flag = true;
 
-       
 
-        if($startDate < Carbon::now()){
+
+        if ($startDate < Carbon::now()) {
             $flag = false;
         }
 
@@ -70,7 +79,7 @@ class SponsorshipController extends Controller
             $from = $checkSponsorship->start_date;
             $to = $checkSponsorship->expiration_date;
             $check = $startDate;
-            if (($check >= $from) && ($check <= $to)) {
+            if (($check >= $from) && ($check <= $to) || $expirationDate >= $from && $expirationDate <= $to) {
                 $flag = false;
             }
         }
@@ -119,7 +128,7 @@ class SponsorshipController extends Controller
     {
 
         $apartmentData = Apartment::where("id", $sponsorship->apartment_id)->get();
-        $apartment=$apartmentData[0];
+        $apartment = $apartmentData[0];
         $sponsorship->delete();
 
         return redirect()->route('sponsorships.index', ['apartment' => $apartment->slug])->with('message', 'Sponsorship deleted!');
