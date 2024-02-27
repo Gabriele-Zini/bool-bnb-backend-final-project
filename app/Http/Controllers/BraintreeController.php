@@ -14,9 +14,9 @@ class BraintreeController extends Controller
         $gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'ympkctn64j5ws654',
-            'publicKey' => '4g4bdtcpcxxtz3xj',
-            'privateKey' => 'eeaae14db9451cbf55bec4b30dd00b23'
-          ]);
+            'publicKey' => 'rk427fdhzk4qh6pg',
+            'privateKey' => '8c200d7dc950bd140f4e5d430fd0f7c1'
+        ]);
 
         $clientToken = $gateway->clientToken()->generate();
         return view('admin.braintree', ['token' => $clientToken]);
@@ -27,9 +27,9 @@ class BraintreeController extends Controller
         $gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'ympkctn64j5ws654',
-            'publicKey' => '4g4bdtcpcxxtz3xj',
-            'privateKey' => 'eeaae14db9451cbf55bec4b30dd00b23'
-          ]);
+            'publicKey' => 'rk427fdhzk4qh6pg',
+            'privateKey' => '8c200d7dc950bd140f4e5d430fd0f7c1'
+        ]);
         $nonceFromTheClient = $request->input('nonce');
         $nonceFromTheClient = $request->input('nonce');
 
@@ -42,12 +42,19 @@ class BraintreeController extends Controller
         ]);
 
 
+
+        if ($result->success) {
             $data = [
-                'success' => false,
-                'message' => "Transazione Fallita!!",
-                'result'=> $result,
-                'result2'=> $result->params,
+                'success' => true,
+                'message' => "Transazione eseguita con Successo!"
             ];
             return response()->json($data, 200);
+        } else {
+            $data = [
+                'success' => false,
+                'message' => "Transazione Fallita!!"
+            ];
+            return response()->json($data, 401);
+        }
     }
 }
