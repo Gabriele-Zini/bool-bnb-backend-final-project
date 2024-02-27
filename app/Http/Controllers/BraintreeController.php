@@ -32,14 +32,19 @@ class BraintreeController extends Controller
         ]);
 
         $nonceFromTheClient = $request->input('nonce');
+        if ($request->input('nonce') != null) {
+            var_dump($request->input('nonce'));
+            $nonceFromTheClient = $request->input('nonce');
 
-        $result = $gateway->transaction()->sale([
-            'amount' => '10.00',
-            'paymentMethodNonce' => $nonceFromTheClient,
-            'options' => [
-                'submitForSettlement' => true
-            ]
-        ]);
+            $gateway->transaction()->sale([
+                'amount' => '10.00',
+                'paymentMethodNonce' => $nonceFromTheClient,
+                'options' => [
+                    'submitForSettlement' => True
+                ]
+            ]);
+            return view('dashboard');
+        }
 
         if ($result->success) {
             // Transazione completata con successo
