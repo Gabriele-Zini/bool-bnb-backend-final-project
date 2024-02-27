@@ -17,13 +17,13 @@ class ApartmentController extends Controller
     {
 
         $apartmentsQuery = DB::table('apartments')
-        ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
-        ->join('images', 'apartments.id', '=', 'images.apartment_id')
-        ->where('images.cover_image', '=', '1')
-        ->where('apartments.visibility', '=', 1)
-        ->where('apartment_sponsorship.start_date', '<=', Carbon::now())
-        ->where('apartment_sponsorship.expiration_date', '>=', Carbon::now())
-        ->orderBy('apartment_sponsorship.start_date', 'ASC');
+            ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+            ->join('images', 'apartments.id', '=', 'images.apartment_id')
+            ->where('images.cover_image', '=', '1')
+            ->where('apartments.visibility', '=', 1)
+            ->where('apartment_sponsorship.start_date', '<=', Carbon::now())
+            ->where('apartment_sponsorship.expiration_date', '>=', Carbon::now())
+            ->orderBy('apartment_sponsorship.start_date', 'ASC');
 
         $services = Service::all();
 
@@ -135,44 +135,54 @@ class ApartmentController extends Controller
 
         $query->with('apartment_info', 'services', 'images');
         $apartments = $query->get();
-        
+        $sponsor=[];
+
         //Inserting in array $sponsor all the apartment id with an active sponsorship 
-         foreach ($apartments as $apartment) {
-            foreach($sponsorships as $sponsorship){
+        foreach ($apartments as $apartment) {
+            foreach ($sponsorships as $sponsorship) {
                 if ($apartment->id == $sponsorship->id && ($sponsorship->start_date <= Carbon::now() && $sponsorship->expiration_date >= Carbon::now())) {
                     $sponsor[] = [
                         'a' => $apartment->id
                     ];
-                }                
-            }
-         }
-         
-        //Inserting in array $a the apartment id where is equal to the apartment ids in $sponsor['a']
-        foreach($apartments as $apartment) {
-            foreach($sponsor as $s) {
-                if ($apartment->id == $s['a']){
-                    $a[] = $apartment->id;
-                    $apartment->sponsor = 1;
                 }
             }
         }
 
-        //Inserting in $a all the others apartment ids
-        foreach($apartments as $apartment) {
-            foreach($sponsor as $s) {
-                if (!in_array($apartment->id, $a)){
-                    $a[] = $apartment->id;
+        $a=[];
+        if (count($sponsor) > 0) {
+            //Inserting in array $a the apartment id where is equal to the apartment ids in $sponsor['a']
+            foreach ($apartments as $apartment) {
+                foreach ($sponsor as $s) {
+                    if ($apartment->id == $s['a']) {
+                        $a[] = $apartment->id;
+                        $apartment->sponsor = 1;
+                    }
+                }
+            }
+
+            //Inserting in $a all the others apartment ids
+            foreach ($apartments as $apartment) {
+                foreach ($sponsor as $s) {
+                    if (!in_array($apartment->id, $a)) {
+                        $a[] = $apartment->id;
+                    }
                 }
             }
         }
 
         //Inserting in orderedApartments all the apartments in order 
         $orderdApartments = [];
-        foreach($a as $id){
-            foreach($apartments as $apartment){
-                if ($apartment->id == $id){
-                    $orderdApartments[] = $apartment;
+        if(count($a) > 0){
+            foreach ($a as $id) {
+                foreach ($apartments as $apartment) {
+                    if ($apartment->id == $id) {
+                        $orderdApartments[] = $apartment;
+                    }
                 }
+            }
+        }else{
+            foreach ($apartments as $apartment) {
+                    $orderdApartments[] = $apartment; 
             }
         }
 
@@ -180,6 +190,7 @@ class ApartmentController extends Controller
             return response()->json([
                 'result' => $orderdApartments,
                 'success' => true,
+                'sponsor' => $a
             ]);
         } else {
             return response()->json([
