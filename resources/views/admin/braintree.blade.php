@@ -7,12 +7,19 @@
     <div class="py-12">
         @csrf
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <input type="hidden" name="apartment" value="{{ $apartment }}">
+        <input type="hidden" name="price" value="{{ $sponsorship['price'] }}">
+        <input type="hidden" name="start_date" value="{{ $sponsorship['start_date'] }}">
+        <input type="hidden" name="expiration_date" value="{{ $sponsorship['expiration_date'] }}">
+        <input type="hidden" name="sponsorship_id" value="{{ $sponsorship['sponsorship_id'] }}">
+        <input type="hidden" name="apartment_id" value="{{ $sponsorship['apartment_id'] }}">
         <div id="dropin-container"></div>
         <div>
             <a id="submit-button" class="btn btn-sm btn-success">Submit payment</a>
         </div>
 
     </div>
+    
 
     <script>
         let route = 'http://localhost:8000/payment'

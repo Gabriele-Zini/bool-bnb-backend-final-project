@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Braintree\Gateway;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BraintreeController extends Controller
 {
     public function token(Request $request)
     {
-
+        $apartmentSlug = $request->apartment;
+        $sponsorship = $request->sponsorship_data;
         $gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'ympkctn64j5ws654',
@@ -19,11 +21,13 @@ class BraintreeController extends Controller
         ]);
 
         $clientToken = $gateway->clientToken()->generate();
-        return view('admin.braintree', ['token' => $clientToken]);
+        Session::put('braintree_token', $clientToken);
+        return view('admin.braintree', ['token' => $clientToken, 'apartment' => $apartmentSlug, 'sponsorship' => $sponsorship]);
     }
 
     public function processTransaction(Request $request)
     {
+        dd($request);
         $gateway = new Gateway([
             'environment' => 'sandbox',
             'merchantId' => 'ympkctn64j5ws654',

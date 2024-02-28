@@ -70,9 +70,9 @@
             </div> --}}
 
 
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <div id="dropin-container"></div>
-            <button type="button" class="btn btn-success" id="submit-button">Buy</button>
+               
+
+                <button type="submit" class="btn btn-success" id="submit-button">Buy</button>
 
 
                 {{-- <div class="my-4 col-12 col-md-8 col-lg-7 mx-auto">
@@ -95,33 +95,32 @@
 
             </form>
 
-
-    <script>
-        let route = 'http://localhost:8000/payment;
-        let button = document.querySelector('#submit-button');
-            braintree.dropin.create({
-                authorization: '{{ $token }}',
-                container: '#dropin-container'
-            }, function(createErr, instance) {
-                button.addEventListener('click', function() {
-                    instance.requestPaymentMethod(function(err, payload) {
-                        axios.post(route, {
-                                nonce: payload.nonce
-                            }, {
-                                headers: {
-                                    'X-CSRF-TOKEN': document.querySelector(
-                                        'meta[name="csrf-token"]').getAttribute('content')
-                                }
-                            })
-                            .then(function(response) {
-                                console.log('success', payload.nonce);
-                            })
-                            .catch(function(error) {
-                                console.log('error', payload.nonce);
-                            });
+            <script>
+                let route = 'http://localhost:8000/payment;
+                let button = document.querySelector('#submit-button');
+                braintree.dropin.create({
+                    authorization: '{{ $token }}',
+                    container: '#dropin-container'
+                }, function(createErr, instance) {
+                    button.addEventListener('click', function() {
+                        instance.requestPaymentMethod(function(err, payload) {
+                            axios.post(route, {
+                                    nonce: payload.nonce
+                                }, {
+                                    headers: {
+                                        'X-CSRF-TOKEN': document.querySelector(
+                                            'meta[name="csrf-token"]').getAttribute('content')
+                                    }
+                                })
+                                .then(function(response) {
+                                    console.log('success', payload.nonce);
+                                })
+                                .catch(function(error) {
+                                    console.log('error', payload.nonce);
+                                });
+                        });
                     });
                 });
-            });
-    </script>
+            </script>
         @endif
     @endsection
