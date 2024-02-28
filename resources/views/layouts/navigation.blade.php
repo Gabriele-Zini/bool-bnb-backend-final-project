@@ -22,7 +22,7 @@
                     <a class="nav-link" href="{{route('apartments.index')}}">Apparments</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('messages')}}">Messages</a>
+                    <a class="nav-link" href="{{route('all_messages')}}">Messages</a>
                 </li>
                 <li>
                     <a class="nav-link" href="{{route('apartments.create')}}">Add new apartments</a>

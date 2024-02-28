@@ -1,4 +1,9 @@
 @extends('layouts.app')
-All messages
 @section('content')
-@endsection
+<h1>All messages</h1>
+<ul>
+        @foreach ($allMessages as $message)
+            {{$message}}
+        @endforeach
+</ul>
+    @endsection
