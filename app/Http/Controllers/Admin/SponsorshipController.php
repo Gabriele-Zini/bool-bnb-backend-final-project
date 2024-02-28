@@ -104,6 +104,7 @@ class SponsorshipController extends Controller
             // $apartment_sponsorship->sponsorship_id = $selectedSponsorship->id;
             // $apartment_sponsorship->apartment_id = $form_data['apartment_id'];
             // $apartment_sponsorship->save();
+            
             $sponsorship_data = [
                 'start_date' => $startDate,
                 'expiration_date' => $expirationDate_string,

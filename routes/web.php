@@ -38,9 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('messages', MessageController::class)->parameters(['message' => 'message:id']);
     Route::resource('sponsorships', SponsorshipController::class)->parameters(['sponsorship' => 'sponsorship:id']);
     Route::any('/payment', [BraintreeController::class, 'token'])->name('payment');
-    /* Route::post('/process-transaction', [BraintreeController::class, 'processTransaction']); */
-
-
+    Route::post('/process-transaction', [BraintreeController::class, 'processTransaction'])->name('transaction'); 
 });
 
 

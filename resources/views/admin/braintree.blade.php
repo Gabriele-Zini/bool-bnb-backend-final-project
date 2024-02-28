@@ -22,7 +22,7 @@
     
 
     <script>
-        let route = 'http://localhost:8000/payment'
+        let route = 'http://localhost:8000/transaction'
         let button = document.querySelector('#submit-button');
             braintree.dropin.create({
                 authorization: '{{ $token }}',
@@ -30,7 +30,7 @@
             }, function(createErr, instance) {
                 button.addEventListener('click', function() {
                     instance.requestPaymentMethod(function(err, payload) {
-                        axios.post(route, {
+                        axios.post('{{ route('transaction') }}', {
                                 nonce: payload.nonce
                             }, {
                                 headers: {
