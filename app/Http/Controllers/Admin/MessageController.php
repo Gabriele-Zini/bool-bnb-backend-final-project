@@ -86,23 +86,25 @@ class MessageController extends Controller
         }
         $allMessages = [];
         foreach ($a as $messages) {
+            
             foreach ($messages as $message) {
+                foreach ($apartments as $apartment) {
+                    if ($apartment->id == $message->apartment_id) {
+                        dump($apartment->id);
+                        $title = $apartment->title; 
+                    }
+                }
                 $allMessages[] = [
                     'message_content' =>  $message['message_content'],
                     'name' => $message['name'],
                     'lastname' => $message['lastname'],
                     'email' => $message['email'],
+                    'apartment' => $title
                 ];
-                foreach ($apartments as $apartment) {
-                    if ($apartment->id == $message->apartment_id) {
-                        foreach ($allMessages as $oneMessage) {
-                            $allMessages[]['apartment'] = $apartment->title;
-                        }
-                    }
-                }
+                
             }
         }
-        dd($allMessages);
+        
         return view("admin.messages.all", compact("allMessages"));
     }
 }
