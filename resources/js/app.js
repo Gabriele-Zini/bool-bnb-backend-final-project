@@ -2,6 +2,7 @@ import "./bootstrap";
 import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**"]);
+import { Axios } from "axios";
 
 //tom tom imports
 import TomTom from "@tomtom-international/web-sdk-maps";
@@ -219,3 +220,63 @@ imageControllerContainer.forEach(element=> {
     });
 
 })
+
+
+// braintee
+
+// sandbox_gpsxh9yg_ympkctn64j5ws654
+
+/* let button = document.querySelector('#submit-button');
+
+braintree.dropin.create({
+  // Insert your tokenization key here
+  authorization: 'sandbox_gpsxh9yg_ympkctn64j5ws654',
+  container: '#dropin-container'
+}, function (createErr, instance) {
+  button.addEventListener('click', function (event) {
+    event.preventDefault();
+    instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+      // When the user clicks on the 'Submit payment' button this code will send the
+      // encrypted payment information in a variable called a payment method nonce
+      $.ajax({
+        type: 'POST',
+        url: '/checkout',
+        data: {
+            'paymentMethodNonce': payload.nonce,
+            'sponsorship_id': sponsorshipId,
+            'price': price
+          }
+      }).done(function(result) {
+
+
+        document.querySelector('#braintree-token').value = payload.nonce;
+        form.submit();
+      });
+    });
+  });
+});
+ */
+
+
+
+/* var button = document.querySelector('#submit-button');
+var form = document.querySelector('#payment-form');
+
+braintree.dropin.create({
+    authorization: '{{ $token }}',
+    container: '#dropin-container'
+}, function (createErr, instance) {
+    button.addEventListener('click', function (event) {
+        event.preventDefault();
+        instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+            if (requestPaymentMethodErr) {
+                console.error('Request payment method error', requestPaymentMethodErr);
+                return;
+            }
+
+            document.querySelector('#braintree-token').value = payload.nonce;
+            form.submit(); // Invia il modulo di pagamento
+        });
+    });
+});
+ */

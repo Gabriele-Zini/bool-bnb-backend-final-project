@@ -9,9 +9,23 @@ use App\Models\ApartmentSponsorship;
 use App\Models\Sponsorship;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Braintree\Gateway;
 
 class SponsorshipController extends Controller
 {
+
+    protected $gateway;
+
+    public function __construct()
+    {
+        $this->gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +46,15 @@ class SponsorshipController extends Controller
         $apartmentSelected = Apartment::where("slug", "=", $request->apartment)->get();
         $apartment = $apartmentSelected[0];
         $sponsorship = Sponsorship::all();
-        return view("admin.sponsorships.create", compact('apartment', 'sponsorship'));
+        $this->gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+        ]);
+        $token = $this->gateway->clientToken()->generate();
+        //  dd($token);
+        return view("admin.sponsorships.create", compact('apartment', 'sponsorship', 'token'));
     }
 
     /**
@@ -56,7 +78,7 @@ class SponsorshipController extends Controller
         $startDate = date('Y-m-d H:i:s', strtotime("$date $time"));
         //Calculation of expiration date
         $expirationDate = Carbon::parse($startDate)->addDays($selectedSponsorship->duration / 24);
-
+        $expirationDate_string = $expirationDate->format("Y-m-d H:i:s");
         //Check if the start date is between the start and expiration date of another sponsorship
         $flag = true;
 
@@ -69,24 +91,34 @@ class SponsorshipController extends Controller
         foreach ($allSponsorships as $checkSponsorship) {
             $from = $checkSponsorship->start_date;
             $to = $checkSponsorship->expiration_date;
+
             for ($i = 0; $i <= $selectedSponsorship->duration; $i++) {
                 $check = Carbon::parse($startDate)->addHours($i);
                 if (($check >= $from) && ($check <= $to)) {
                     $flag = false;
                 }
+
             }
             
         }
 
         //Inserting the new sponsorship_apartment row in the table
         if ($flag) {
-            $apartment_sponsorship->start_date = $startDate;
-            $apartment_sponsorship->expiration_date = $expirationDate;
-            $apartment_sponsorship->sponsorship_id = $selectedSponsorship->id;
-            $apartment_sponsorship->apartment_id = $form_data['apartment_id'];
-            $apartment_sponsorship->save();
+            // $apartment_sponsorship->start_date = $startDate;
+            // $apartment_sponsorship->expiration_date = $expirationDate;
+            // $apartment_sponsorship->sponsorship_id = $selectedSponsorship->id;
+            // $apartment_sponsorship->apartment_id = $form_data['apartment_id'];
+            // $apartment_sponsorship->save();
+            
+            $sponsorship_data = [
+                'start_date' => $startDate,
+                'expiration_date' => $expirationDate_string,
+                'sponsorship_id' => $selectedSponsorship->id,
+                'apartment_id' => $form_data['apartment_id'],
+                'price' => $selectedSponsorship->price
+            ];
 
-            return redirect()->route('sponsorships.index', ['apartment' => $apartment[0]->slug])->with('message', 'Successfull purchase!');
+            return redirect()->route('payment', ['apartment' => $apartment[0]->slug, 'sponsorship_data' => $sponsorship_data])->with('message', 'Successfull purchase!');
         }
         return redirect()->route('sponsorships.index', ['apartment' => $apartment[0]->slug])->with('error', 'Something went wrong, please check the dates');
     }
@@ -126,5 +158,34 @@ class SponsorshipController extends Controller
         $sponsorship->delete();
 
         return redirect()->route('sponsorships.index', ['apartment' => $apartment->slug])->with('message', 'Sponsorship deleted!');
+    }
+
+
+
+    public function processPayment(Request $request)
+    {
+        $nonce = $request->input('payment_method_nonce');
+
+        // Ottenere il prezzo della sponsorizzazione dal database
+        $sponsorship = Sponsorship::findOrFail($request->sponsorship_id); // Supponendo che ci sia un campo 'sponsorship_id' nel tuo modulo di pagamento
+        $amount = $sponsorship->price;
+
+        // Utilizza il nonce di pagamento per elaborare il pagamento tramite Braintree Gateway
+        $result = $this->gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+
+        // Gestisci il risultato del pagamento
+        if ($result->success) {
+            // Pagamento completato con successo
+            return redirect()->back()->with('success_message', 'Pagamento completato con successo!');
+        } else {
+            // Errore durante il pagamento
+            return redirect()->back()->with('error_message', 'Errore durante il pagamento: ' . $result->message);
+        }
     }
 }
