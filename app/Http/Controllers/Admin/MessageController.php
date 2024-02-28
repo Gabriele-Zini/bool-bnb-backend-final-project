@@ -82,29 +82,33 @@ class MessageController extends Controller
         $a = [];
         foreach ($apartments as $apartment) {
             $messages = Message::where("apartment_id", $apartment->id)->get();
-            $a[] = $messages;
+            $a[$apartment->id] = $messages;
+            $a[$apartment->id]->title = $apartment->title;
         }
-        $allMessages = [];
-        foreach ($a as $messages) {
+        // return a collection of array each one with her relative apartment with messages
+
+        // dd($a); 
+        // $allMessages = [];
+        // foreach ($a as $messages) {
             
-            foreach ($messages as $message) {
-                foreach ($apartments as $apartment) {
-                    if ($apartment->id == $message->apartment_id) {
-                        dump($apartment->id);
-                        $title = $apartment->title; 
-                    }
-                }
-                $allMessages[] = [
-                    'message_content' =>  $message['message_content'],
-                    'name' => $message['name'],
-                    'lastname' => $message['lastname'],
-                    'email' => $message['email'],
-                    'apartment' => $title
-                ];
+        //     foreach ($messages as $message) {
+        //         foreach ($apartments as $apartment) {
+        //             if ($apartment->id == $message->apartment_id) {
+        //                 // dump($apartment->id);
+        //                 $title = $apartment->title; 
+        //             }
+        //         }
+        //         $allMessages[] = [
+        //             'message_content' =>  $message['message_content'],
+        //             'name' => $message['name'],
+        //             'lastname' => $message['lastname'],
+        //             'email' => $message['email'],
+        //             'apartment' => $title
+        //         ];
                 
-            }
-        }
+        //     }
+        // }
         
-        return view("admin.messages.all", compact("allMessages"));
+        return view("admin.messages.all", compact("a"));
     }
 }
