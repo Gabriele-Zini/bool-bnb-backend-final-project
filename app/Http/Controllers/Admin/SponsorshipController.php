@@ -65,7 +65,6 @@ class SponsorshipController extends Controller
         //Form data
         $form_data = $request->all();
         //Objects
-        $apartment_sponsorship = new ApartmentSponsorship;
         $sponsorship = Sponsorship::where("id", $form_data["sponsorship_id"])->get();
         $apartment = Apartment::where("id", $form_data["apartment_id"])->get();
         $allSponsorships = ApartmentSponsorship::where("apartment_id", $apartment[0]->id)->get();
@@ -99,7 +98,7 @@ class SponsorshipController extends Controller
                 }
 
             }
-            
+
         }
 
         //Inserting the new sponsorship_apartment row in the table
@@ -109,7 +108,7 @@ class SponsorshipController extends Controller
             // $apartment_sponsorship->sponsorship_id = $selectedSponsorship->id;
             // $apartment_sponsorship->apartment_id = $form_data['apartment_id'];
             // $apartment_sponsorship->save();
-            
+
             $sponsorship_data = [
                 'start_date' => $startDate,
                 'expiration_date' => $expirationDate_string,
