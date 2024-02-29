@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-gray-100">
     <div class="container-fluid">
         <!-- Logo -->
-        <h5>
-            BoolBnb
-        </h5>
+        <div class="logo-back">
+            <img src="{{ URL::asset('/img/b.png')}}" >
+        </div>
 
         <!-- Hamburger Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,11 @@
 
                     <a class="nav-link" href="{{route('apartments.create')}}"><i class="fa-solid fa-plus"></i> New apartments</a>
 
-                    <a class="nav-link" href="{{route('all_sponsorships')}}">Sponsorships</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{route('all_sponsorships')}}">
+                        <i class="fa-solid fa-coins"></i> 
+                        Sponsorships</a>
                 </li>
             
             </ul>
