@@ -1,33 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>All the sponsorships by apartment</h1>
+    <h3 class="text-center my-5">All the sponsorships by apartment</h3>
 
-    {{-- @dd($groupedResult) --}}
-
-    @foreach ($groupedResult as $key => $result)
-        <ul>
-            <li>
-                <h4>{{ $key }}</h4>
-            </li>
-            @foreach ($result as $item)
-                <li>{{ $item->name }}</li>
-                <li>{{ $item->start_date }}</li>
-                <li>{{ $item->expiration_date }}</li>
-            @endforeach
-        </ul>
-    @endforeach
-    {{-- @foreach ($a as $sponsorizations)
-        @if ($sponsorizations->count() > 0)
-            @dump($sponsorizations->title)
-            @foreach ($sponsorizations as $sponsorization)
-                @foreach ($sponsorships as $sponsorship)
-                    @if ($sponsorship->id === $sponsorization->sponsorship_id)
-                        @dump($sponsorship->name)
-                        @endif
+    {{--  @dd($groupedResult) --}}
+    <div class="container w-100">
+        @foreach ($groupedResult as $key => $result)
+            <div class="">
+                <div class="alert ms_bg-color-sponsorships" role="alert">
+                    <h4 class="text-center my-4 text-white"><strong>{{ $key }}</strong></h4>
+                </div>
+                <table class="table col-12 col-md-10 col-lg-8 mb-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Sponsorship</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Expiration Date</th>
+                            <th scope="col">Purchase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $count = 1 @endphp
+                        @foreach ($result as $item)
+                            <tr>
+                                <th scope="row">{{ $count }}</th>
+                                <td>{{ ucfirst($item->name) }}</td>
+                                <td>{{ date('d/m/Y', strtotime($item->start_date)) }}</td>
+                                <td>{{ date('d/m/Y', strtotime($item->expiration_date)) }}</td>
+                                <td><a class="btn btn-warning" href="{{ route('sponsorships.index', ['apartment'=>$item->slug])}}">purchase</a></td>
+                            </tr>
+                            @php $count++ @endphp <!-- Incrementa il contatore -->
                         @endforeach
-                        @dump($sponsorization)
-            @endforeach
-        @endif
-    @endforeach --}}
+                    </tbody>
+                </table>
+            </div>
+        @endforeach
+    </div>
+
 @endsection
