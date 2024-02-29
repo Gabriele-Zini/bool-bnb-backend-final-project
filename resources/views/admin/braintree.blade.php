@@ -57,7 +57,6 @@
                             history.pushState(null, null, history.replaceState);
                             window.addEventListener('popstate', function(event) {
                                 history.pushState(null, null, history.replaceState);
-                                console.log('sticazzi');
                             });
                         })
                         .catch(function(error) {
