@@ -2,8 +2,81 @@
 @import "~bootstrap/scss/bootstrap";
 @import '@fortawesome/fontawesome-free/css/all.css';
 
-
-
+.my-btn-delete {
+    background: none;
+    border: none;
+    text-decoration: none;
+    border: .5px solid #F04438;
+    border-radius: 10px;
+    color: #F04438;
+    padding: 5px;
+}
+.my-btn-delete:hover {
+    color: white;
+    background-color: #F04438;
+    transition: background-color 1s ease-in;
+    border: .5 solid white;
+}
+.my-btn-orange {
+    background: none;
+    border: none;
+    text-decoration: none;
+    border: .5px solid #F79009;
+    border-radius: 10px;
+    color: #F79009;
+    padding: 5px;
+}
+.my-btn-orange:hover {
+    color: white;
+    background-color: #F79009;
+    transition: background-color 1s ease-in;
+    border: .5 solid white;
+}
+.my-btn-blue {
+    background: none;
+    border: none;
+    text-decoration: none;
+    border: .5px solid #0BA5EC;
+    border-radius: 10px;
+    color: #0BA5EC;
+    padding: 5px;
+}
+.my-btn-blue:hover {
+    color: white;
+    background-color: #0BA5EC;
+    transition: background-color 1s ease-in;
+    border: .5 solid white;
+}
+.my-btn-sponsor {
+    background: none;
+    border: none;
+    text-decoration: none;
+    border: .5px solid #12B76A;
+    border-radius: 10px;
+    color: #12B76A;
+    padding: 5px;
+}
+.my-btn-sponsor:hover {
+    color: white;
+    background-color: #12B76A;
+    transition: background-color 1s ease-in;
+    border: .5 solid white;
+}
+.my-btn-message {
+    background: none;
+    border: none;
+    text-decoration: none;
+    border: .5px solid #175CD3;
+    border-radius: 10px;
+    color: #175CD3;
+    padding: 5px;
+}
+.my-btn-message:hover {
+    color: white;
+    background-color: #175CD3;
+    transition: background-color 1s ease-in;
+    border: .5 solid white;
+}
 #map {
     width: 100%;
     aspect-ratio: 1/1;
@@ -19,7 +92,9 @@
 }
 
 img {
-    max-width: 100%;
+    // max-width: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
 }
 
 .apartment-image {

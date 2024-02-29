@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-gray-100">
     <div class="container-fluid">
         <!-- Logo -->
-        <h4>
+        <h5>
             BoolBnb
-        </h4>
+        </h5>
 
         <!-- Hamburger Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,17 +15,22 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link{{ request()->routeIs('dashboard') ? ' active' : '' }}" href="{{ url('http://localhost:5173/') }}">
+                        <i class="fa-solid fa-house"></i> 
                         HomePage
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('apartments.index')}}">Apparments</a>
+                    <a class="nav-link" href="{{route('apartments.index')}}">
+                        <i class="fa-solid fa-building"></i> 
+                        Apparments</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('all_messages')}}">Messages</a>
+                    <a class="nav-link" href="{{route('all_messages')}}">
+                        <i class="fa-regular fa-envelope"></i> 
+                        Messages</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('apartments.create')}}">Add new apartments</a>
+                    <a class="nav-link" href="{{route('apartments.create')}}"><i class="fa-solid fa-plus"></i> New apartments</a>
                 </li>
             </ul>
 

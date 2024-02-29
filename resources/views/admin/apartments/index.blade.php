@@ -13,7 +13,7 @@
         <div class="row g-5 justify-content-center">
             @if (count($apartments) > 0)
                 @foreach ($apartments as $apartment)
-                    <div class="col-12 col-md-5 col-lg-3">
+                    <div class="col-12 col-md-5 col-lg-3 d-flex">
                         <div class="card" style="width: 18rem;">
 
                             {{-- first image --}}
@@ -58,25 +58,25 @@
                             </ul>
 
                             {{-- buttons --}}
-                            <div class="card-body ">
+                            <div class="card-body d-flex justify-content-center gap-2">
                                 {{-- edit btn --}}
                                 <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
-                                    class="btn btn-warning">edit
+                                    class="my-btn-orange">edit
                                 </a>
 
                                 {{-- delete btn --}}
-                                <form class="d-inline"
+                                <form class="d-flex"
                                     action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger delete-btn" data-bs-toggle="modal"
-                                        data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
+                                    <a type="submit" class="my-btn-delete delete-btn" data-bs-toggle="modal"
+                                        data-title={{ $apartment->title }} data-bs-target="#delete-modal">delete</a>
                                 </form>
 
                                 {{-- details btn --}}
                                 <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
-                                    class="btn btn-info">details</a>
+                                    class="my-btn-blue">details</a>
                             </div>
 
                         </div>

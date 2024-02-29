@@ -172,7 +172,7 @@
                 {{-- images --}}
                 <h5 class="mt-4">Images</h5>
 
-                <div class="mb-3">
+                <div class="mb-3 border rounded p-3">
                     <label for="image_path" class="form-label">Apartment images</label>
                     <input type="file"
                         class="form-control @error('image_path.*') is-invalid @enderror @if (!empty(old('image_path')) && !$errors->has('image_path')) is-valid @endif"
@@ -210,7 +210,7 @@
                         </div>
                     @endif
 
-                    <button type="submit" class="btn btn-success">send</button>
+                    <button type="submit" class="my-btn-blue">send</button>
 
 
             </form>
