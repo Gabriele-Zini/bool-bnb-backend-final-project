@@ -15,11 +15,8 @@
                         <div class="card my-shadow border-2 rounded-4 p-2">
 
                             {{-- first image --}}
-                            <div id="" class="h-100">
-                                <div class="h-100">
                                     @foreach ($apartment->images as $image)
                                         <div class="h-100">
-
                                             @if ($image->cover_image == 1)
                                                 <img class="apartment-image rounded-4 h-100"
                                                     src="{{ asset('storage/image_path/' . $image->image_path) }}"
@@ -27,8 +24,6 @@
                                             @endif
                                         </div>
                                     @endforeach
-                                </div>
-                            </div>
                             {{-- end first image --}}
 
                             {{-- apartment infos --}}
@@ -79,7 +74,7 @@
 
                                     class="my-btn-blue">details</a>
 
-                                  
+
 
                             </div>
 
