@@ -13,7 +13,7 @@
         <input type="hidden" id="expiration_date" name="expiration_date" value="{{ $sponsorship['expiration_date'] }}">
         <input type="hidden" id="sponsorship_id" name="sponsorship_id" value="{{ $sponsorship['sponsorship_id'] }}">
         <input type="hidden" id="apartment_id" name="apartment_id" value="{{ $sponsorship['apartment_id'] }}">
-        <div class=" col-12 col-md10 col-lg-6 mx-auto">
+        <div class=" col-12 col-md10 col-lg-6 col-xl-5 mx-auto">
             <div id="dropin-container"></div>
             <a id="submit-button" class="btn btn-sm btn-success">Submit payment</a>
         </div>
