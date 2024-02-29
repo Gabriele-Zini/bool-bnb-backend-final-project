@@ -48,7 +48,7 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit">Delete</button>
+                                    <button type="submit" class="my-btn-delete">Delete</button>
                                 </form>
                             </div>
                         </div>
@@ -144,27 +144,31 @@
                     </li>
 
                     {{-- buttons --}}
-                    <li class="list-group-item">
+                    <li class="list-group-item d-flex justify-content-center gap-2">
 
                         {{-- edit btn --}}
                         <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
-                            class="btn btn-warning">Edit
+
+                            class="my-btn-orange">edit
+
+                            
+
                         </a>
                         {{-- show messages --}}
                         <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
-                            class="btn btn-warning">Messages
+                            class="my-btn-message">Messages
                         </a>
                         {{-- sponsorships --}}
                         <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
-                            class="btn btn-warning">Sponsorships
+                            class="my-btn-sponsor">Sponsorships
                         </a>
 
                         {{-- delete btn --}}
-                        <form class="d-inline"
+                        <form class=""
                             action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger delete-btn" data-bs-toggle="modal"
+                            <button type="submit" class="my-btn-delete delete-btn" data-bs-toggle="modal"
                                 data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
                         </form>
 

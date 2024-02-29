@@ -36,12 +36,12 @@
                             </td>
                             <td>
                                 <a href="{{ route('messages.show', ['message' => $message->id]) }}"
-                                    class="btn btn-success">Read</a>
+                                    class="my-btn-blue">Read</a>
                                 <form class="d-inline" action="{{ route('messages.destroy', ['message' => $message->id]) }}"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
+                                    <button type="submit" class="my-btn-delete"
                                         data-title={{ $message->email }}>Delete</button>
                                 </form>
                             </td>

@@ -187,6 +187,7 @@
             @enderror
 
             {{-- images --}}
+            <div class="cards border rounded p-3">
             <h5 class="mt-4">Images</h5>
 
             <input type="file" id="image_path" class="form-control my-4 @error('image_path.*') is-invalid @enderror"
@@ -200,7 +201,8 @@
             </div>
 
 
-            <button type="submit" class="btn btn-success">send</button>
+            <button type="submit" class="my-btn-blue">send</button>
         </form>
+    </div>
     </div>
 @endsection

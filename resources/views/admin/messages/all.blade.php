@@ -42,15 +42,15 @@
                                                 <span class="badge text-bg-primary"><i class="fa-solid fa-envelope"></i></span>
                                             @endif
                                         </td>
-                                        <td class="d-flex justify-content-center gap-2 border-0">
+                                        <td class="d-flex justify-content-center gap-2 ">
                                             <a href="{{ route('messages.show', ['message' => $apartment_info->id]) }}"
-                                                class="btn btn-success"><i class="fa-regular fa-file-lines"></i></a>
+                                                class="my-btn-blue p-3"><i class="fa-regular fa-file-lines"></i></a>
                                             <form class="d-inline"
                                                 action="{{ route('messages.destroy', ['message' => $apartment_info->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
+                                                <button type="submit" class="my-btn-delete p-3"
                                                     data-title={{ $apartment_info->email }}><i class="fa-solid fa-trash-can"></i></button>
                                             </form>
                                         </td>
