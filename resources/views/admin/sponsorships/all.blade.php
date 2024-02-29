@@ -1,33 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>All the sponsorships by apartment</h1>
+    <h3 class="text-center my-5">All the sponsorships by apartment</h3>
 
     {{-- @dd($groupedResult) --}}
+    <div class="container w-100">
+        @foreach ($groupedResult as $key => $result)
+            <div class="">
+                <div class="alert ms_bg-color-sponsorships" role="alert">
+                    <h4 class="text-center my-4 text-white"><strong>{{ $key }}</strong></h4>
+                </div>
+                <table class="table col-12 col-md-10 col-lg-8 mb-5">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sponsorship</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Expiration Date</th>
+                            <th scope="col"><a class="btn btn-warning"
+                                    href="{{ route('sponsorships.index', ['apartment' => $result[0]->slug]) }}">purchase</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($result as $item)
+                            <tr>
+                                <td>{{ ucfirst($item->name) }}</td>
+                                <td>
 
-    @foreach ($groupedResult as $key => $result)
-        <ul>
-            <li>
-                <h4>{{ $key }}</h4>
-            </li>
-            @foreach ($result as $item)
-                <li>{{ $item->name }}</li>
-                <li>{{ $item->start_date }}</li>
-                <li>{{ $item->expiration_date }}</li>
-            @endforeach
-        </ul>
-    @endforeach
-    {{-- @foreach ($a as $sponsorizations)
-        @if ($sponsorizations->count() > 0)
-            @dump($sponsorizations->title)
-            @foreach ($sponsorizations as $sponsorization)
-                @foreach ($sponsorships as $sponsorship)
-                    @if ($sponsorship->id === $sponsorization->sponsorship_id)
-                        @dump($sponsorship->name)
-                        @endif
+                                    @if (round((strtotime($item->expiration_date) - time()) / 3600) < 0)
+                                        <span class="badge bg-danger">Expired</span>
+                                    @elseif (round((strtotime($item->expiration_date) - time()) / 3600) > 0)
+                                        @if (round((strtotime($item->start_date) - time()) / 3600) > 0)
+                                            <span class="badge bg-success">Not yet started </span>
+                                        @else
+                                            <span class="badge bg-warning">Started</span>
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>{{ date('d/m/Y', strtotime($item->start_date)) }}</td>
+                                <td>{{ date('d/m/Y', strtotime($item->expiration_date)) }}</td>
+                                <td></td>
+                            </tr>
                         @endforeach
-                        @dump($sponsorization)
-            @endforeach
-        @endif
-    @endforeach --}}
+                    </tbody>
+                </table>
+            </div>
+        @endforeach
+    </div>
 @endsection
