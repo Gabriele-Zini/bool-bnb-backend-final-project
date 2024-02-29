@@ -61,7 +61,7 @@
                             <div class="card-body ">
                                 {{-- edit btn --}}
                                 <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
-                                    class="btn btn-warning">edit
+                                    class="btn btn-warning">Edit
                                 </a>
 
                                 {{-- delete btn --}}
@@ -76,7 +76,7 @@
 
                                 {{-- details btn --}}
                                 <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
-                                    class="btn btn-info">details</a>
+                                    class="btn btn-info">Details</a>
                             </div>
 
                         </div>
