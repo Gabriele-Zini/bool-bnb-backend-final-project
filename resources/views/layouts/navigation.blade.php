@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-gray-100">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container-fluid">
         <!-- Logo -->
-        <div class="logo-back">
+        <div class="logo-back me-4">
             <img src="{{ URL::asset('/img/b.png')}}" >
         </div>
 
@@ -15,21 +15,21 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link{{ request()->routeIs('dashboard') ? ' active' : '' }}" href="{{ url('http://localhost:5173/') }}">
-                        <i class="fa-solid fa-house"></i> 
+                        <i class="fa-solid fa-house nav-item"></i>
                         HomePage
                     </a>
                 </li>
                 <li>
 
                     <a class="nav-link" href="{{route('apartments.index')}}">
-                        <i class="fa-solid fa-building"></i> 
+                        <i class="fa-solid fa-building"></i>
                         Apparments</a>
 
 
                 </li>
                 <li>
                     <a class="nav-link" href="{{route('all_messages')}}">
-                        <i class="fa-regular fa-envelope"></i> 
+                        <i class="fa-regular fa-envelope"></i>
                         Messages</a>
                 </li>
                 <li>
@@ -39,10 +39,10 @@
                 </li>
                 <li>
                     <a class="nav-link" href="{{route('all_sponsorships')}}">
-                        <i class="fa-solid fa-coins"></i> 
+                        <i class="fa-solid fa-coins"></i>
                         Sponsorships</a>
                 </li>
-            
+
             </ul>
 
             <!-- Settings Dropdown -->
