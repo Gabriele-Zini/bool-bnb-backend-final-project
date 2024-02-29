@@ -52,10 +52,10 @@
                         </td>
                         <td>
 
-                            @if (round((strtotime($sponsor->expiration_date) - time()) / 3600) < 0)
+                            @if (round((strtotime($sponsor->expiration_date) - time())) < 0)
                                 <span class="badge bg-danger">Expired</span>
-                            @elseif (round((strtotime($sponsor->expiration_date) - time()) / 3600) > 0)
-                                @if (round((strtotime($sponsor->start_date) - time()) / 3600) > 0)
+                            @elseif (round((strtotime($sponsor->expiration_date) - time())) > 0)
+                                @if (round((strtotime($sponsor->start_date) - time())) > 0)
                                     <span class="badge bg-success">Not yet started </span>
                                 @else
                                     <span class="badge bg-warning">Started</span>
