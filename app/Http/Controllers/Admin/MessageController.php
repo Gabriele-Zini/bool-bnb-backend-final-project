@@ -73,6 +73,42 @@ class MessageController extends Controller
         $selectApartment = Apartment::where("id", "=", $message->apartment_id)->get();
         $apartment = $selectApartment[0];
         $message->delete();
-        return redirect()->route('messages.index', ['apartment' => $apartment->slug])->with('message', 'you have deleted a message from '.$message->name." ".$message->lastname);
+        return redirect()->route('messages.index', ['apartment' => $apartment->slug])->with('message', 'you have deleted a message from ' . $message->name . " " . $message->lastname);
+    }
+
+    public function all()
+    {
+        $apartments = Apartment::where("user_id", Auth::user()->id)->get();
+        $a = [];
+        foreach ($apartments as $apartment) {
+            $messages = Message::where("apartment_id", $apartment->id)->get();
+            $a[$apartment->id] = $messages;
+            $a[$apartment->id]->title = $apartment->title;
+        }
+        // return a collection of array each one with her relative apartment with messages
+
+        // dd($a); 
+        // $allMessages = [];
+        // foreach ($a as $messages) {
+            
+        //     foreach ($messages as $message) {
+        //         foreach ($apartments as $apartment) {
+        //             if ($apartment->id == $message->apartment_id) {
+        //                 // dump($apartment->id);
+        //                 $title = $apartment->title; 
+        //             }
+        //         }
+        //         $allMessages[] = [
+        //             'message_content' =>  $message['message_content'],
+        //             'name' => $message['name'],
+        //             'lastname' => $message['lastname'],
+        //             'email' => $message['email'],
+        //             'apartment' => $title
+        //         ];
+                
+        //     }
+        // }
+        
+        return view("admin.messages.all", compact("a"));
     }
 }
