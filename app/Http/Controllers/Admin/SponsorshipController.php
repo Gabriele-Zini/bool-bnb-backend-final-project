@@ -191,24 +191,16 @@ class SponsorshipController extends Controller
     public function all()
     {
 
-        $results = DB::table('apartments')
+        $result = DB::table('users')
+            ->select('apartment_sponsorship.apartment_id', 'apartments.slug', 'sponsorships.name', 'apartment_sponsorship.start_date', 'apartment_sponsorship.expiration_date', 'apartments.title')
+            ->join('apartments', 'users.id', '=', 'apartments.user_id')
             ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
             ->join('sponsorships', 'apartment_sponsorship.sponsorship_id', '=', 'sponsorships.id')
-            ->where('apartments.user_id', '=', Auth::user()->id)
-            ->select('apartment_sponsorship.apartment_id', 'apartments.title', 'sponsorships.name', 'apartment_sponsorship.start_date', 'apartment_sponsorship.expiration_date', 'apartments.slug')
-            ->orderBy('apartments.title', 'ASC')
+            ->where('users.id', Auth::user()->id)
             ->get();
 
-           
+            $groupedResult = $result->groupBy('title')->toArray();
 
-        // $result = DB::table('apartments')
-        //     ->select('users.id', 'apartment_sponsorship.apartment_id', 'apartments.title', 'sponsorships.name', 'apartment_sponsorship.start_date', 'apartment_sponsorship.expiration_date', 'apartments.slug')
-        //     ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
-        //     ->join('sponsorships', 'apartment_sponsorship.sponsorship_id', '=', 'sponsorships.id')
-        //     ->join('users', 'users.id', '=', 'apartments.user_id')
-        //     ->where('users.id', Auth::user()->id)
-        //     ->get();
-        dd($a);
-        return view("admin.sponsorships.all", compact(''));
+            return view("admin.sponsorships.all", compact('groupedResult'));
     }
 }
