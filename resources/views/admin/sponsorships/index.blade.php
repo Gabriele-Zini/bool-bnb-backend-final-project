@@ -76,14 +76,17 @@
                 @endforeach
             </tbody>
         </table>
-
-        <a href="{{ route('sponsorships.create', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">Activate a
-            new sponsorship for this apartment </a>
+        <div class="d-flex gap-3">
+            <a href="{{ route('sponsorships.create', ['apartment' => $apartment->slug]) }}" class="btn btn-warning">Activate
+                a
+                new sponsorship for this apartment </a>
+            <a class="btn btn-info" href="{{ route('all_sponsorships') }}">
+                <i class="fa-solid fa-coins"></i>
+                Sponsorships</a>
+        </div>
 
 
     </div>
 
-    <script>
-
-    </script>
+    <script></script>
 @endsection

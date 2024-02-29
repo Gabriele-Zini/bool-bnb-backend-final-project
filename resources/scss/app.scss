@@ -108,6 +108,7 @@ img {
     // height: 300px;
     aspect-ratio: 1/1;
 
+
     .ms_img-show {
        width: 100%;
        padding: 0;
@@ -124,6 +125,21 @@ img {
     }
 }
 
+.ms_bg-color-sponsorships {
+    background-color: #425570c3 !important;
+
+}
+
+
+// NAVBAR
+.navbar {
+  /*   position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999; */
+    width: 100%;
+    height: 80px;
+  }
 
 // CUSTOM
 .ms_whitespace {
