@@ -8,7 +8,6 @@
                 {{ session('message') }}
             </div>
         @endif
-        <div>
             @foreach ($apartment->images as $image)
                 @if ($image->cover_image)
                     <h3 class="text-center title-link">Cover Image</h3>
