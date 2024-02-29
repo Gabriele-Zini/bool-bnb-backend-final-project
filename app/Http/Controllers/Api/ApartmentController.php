@@ -140,7 +140,7 @@ class ApartmentController extends Controller
         //Inserting in array $sponsor all the apartment id with an active sponsorship 
         foreach ($apartments as $apartment) {
             foreach ($sponsorships as $sponsorship) {
-                if ($apartment->id == $sponsorship->id && ($sponsorship->start_date <= Carbon::now() && $sponsorship->expiration_date >= Carbon::now())) {
+                if ($apartment->id == $sponsorship->apartment_id && ($sponsorship->start_date <= Carbon::now() && $sponsorship->expiration_date >= Carbon::now())) {
                     $sponsor[] = [
                         'a' => $apartment->id
                     ];
