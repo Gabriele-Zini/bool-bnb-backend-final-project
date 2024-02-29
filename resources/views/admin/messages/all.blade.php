@@ -32,17 +32,17 @@
                             <tbody>
                                 @foreach ($apartment as $apartment_info)
                                     <tr>
-                                        <th scope="row">{{ $apartment_info->name }} {{ $apartment_info->lastnamename }}
+                                        <th class="border-0" scope="row">{{ $apartment_info->name }} {{ $apartment_info->lastnamename }}
                                         </th>
-                                        <td>{{ $apartment_info->message_content }}</td>
-                                        <td>
+                                        <td class="border-0">{{ $apartment_info->message_content }}</td>
+                                        <td class="border-0">
                                             @if ($apartment_info->readed)
                                             <span class="badge text-bg-secondary"><i class="fa-solid fa-envelope-open"></i></span>
                                             @else
                                                 <span class="badge text-bg-primary"><i class="fa-solid fa-envelope"></i></span>
                                             @endif
                                         </td>
-                                        <td class="d-flex justify-content-center gap-2 ">
+                                        <td class="d-flex justify-content-center gap-2 border-0">
                                             <a href="{{ route('messages.show', ['message' => $apartment_info->id]) }}"
                                                 class="my-btn-blue p-3"><i class="fa-regular fa-file-lines"></i></a>
                                             <form class="d-inline"

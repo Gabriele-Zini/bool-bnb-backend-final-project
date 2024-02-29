@@ -82,6 +82,42 @@
     box-shadow: 3px 20px 20px 3px #ccc;
 }
 
+@keyframes active {
+    0% {
+        color: rgb(133, 225, 255);
+    }
+
+    25% {
+        color: rgb(162, 233, 255);
+    }
+
+    50% {
+        color: rgb(196, 240, 255);
+    }
+    
+    75% {
+        color: rgb(162, 233, 255);
+    }
+
+    100% {
+        color: rgb(133, 225, 255);
+    }
+}
+
+.ms_active {
+    color: rgb(186, 233, 249);
+    animation: active 3s linear infinite;
+}
+
+.ms_dot {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    color: rgb(255, 0, 0);
+}
 
 #map {
     width: 100%;

@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="text-center my-5">All the sponsorships by apartment</h3>
-
     {{-- @dd($groupedResult) --}}
-    <div class="container w-100">
+    <div class="container w-100 mt-5">
         @foreach ($groupedResult as $key => $result)
             <div class="">
                 <div class="alert ms_bg-color-sponsorships" role="alert">
@@ -28,10 +26,10 @@
                                 <td>{{ ucfirst($item->name) }}</td>
                                 <td>
 
-                                    @if (round((strtotime($item->expiration_date) - time()) / 3600) < 0)
+                                    @if (round((strtotime($item->expiration_date) - time())) < 0)
                                         <span class="badge bg-danger">Expired</span>
-                                    @elseif (round((strtotime($item->expiration_date) - time()) / 3600) > 0)
-                                        @if (round((strtotime($item->start_date) - time()) / 3600) > 0)
+                                    @elseif (round((strtotime($item->expiration_date) - time())) > 0)
+                                        @if (round((strtotime($item->start_date) - time())) > 0)
                                             <span class="badge bg-success">Not yet started </span>
                                         @else
                                             <span class="badge bg-warning">Started</span>

@@ -19,27 +19,35 @@
                         HomePage
                     </a>
                 </li>
-                <li>
+                <li class="position-relative">
 
-                    <a class="nav-link" href="{{route('apartments.index')}}">
-                        <i class="fa-solid fa-building"></i>
-                        Apparments</a>
+                    <a class="nav-link{{ request()->routeIs('apartments.index') ? ' ms_active' : '' }}" href="{{route('apartments.index')}}">
+                        <i class="fa-solid fa-building position-relative"><span class="{{ request()->routeIs('apartments.index') ? ' ms_dot ' : '' }}">@if (request()->routeIs('apartments.index'))
+                            .
+                        @endif</span></i>
+                        Apartments</a>
 
 
                 </li>
-                <li>
-                    <a class="nav-link" href="{{route('all_messages')}}">
-                        <i class="fa-regular fa-envelope"></i>
+                <li class="position-relative">
+                    <a class="nav-link{{ request()->routeIs('all_messages') ? ' ms_active' : '' }}" href="{{route('all_messages')}}">
+                        <i class="fa-regular fa-envelope position-relative"><span class="{{ request()->routeIs('all_messages') ? ' ms_dot ' : '' }}">@if (request()->routeIs('all_messages'))
+                            .
+                        @endif</span></i>
                         Messages</a>
                 </li>
-                <li>
+                <li class="position-relative">
 
-                    <a class="nav-link" href="{{route('apartments.create')}}"><i class="fa-solid fa-plus"></i> New apartments</a>
+                    <a class="nav-link{{ request()->routeIs('apartments.create') ? ' ms_active' : '' }}" href="{{route('apartments.create')}}"><i class="fa-solid fa-plus position-relative"><span class="{{ request()->routeIs('apartments.create') ? ' ms_dot ' : '' }}">@if (request()->routeIs('apartments.create'))
+                        .
+                    @endif</span></i> New apartments</a>
 
                 </li>
-                <li>
-                    <a class="nav-link" href="{{route('all_sponsorships')}}">
-                        <i class="fa-solid fa-coins"></i>
+                <li class="position-relative">
+                    <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active' : '' }}" href="{{route('all_sponsorships')}}">
+                        <i class="fa-solid fa-coins position-relative"><span class="{{ request()->routeIs('all_sponsorships') ? ' ms_dot ' : '' }}">@if (request()->routeIs('all_sponsorships'))
+                            .
+                        @endif</span></i>
                         Sponsorships</a>
                 </li>
 
