@@ -52,7 +52,10 @@
                             console.log(response);
                             button.setAttribute('href',
                                 "{{ route('sponsorships.index', ['apartment' => $apartment]) }}"
-                                );
+                            );
+                            if(document.querySelector('.braintree-toggle')) {
+                                document.querySelector('.braintree-toggle').remove();
+                            }
                             button.click();
                             history.pushState(null, null, history.replaceState);
                             window.addEventListener('popstate', function(event) {
