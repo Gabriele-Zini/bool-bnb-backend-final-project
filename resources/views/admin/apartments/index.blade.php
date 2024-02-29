@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="container my-5">
-        <h1 class="my-4 text-center">Apartments list</h1>
-
         @if (session('message'))
             <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
                 {{ session('message') }}
@@ -13,17 +11,17 @@
         <div class="row g-5 justify-content-center">
             @if (count($apartments) > 0)
                 @foreach ($apartments as $apartment)
-                    <div class="col-12 col-md-5 col-lg-3 d-flex">
-                        <div class="card" style="width: 18rem;">
+                    <div class="col-12 col-md-5 col-lg-4 d-flex">
+                        <div class="card my-shadow border-2 rounded-4 p-2">
 
                             {{-- first image --}}
-                            <div id="" class="">
-                                <div class="">
+                            <div id="" class="h-100">
+                                <div class="h-100">
                                     @foreach ($apartment->images as $image)
-                                        <div class="">
+                                        <div class="h-100">
 
                                             @if ($image->cover_image == 1)
-                                                <img class="apartment-image"
+                                                <img class="apartment-image rounded-4 h-100"
                                                     src="{{ asset('storage/image_path/' . $image->image_path) }}"
                                                     alt="">
                                             @endif
@@ -34,31 +32,31 @@
                             {{-- end first image --}}
 
                             {{-- apartment infos --}}
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $apartment->title }}</h5>
+                            <div class="card-body p-0">
+                                <h5 class="card-title m-4 fs-5">{{ $apartment->title }}</h5>
+                                <ul class="list-unstyled list-group list-group-flush border-0">
+                                    <li class="list-group-item fs-6 my-0">
+                                        <span class="fw-bold">Municipality:</span> {{ $apartment->city }}
+                                    </li>
+                                    <li class="list-group-item fs-6 my-0">
+                                        <span class="fw-bold">Address:</span> {{ $apartment->street_name }},
+                                        {{ $apartment->street_number }}
+                                    </li>
+                                    <li class="list-group-item fs-6 my-0">
+                                        <span class="fw-bold">Postal code:</span> {{ $apartment->postal_code }}
+                                    </li>
+                                    <li class="list-group-item fs-6 my-0">
+                                        @if ($apartment->visibility === 1)
+                                            <p class=" my-0"><span class="fw-bold">Visibility: </span>on</p>
+                                        @else
+                                            <p class=" my-0"><span class="fw-bold">Visibility: </span>off</p>
+                                        @endif
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="list-unstyled list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <span class="fw-bold">Municipality:</span> {{ $apartment->city }}
-                                </li>
-                                <li class="list-group-item">
-                                    <span class="fw-bold">Address:</span> {{ $apartment->street_name }},
-                                    {{ $apartment->street_number }}
-                                </li>
-                                <li class="list-group-item">
-                                    <span class="fw-bold">Postal code:</span> {{ $apartment->postal_code }}
-                                </li>
-                                <li class="list-group-item">
-                                    @if ($apartment->visibility === 1)
-                                        <p class=" my-0"><span class="fw-bold">Visibility: </span>on</p>
-                                    @else
-                                        <p class=" my-0"><span class="fw-bold">Visibility: </span>off</p>
-                                    @endif
-                                </li>
-                            </ul>
 
                             {{-- buttons --}}
-                            <div class="card-body d-flex justify-content-center gap-2">
+                            <div class="card-body d-flex justify-content-center gap-2 align-items-center">
                                 {{-- edit btn --}}
                                 <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
 

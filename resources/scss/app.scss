@@ -77,6 +77,12 @@
     transition: background-color 1s ease-in;
     border: .5 solid white;
 }
+
+.my-shadow {
+    box-shadow: 3px 20px 20px 3px #ccc;
+}
+
+
 #map {
     width: 100%;
     aspect-ratio: 1/1;
@@ -322,3 +328,9 @@ transition: background-color 1s;
         color: #000000;
     }
   }
+.logo-back {
+    img {
+        height: 40px;
+        border-radius: 10px;
+    }
+}
