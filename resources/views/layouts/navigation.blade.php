@@ -25,6 +25,9 @@
                     <a class="nav-link" href="{{route('all_messages')}}">Messages</a>
                 </li>
                 <li>
+                    <a class="nav-link" href="{{route('all_sponsorships')}}">Sponsorships</a>
+                </li>
+                <li>
                     <a class="nav-link" href="{{route('apartments.create')}}">Add new apartments</a>
                 </li>
             </ul>

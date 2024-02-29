@@ -10,6 +10,8 @@ use App\Models\Sponsorship;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SponsorshipController extends Controller
 {
@@ -96,9 +98,7 @@ class SponsorshipController extends Controller
                 if (($check >= $from) && ($check <= $to)) {
                     $flag = false;
                 }
-
             }
-
         }
 
         //Inserting the new sponsorship_apartment row in the table
@@ -186,5 +186,21 @@ class SponsorshipController extends Controller
             // Errore durante il pagamento
             return redirect()->back()->with('error_message', 'Errore durante il pagamento: ' . $result->message);
         }
+    }
+
+    public function all()
+    {
+
+        $result = DB::table('users')
+            ->select('apartment_sponsorship.apartment_id', 'apartments.slug', 'sponsorships.name', 'apartment_sponsorship.start_date', 'apartment_sponsorship.expiration_date', 'apartments.title')
+            ->join('apartments', 'users.id', '=', 'apartments.user_id')
+            ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+            ->join('sponsorships', 'apartment_sponsorship.sponsorship_id', '=', 'sponsorships.id')
+            ->where('users.id', Auth::user()->id)
+            ->get();
+
+            $groupedResult = $result->groupBy('title')->toArray();
+
+            return view("admin.sponsorships.all", compact('groupedResult'));
     }
 }
