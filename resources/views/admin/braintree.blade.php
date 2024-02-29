@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
 
     <h2 class="text-center mt-5">Braintree Payment System</h2>
     <div class="py-12">
@@ -31,35 +31,40 @@
             apartment_id: document.querySelector('#apartment_id').value
         };
         let button = document.querySelector('#submit-button');
-            braintree.dropin.create({
-                authorization: '{{ $token }}',
-                container: '#dropin-container',
+        braintree.dropin.create({
+            authorization: '{{ $token }}',
+            container: '#dropin-container',
 
-            }, function(createErr, instance) {
-                button.addEventListener('click', function() {
-                    instance.requestPaymentMethod(function(err, payload) {
-                        axios.post('{{ route('transaction') }}', {
-                                nonce: payload.nonce,
-                                info: info
-                            }, {
-                                headers: {
-                                    'X-CSRF-TOKEN': document.querySelector(
-                                        'meta[name="csrf-token"]').getAttribute('content')
-                                }
-                            })
-                            .then(function(response) {
-                                console.log('success', payload.nonce);
-                                console.log(response);
-                                button.setAttribute('href', "{{ route('sponsorships.index', ['apartment' => $apartment]) }}");
-                                button.click();
-                                window.history.replaceState(null, null, window.location.href);
-                            })
-                            .catch(function(error) {
-                                console.log('error', payload.nonce);
+        }, function(createErr, instance) {
+            button.addEventListener('click', function() {
+                instance.requestPaymentMethod(function(err, payload) {
+                    axios.post('{{ route('transaction') }}', {
+                            nonce: payload.nonce,
+                            info: info
+                        }, {
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector(
+                                    'meta[name="csrf-token"]').getAttribute('content')
+                            }
+                        })
+                        .then(function(response) {
+                            console.log('success', payload.nonce);
+                            console.log(response);
+                            button.setAttribute('href',
+                                "{{ route('sponsorships.index', ['apartment' => $apartment]) }}"
+                                );
+                            button.click();
+                            history.pushState(null, null, history.replaceState);
+                            window.addEventListener('popstate', function(event) {
+                                history.pushState(null, null, history.replaceState);
+                                console.log('sticazzi');
                             });
-                    });
+                        })
+                        .catch(function(error) {
+                            console.log('error', payload.nonce);
+                        });
                 });
             });
+        });
     </script>
 @endsection
-
