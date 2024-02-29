@@ -19,7 +19,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="{{route('apartments.index')}}">Aparments</a>
+                    <a class="nav-link" href="{{route('apartments.index')}}">Apartments</a>
                 </li>
                 <li>
                     <a class="nav-link" href="{{route('all_messages')}}">Messages</a>
