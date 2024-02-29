@@ -9,6 +9,55 @@
             </div>
         @endif
 
+
+        @foreach ($apartment->images as $image)
+            @if ($image->cover_image)
+                <h3 class="text-center title-link">Cover Image</h3>
+                <div class="d-flex justify-content-center mt-3 mb-5">
+                    <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
+                        class="rounded col-12 col-md-6 col-lg-5">
+                </div>
+            @endif
+        @endforeach
+
+        {{-- to the gallery --}}
+        @if (count($apartment->images) > 0)
+            <h4 class="title-link ">Gallery</h4>
+        @endif
+
+
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-3">
+            @foreach ($apartment->images as $image)
+                @if (!$image->cover_image)
+                    <div class="image-controller-container">
+                        <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
+                            class="rounded ms_img-index">
+
+
+                        <div class="popover">
+                            <i class="fas fa-ellipsis-h popover-icon"></i>
+                            <div class="popover-content d-none">
+
+                                <form action="{{ route('images.update', ['image' => $image->id]) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit">Set as cover image</button>
+                                </form>
+                                <form action="{{ route('images.destroy', ['image' => $image->id]) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>
+                @endif
+            @endforeach
+
         <form action="{{ route('apartments.update', ['apartment' => $apartment->slug]) }}" enctype="multipart/form-data"
             method="POST" class="col-12 col-md-10 col-lg-9 col-xl-8 m-auto">
             @csrf
