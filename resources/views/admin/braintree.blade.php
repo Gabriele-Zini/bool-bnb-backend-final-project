@@ -13,14 +13,13 @@
         <input type="hidden" id="expiration_date" name="expiration_date" value="{{ $sponsorship['expiration_date'] }}">
         <input type="hidden" id="sponsorship_id" name="sponsorship_id" value="{{ $sponsorship['sponsorship_id'] }}">
         <input type="hidden" id="apartment_id" name="apartment_id" value="{{ $sponsorship['apartment_id'] }}">
-        <div id="dropin-container"></div>
-        <div>
-            
+        <div class=" col-12 col-md10 col-lg-6 mx-auto">
+            <div id="dropin-container"></div>
             <a id="submit-button" class="btn btn-sm btn-success">Submit payment</a>
         </div>
 
     </div>
-    
+
 
     <script>
         let info = {
@@ -35,7 +34,7 @@
             braintree.dropin.create({
                 authorization: '{{ $token }}',
                 container: '#dropin-container',
-                
+
             }, function(createErr, instance) {
                 button.addEventListener('click', function() {
                     instance.requestPaymentMethod(function(err, payload) {
@@ -51,8 +50,8 @@
                             .then(function(response) {
                                 console.log('success', payload.nonce);
                                 console.log(response);
-                                
-                                
+
+
                             })
                             .catch(function(error) {
                                 console.log('error', payload.nonce);
