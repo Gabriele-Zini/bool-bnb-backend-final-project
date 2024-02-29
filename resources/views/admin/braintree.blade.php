@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
 
-    <h2>Braintree Payment System</h2>
+    <h2 class="text-center mt-5">Braintree Payment System</h2>
     <div class="py-12">
         @csrf
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -13,14 +13,13 @@
         <input type="hidden" id="expiration_date" name="expiration_date" value="{{ $sponsorship['expiration_date'] }}">
         <input type="hidden" id="sponsorship_id" name="sponsorship_id" value="{{ $sponsorship['sponsorship_id'] }}">
         <input type="hidden" id="apartment_id" name="apartment_id" value="{{ $sponsorship['apartment_id'] }}">
-        <div id="dropin-container"></div>
-        <div>
-            
+        <div class=" col-12 col-md10 col-lg-6 col-xl-5 mx-auto">
+            <div id="dropin-container"></div>
             <a id="submit-button" class="btn btn-sm btn-success">Submit payment</a>
         </div>
 
     </div>
-    
+
 
     <script>
         let info = {
@@ -32,32 +31,42 @@
             apartment_id: document.querySelector('#apartment_id').value
         };
         let button = document.querySelector('#submit-button');
-            braintree.dropin.create({
-                authorization: '{{ $token }}',
-                container: '#dropin-container',
-                
-            }, function(createErr, instance) {
-                button.addEventListener('click', function() {
-                    instance.requestPaymentMethod(function(err, payload) {
-                        axios.post('{{ route('transaction') }}', {
-                                nonce: payload.nonce,
-                                info: info
-                            }, {
-                                headers: {
-                                    'X-CSRF-TOKEN': document.querySelector(
-                                        'meta[name="csrf-token"]').getAttribute('content')
-                                }
-                            })
-                            .then(function(response) {
-                                console.log('success', payload.nonce);
-                                console.log(response);
-                            })
-                            .catch(function(error) {
-                                console.log('error', payload.nonce);
+        braintree.dropin.create({
+            authorization: '{{ $token }}',
+            container: '#dropin-container',
+
+        }, function(createErr, instance) {
+            button.addEventListener('click', function() {
+                instance.requestPaymentMethod(function(err, payload) {
+                    axios.post('{{ route('transaction') }}', {
+                            nonce: payload.nonce,
+                            info: info
+                        }, {
+                            headers: {
+                                'X-CSRF-TOKEN': document.querySelector(
+                                    'meta[name="csrf-token"]').getAttribute('content')
+                            }
+                        })
+                        .then(function(response) {
+                            console.log('success', payload.nonce);
+                            console.log(response);
+                            button.setAttribute('href',
+                                "{{ route('sponsorships.index', ['apartment' => $apartment]) }}"
+                            );
+                            if(document.querySelector('.braintree-toggle')) {
+                                document.querySelector('.braintree-toggle').remove();
+                            }
+                            button.click();
+                            history.pushState(null, null, history.replaceState);
+                            window.addEventListener('popstate', function(event) {
+                                history.pushState(null, null, history.replaceState);
                             });
-                    });
+                        })
+                        .catch(function(error) {
+                            console.log('error', payload.nonce);
+                        });
                 });
             });
+        });
     </script>
 @endsection
-

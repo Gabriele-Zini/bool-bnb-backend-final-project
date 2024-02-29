@@ -61,7 +61,9 @@
                             <div class="card-body d-flex justify-content-center gap-2">
                                 {{-- edit btn --}}
                                 <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
+
                                     class="my-btn-orange">edit
+
                                 </a>
 
                                 {{-- delete btn --}}
@@ -76,7 +78,11 @@
 
                                 {{-- details btn --}}
                                 <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
+
                                     class="my-btn-blue">details</a>
+
+                                  
+
                             </div>
 
                         </div>

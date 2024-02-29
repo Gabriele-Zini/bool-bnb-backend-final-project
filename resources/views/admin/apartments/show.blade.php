@@ -134,7 +134,7 @@
                         </li>
                     @endforeach --}}
                     <li class="list-group-item">
-                        <span class="fw-bold">Expiration date:</span>
+                        <span class="fw-bold">Sponsorization:</span>
                         {{ $sponsorship_type === 0 ? 'No sponsorizations' : $sponsorship_type[0]->name }}
                     </li>
 
@@ -148,7 +148,11 @@
 
                         {{-- edit btn --}}
                         <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
+
                             class="my-btn-orange">edit
+
+                            
+
                         </a>
                         {{-- show messages --}}
                         <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"

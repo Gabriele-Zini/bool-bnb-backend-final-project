@@ -20,9 +20,12 @@
                     </a>
                 </li>
                 <li>
+
                     <a class="nav-link" href="{{route('apartments.index')}}">
                         <i class="fa-solid fa-building"></i> 
                         Apparments</a>
+
+
                 </li>
                 <li>
                     <a class="nav-link" href="{{route('all_messages')}}">
@@ -30,8 +33,12 @@
                         Messages</a>
                 </li>
                 <li>
+
                     <a class="nav-link" href="{{route('apartments.create')}}"><i class="fa-solid fa-plus"></i> New apartments</a>
+
+                    <a class="nav-link" href="{{route('all_sponsorships')}}">Sponsorships</a>
                 </li>
+            
             </ul>
 
             <!-- Settings Dropdown -->

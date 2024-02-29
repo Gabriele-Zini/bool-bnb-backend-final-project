@@ -8,10 +8,10 @@
         </div>
     @endif
     @if (session('error'))
-    <div class="alert alert-danger text-center col-12 col-md-5 col-lg-4 m-auto my-3">
-        {{ session('error') }}
-    </div>
-@endif
+        <div class="alert alert-danger text-center col-12 col-md-5 col-lg-4 m-auto my-3">
+            {{ session('error') }}
+        </div>
+    @endif
     <div class="container">
         <table class="table">
             <thead>
@@ -64,12 +64,12 @@
                         </td>
                         <td>
                             <form class="d-inline"
-                            action="{{ route('sponsorships.destroy', ['sponsorship' => $sponsor->id]) }}"
-                            method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                                action="{{ route('sponsorships.destroy', ['sponsorship' => $sponsor->id]) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
 
                     </tr>
@@ -82,4 +82,8 @@
 
 
     </div>
+
+    <script>
+
+    </script>
 @endsection
