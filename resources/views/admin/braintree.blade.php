@@ -50,8 +50,9 @@
                             .then(function(response) {
                                 console.log('success', payload.nonce);
                                 console.log(response);
-
-
+                                button.setAttribute('href', "{{ route('sponsorships.index', ['apartment' => $apartment]) }}");
+                                button.click();
+                                window.history.replaceState(null, null, window.location.href);
                             })
                             .catch(function(error) {
                                 console.log('error', payload.nonce);
