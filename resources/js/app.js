@@ -56,12 +56,6 @@ const successCallback = (position) => {
     });
 
     // event listner to map elements
-    map.on("load", () => {
-        let element = document.createElement("div");
-        element.id = "marker";
-        element.innerHTML = "125$";
-        new tt.Marker({ element: element }).setLngLat(center).addTo(map);
-    });
 
     // set options to tomtom searchbox
     let options = {
@@ -77,6 +71,8 @@ const successCallback = (position) => {
         },
     };
 
+    let markersIcons = [];
+
     // searchbox init
     const ttSearchBox = new SearchBox(services, options);
 
@@ -84,7 +80,25 @@ const successCallback = (position) => {
     ttSearchBox.on("tomtom.searchbox.resultselected", (e) => {
         console.log("Risultato selezionato:", e.data.result);
         map.flyTo({ center: e.data.result.position });
-
+        // Rimuovere i marker precedenti dalla mappa
+        for (let i = 0; i < markersIcons.length; i++) {
+            markersIcons[i].remove();
+        }
+        // Svuotare l'array markersIcons e markers
+        markersIcons = [];
+        let startPosition = new tt.Marker()
+            .setLngLat(e.data.result.position)
+            .addTo(map);
+        markersIcons.push(startPosition);
+        ttSearchBox.on("tomtom.searchbox.resultscleared", (e) => {
+            // Rimuovere i marker precedenti dalla mappa
+            for (let i = 0; i < markersIcons.length; i++) {
+                markersIcons[i].remove();
+            }
+            // Svuotare l'array markersIcons e markers
+            markersIcons = [];
+            // else set params
+        });
         let selectedResult = e.data.result;
         let selectedLocation = selectedResult.position;
         let selectedAddress = selectedResult.address;
@@ -163,13 +177,13 @@ if (imageInput) {
                 );
 
                 const fileSize = document.createElement("span");
-                fileSize.classList.add('ms_size-img');
+                fileSize.classList.add("ms_size-img");
                 const fileSizeinKb = selectedFile.size / 1024;
                 const fileSizeinMb = fileSizeinKb / 1024;
                 if (fileSizeinKb < 1024) {
-                    fileSize.textContent = (fileSizeinKb).toFixed(2) + " Kb";
+                    fileSize.textContent = fileSizeinKb.toFixed(2) + " Kb";
                 } else {
-                    fileSize.textContent = (fileSizeinMb.toFixed(2)) + " Mb";
+                    fileSize.textContent = fileSizeinMb.toFixed(2) + " Mb";
                 }
 
                 const deleteButton = document.createElement("button");
@@ -198,29 +212,26 @@ if (imageInput) {
     });
 }
 
-
 //popver
 
-let imageControllerContainer = document.querySelectorAll('.image-controller-container');
-let popovers = document.querySelectorAll('.popover');
+let imageControllerContainer = document.querySelectorAll(
+    ".image-controller-container"
+);
+let popovers = document.querySelectorAll(".popover");
 
-popovers.forEach(popover => {
-    popover.addEventListener('click', function() {
-        let popOverContent = this.querySelector('.popover-content');
-        popOverContent.classList.toggle('d-none');
+popovers.forEach((popover) => {
+    popover.addEventListener("click", function () {
+        let popOverContent = this.querySelector(".popover-content");
+        popOverContent.classList.toggle("d-none");
     });
-
 });
 
-
-imageControllerContainer.forEach(element=> {
-    element.addEventListener('mouseleave', function() {
-        let popOverContent = this.querySelector('.popover-content');
-        popOverContent.classList.add('d-none');
+imageControllerContainer.forEach((element) => {
+    element.addEventListener("mouseleave", function () {
+        let popOverContent = this.querySelector(".popover-content");
+        popOverContent.classList.add("d-none");
     });
-
-})
-
+});
 
 // braintee
 
@@ -256,8 +267,6 @@ braintree.dropin.create({
   });
 });
  */
-
-
 
 /* var button = document.querySelector('#submit-button');
 var form = document.querySelector('#payment-form');
