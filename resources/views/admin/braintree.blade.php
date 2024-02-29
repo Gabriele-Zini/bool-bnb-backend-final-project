@@ -3,7 +3,7 @@
 @section('content')
 <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
 
-    <h2>Braintree Payment System</h2>
+    <h2 class="text-center mt-5">Braintree Payment System</h2>
     <div class="py-12">
         @csrf
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
