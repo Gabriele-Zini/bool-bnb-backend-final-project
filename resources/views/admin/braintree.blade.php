@@ -51,6 +51,8 @@
                             .then(function(response) {
                                 console.log('success', payload.nonce);
                                 console.log(response);
+                                
+                                
                             })
                             .catch(function(error) {
                                 console.log('error', payload.nonce);

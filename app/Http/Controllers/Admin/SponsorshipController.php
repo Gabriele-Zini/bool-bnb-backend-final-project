@@ -10,6 +10,8 @@ use App\Models\Sponsorship;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Braintree\Gateway;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SponsorshipController extends Controller
 {
@@ -96,9 +98,7 @@ class SponsorshipController extends Controller
                 if (($check >= $from) && ($check <= $to)) {
                     $flag = false;
                 }
-
             }
-
         }
 
         //Inserting the new sponsorship_apartment row in the table
@@ -186,5 +186,29 @@ class SponsorshipController extends Controller
             // Errore durante il pagamento
             return redirect()->back()->with('error_message', 'Errore durante il pagamento: ' . $result->message);
         }
+    }
+
+    public function all()
+    {
+
+        $results = DB::table('apartments')
+            ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+            ->join('sponsorships', 'apartment_sponsorship.sponsorship_id', '=', 'sponsorships.id')
+            ->where('apartments.user_id', '=', Auth::user()->id)
+            ->select('apartment_sponsorship.apartment_id', 'apartments.title', 'sponsorships.name', 'apartment_sponsorship.start_date', 'apartment_sponsorship.expiration_date', 'apartments.slug')
+            ->orderBy('apartments.title', 'ASC')
+            ->get();
+
+           
+
+        // $result = DB::table('apartments')
+        //     ->select('users.id', 'apartment_sponsorship.apartment_id', 'apartments.title', 'sponsorships.name', 'apartment_sponsorship.start_date', 'apartment_sponsorship.expiration_date', 'apartments.slug')
+        //     ->join('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+        //     ->join('sponsorships', 'apartment_sponsorship.sponsorship_id', '=', 'sponsorships.id')
+        //     ->join('users', 'users.id', '=', 'apartments.user_id')
+        //     ->where('users.id', Auth::user()->id)
+        //     ->get();
+        dd($a);
+        return view("admin.sponsorships.all", compact(''));
     }
 }
