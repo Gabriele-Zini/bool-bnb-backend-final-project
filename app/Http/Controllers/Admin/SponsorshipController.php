@@ -199,8 +199,14 @@ class SponsorshipController extends Controller
             ->where('users.id', Auth::user()->id)
             ->get();
 
-            $groupedResult = $result->groupBy('title')->toArray();
+        $unsponsoredApartments = DB::table('apartments')
+            ->select('apartments.id', 'apartments.slug', 'apartments.title')
+            ->leftJoin('apartment_sponsorship', 'apartments.id', '=', 'apartment_sponsorship.apartment_id')
+            ->whereNull('apartment_sponsorship.apartment_id')
+            ->get();
 
-            return view("admin.sponsorships.all", compact('groupedResult'));
+        $groupedResult = $result->groupBy('title')->toArray();
+        // dd($groupedResult, $unsponsoredApartments);
+        return view("admin.sponsorships.all", compact('groupedResult', 'unsponsoredApartments'));
     }
 }

@@ -26,10 +26,10 @@
                                 <td>{{ ucfirst($item->name) }}</td>
                                 <td>
 
-                                    @if (round((strtotime($item->expiration_date) - time())) < 0)
+                                    @if (round(strtotime($item->expiration_date) - time()) < 0)
                                         <span class="badge bg-danger">Expired</span>
-                                    @elseif (round((strtotime($item->expiration_date) - time())) > 0)
-                                        @if (round((strtotime($item->start_date) - time())) > 0)
+                                    @elseif (round(strtotime($item->expiration_date) - time()) > 0)
+                                        @if (round(strtotime($item->start_date) - time()) > 0)
                                             <span class="badge bg-success">Not yet started </span>
                                         @else
                                             <span class="badge bg-warning">Started</span>
@@ -45,5 +45,16 @@
                 </table>
             </div>
         @endforeach
+
+        @if ($unsponsoredApartments->count() > 0)
+            <h4 class="my-4">Apartment whithout Sponsorship</h4>
+            @foreach ($unsponsoredApartments as $apartment)
+                <div class="alert ms_bg-color-sponsorships d-flex align-items-center gap-4" role="alert">
+                    <h4 class="text-center my-4 text-white"><strong>{{ $apartment->title }}</strong></h4>
+                    <a class="btn btn-warning"
+                        href="{{ route('sponsorships.index', ['apartment' => $result[0]->slug]) }}">purchase</a>
+                </div>
+            @endforeach
+        @endif
     </div>
 @endsection
