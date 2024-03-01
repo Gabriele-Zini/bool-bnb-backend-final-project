@@ -52,7 +52,7 @@
                 <div class="alert ms_bg-color-sponsorships d-flex align-items-center gap-4" role="alert">
                     <h4 class="text-center my-4 text-white"><strong>{{ $apartment->title }}</strong></h4>
                     <a class="btn btn-warning"
-                        href="{{ route('sponsorships.index', ['apartment' => $result[0]->slug]) }}">purchase</a>
+                        href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}">purchase</a>
                 </div>
             @endforeach
         @endif
