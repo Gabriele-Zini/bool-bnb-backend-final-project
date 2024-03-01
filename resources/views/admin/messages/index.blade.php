@@ -34,7 +34,7 @@
                                     <span class="badge bg-success">To read</span>
                                 @endif
                             </td>
-                            <td>
+                            <td class="d-flex gap-1">
                                 <a href="{{ route('messages.show', ['message' => $message->id]) }}"
                                     class="my-btn-blue">Read</a>
                                 <form class="d-inline" action="{{ route('messages.destroy', ['message' => $message->id]) }}"
