@@ -9,7 +9,7 @@
     {{$message->message_content}}
    </p>
    <div class="d-flex gap-2 justify-content-center pt-2">
-   <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
+   <a href="{{ url()->previous() }}"
       class="my-btn-blue ">Return to messages
   </a>
   <form class="d-flex"
