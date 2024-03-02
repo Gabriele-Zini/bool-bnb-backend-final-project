@@ -74,7 +74,8 @@
 
                                     class="my-btn-blue">details</a>
 
-
+                                    <a href="{{ route('views.show', ['apartment' => $apartment->slug]) }}"
+                                        class="my-btn-blue">stats</a>
 
                             </div>
 
