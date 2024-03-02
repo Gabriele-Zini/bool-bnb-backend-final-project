@@ -38,10 +38,10 @@
 
         @if ($unsponsoredApartments->count() > 0)
             <h4 class="my-4 class text-center">Apartments without Sponsorship</h4>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center align-items-center" >
                 @foreach ($unsponsoredApartments as $apartment)
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="alert ms_bg-color-sponsorships d-flex align-items-center gap-4 " role="alert">
+                        <div class="alert ms_bg-color-sponsorships d-flex align-items-center gap-4" style="min-height: 200px" role="alert">
                             <h4 class="text-center my-4 text-white"><strong>{{ $apartment->title }}</strong></h4>
                             <a class="btn btn-warning"
                                 href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}">Purchase</a>
