@@ -27,7 +27,7 @@ class ApartmentController extends Controller
 
         $services = Service::all();
 
-        $apartments = $apartmentsQuery->paginate(20);
+        $apartments = $apartmentsQuery->paginate(8);
 
         if ($apartments) {
             return response()->json(
@@ -137,7 +137,7 @@ class ApartmentController extends Controller
         $apartments = $query->get();
         $sponsor=[];
 
-        //Inserting in array $sponsor all the apartment id with an active sponsorship 
+        //Inserting in array $sponsor all the apartment id with an active sponsorship
         foreach ($apartments as $apartment) {
             foreach ($sponsorships as $sponsorship) {
                 if ($apartment->id == $sponsorship->apartment_id && ($sponsorship->start_date <= Carbon::now() && $sponsorship->expiration_date >= Carbon::now())) {
@@ -170,7 +170,7 @@ class ApartmentController extends Controller
             }
         }
 
-        //Inserting in orderedApartments all the apartments in order 
+        //Inserting in orderedApartments all the apartments in order
         $orderdApartments = [];
         if(count($a) > 0){
             foreach ($a as $id) {
@@ -182,7 +182,7 @@ class ApartmentController extends Controller
             }
         }else{
             foreach ($apartments as $apartment) {
-                    $orderdApartments[] = $apartment; 
+                    $orderdApartments[] = $apartment;
             }
         }
 

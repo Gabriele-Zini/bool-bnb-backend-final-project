@@ -46,7 +46,10 @@
             @endisset
             @yield('content')
         </main>
+
     </div>
+
+    @include('layouts.partials.footer')
 </body>
 
 </html>
