@@ -3,21 +3,22 @@
 @section('content')
     <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
 
-    <h2 class="text-center mt-5">Braintree Payment System</h2>
-    <div class="py-12">
-        @csrf
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" id="apartment" name="apartment" value="{{ $apartment }}">
-        <input type="hidden" id="price" name="price" value="{{ $sponsorship['price'] }}">
-        <input type="hidden" id="start_date" name="start_date" value="{{ $sponsorship['start_date'] }}">
-        <input type="hidden" id="expiration_date" name="expiration_date" value="{{ $sponsorship['expiration_date'] }}">
-        <input type="hidden" id="sponsorship_id" name="sponsorship_id" value="{{ $sponsorship['sponsorship_id'] }}">
-        <input type="hidden" id="apartment_id" name="apartment_id" value="{{ $sponsorship['apartment_id'] }}">
-        <div class=" col-12 col-md10 col-lg-6 col-xl-5 mx-auto">
-            <div id="dropin-container"></div>
-            <a id="submit-button" class="btn btn-sm btn-success">Submit payment</a>
+    <div class="col-12 col-md-10 col-lg-8 px-3 mx-auto mt-5">
+        <div class="py-12 card ms_bg-card shadow">
+            <h4 class="text-center mt-5">Braintree Payment System</h4>
+            @csrf
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" id="apartment" name="apartment" value="{{ $apartment }}">
+            <input type="hidden" id="price" name="price" value="{{ $sponsorship['price'] }}">
+            <input type="hidden" id="start_date" name="start_date" value="{{ $sponsorship['start_date'] }}">
+            <input type="hidden" id="expiration_date" name="expiration_date" value="{{ $sponsorship['expiration_date'] }}">
+            <input type="hidden" id="sponsorship_id" name="sponsorship_id" value="{{ $sponsorship['sponsorship_id'] }}">
+            <input type="hidden" id="apartment_id" name="apartment_id" value="{{ $sponsorship['apartment_id'] }}">
+            <div class=" col-12 col-md10 col-lg-6 col-xl-5 mx-auto">
+                <div id="dropin-container"></div>
+                <a id="submit-button" class="btn btn-sm btn-success mt-3 mb-5">Submit payment</a>
+            </div>
         </div>
-
     </div>
 
 
@@ -53,7 +54,7 @@
                             button.setAttribute('href',
                                 "{{ route('sponsorships.index', ['apartment' => $apartment]) }}"
                             );
-                            if(document.querySelector('.braintree-toggle')) {
+                            if (document.querySelector('.braintree-toggle')) {
                                 document.querySelector('.braintree-toggle').remove();
                             }
                             button.click();
