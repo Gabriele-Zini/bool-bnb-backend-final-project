@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="d-flex gap-3">
+                <div class="d-flex gap-3 mt-5">
                     <a href="{{ route('sponsorships.create', ['apartment' => $apartment->slug]) }}"
                         class="btn btn-warning">Activate a new sponsorship for this apartment</a>
                 </div>
