@@ -45,7 +45,7 @@ const successCallback = (position) => {
         position.coords.latitude + " Longitudine: ",
         position.coords.longitude
     );
-    console.log(center);
+    console.log(center); 
 
     // init map
     let map = tt.map({

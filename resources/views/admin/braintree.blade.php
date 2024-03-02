@@ -58,7 +58,7 @@
                                 document.querySelector('.braintree-toggle').remove();
                             }
                             button.click();
-                            history.pushState(null, null, history.replaceState);
+                            history.pushState(null, null, 'pageExpired');
                             window.addEventListener('popstate', function(event) {
                                 history.pushState(null, null, history.replaceState);
                             });
