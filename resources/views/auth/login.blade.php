@@ -1,7 +1,8 @@
-<div class="container mt-5 d-flex justify-content-center">
+@include('layouts.navigation')
+<div class="container mt-5 d-flex justify-content-center d-flex align-items-center" style="height: 70vh;">
     @vite(['resources/js/app.js'])
-    <div class="row justify-content-center w-50">
-        <div class="col-md-8">
+    <div class="row justify-content-center w-75">
+        <div class="col-md-8 col-lg-6 rounded p-5 ms_bg-card">
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -49,3 +50,4 @@
         </div>
     </div>
 </div>
+@include('layouts.partials.footer')

@@ -1,7 +1,8 @@
+@include('layouts.navigation')
 <x-guest-layout>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-6 ms_bg-card p-4 rounded">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
@@ -53,4 +54,13 @@
             </div>
         </div>
     </div>
+    <style>
+    h4 {
+        color: #98A2B3;
+    }
+    .ms_font-color {
+        color: #98A2B3;
+    }
+    </style>
 </x-guest-layout>
+@include('layouts.partials.footer')
