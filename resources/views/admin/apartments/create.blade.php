@@ -26,7 +26,7 @@
                     @enderror
                 </div>
 
-                <div id="address-container" class="card px-2 py-1 mb-3 d-none">
+                <div id="address-container" class="card ms_bg-small-card px-3 ms_font-color py-1 mb-3 d-none">
                     <p id="address" class="lh-lg"></p>
                 </div>
 
