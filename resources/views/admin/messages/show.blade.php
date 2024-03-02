@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="container border rounded p-5 mt-5 bg-light">
-   <h1 class="text-center">Message from {{$message->name}} {{$message->lastname}}</h1>
+<div class="container border rounded p-5 mt-5 ms_bg-card">
+   <h4 class="text-center fs-2 mb-3">Message from {{$message->name}} {{$message->lastname}}</h4>
    <p class="mt-2 text-center"><strong>Email address:</strong> {{$message->email}} </p>
-   <p class="m-auto mt-4 w-75 border rounded p-3">
+   <p class="m-auto mt-4 w-75 border rounded p-5 overflow-auto ms_bg-small-card"  style="height: 100px;">
     {{$message->message_content}}
    </p>
    <div class="d-flex gap-2 justify-content-center pt-2">

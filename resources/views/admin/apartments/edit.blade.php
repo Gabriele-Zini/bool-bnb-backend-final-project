@@ -8,9 +8,10 @@
                 {{ session('message') }}
             </div>
         @endif
+        <div class="card p-5 ms_bg-card ">
             @foreach ($apartment->images as $image)
                 @if ($image->cover_image)
-                    <h3 class="text-center title-link">Cover Image</h3>
+                    <h4 class="text-center fs-2">Cover Image</h4>
                     <div class="d-flex justify-content-center mt-3 mb-5">
                         <img src="{{ asset('storage/image_path/' . $image->image_path) }}" alt=""
                             class="rounded col-12 col-md-6 col-lg-5">
@@ -20,7 +21,7 @@
 
             {{-- to the gallery --}}
             @if (count($apartment->images) > 0)
-                <h4 class="title-link ">Gallery</h4>
+                <h4 class="text-center">Gallery</h4>
             @endif
 
 
@@ -58,6 +59,8 @@
 
             </div>
 
+        </div>
+        <div class="card ms_bg-card py-4 my-5">
 
             <form action="{{ route('apartments.update', ['apartment' => $apartment->slug]) }}" enctype="multipart/form-data"
                 method="POST" class="col-12 col-md-10 col-lg-9 col-xl-8 m-auto">
@@ -66,7 +69,7 @@
 
                 {{-- title --}}
                 <div class="mb-3">
-                    <h5>Title</h5>
+                    <h4>Title</h4>
                     <input placeholder="Short description" type="text" required minlength="5" maxlength="50"
                         class="form-control @error('title') is-invalid @enderror @if (!empty(old('title')) && !$errors->has('title')) is-valid @endif"
                         id="title" name="title" value="{{ $apartment->title ?? old('title') }}">
@@ -75,11 +78,11 @@
                     @enderror
                 </div>
 
-                <h5 class="mt-4">Apartment info</h5>
+                <h4 class="mt-4">Apartment info</h4>
 
                 {{-- rooms --}}
                 <div class="mb-3">
-                    <label for="num_rooms" class="form-label">rooms</label>
+                    <label for="num_rooms" class="form-label ms_font-color">rooms</label>
                     <input type="number" min="1" max="254"
                         class="form-control @error('num_rooms') is-invalid @enderror @if (!empty(old('num_rooms')) && !$errors->has('num_rooms')) is-valid @endif"
                         id="num_rooms" name="num_rooms"
@@ -91,7 +94,7 @@
 
                 {{-- beds --}}
                 <div class="mb-3">
-                    <label for="num_beds" class="form-label">beds</label>
+                    <label for="num_beds" class="form-label ms_font-color">beds</label>
                     <input type="number" min="1" max="254"
                         class="form-control @error('num_beds') is-invalid @enderror @if (!empty(old('num_beds')) && !$errors->has('num_beds')) is-valid @endif"
                         id="num_beds" name="num_beds"
@@ -103,7 +106,7 @@
 
                 {{-- bathrooms --}}
                 <div class="mb-3">
-                    <label for="num_bathrooms" class="form-label">bathrooms</label>
+                    <label for="num_bathrooms" class="form-label ms_font-color">bathrooms</label>
                     <input type="number" min="1" max="254"
                         class="form-control @error('num_bathrooms') is-invalid @enderror @if (!empty(old('num_bathrooms')) && !$errors->has('num_bathrooms')) is-valid @endif"
                         id="num_bathrooms" name="num_bathrooms"
@@ -115,7 +118,7 @@
 
                 {{-- meters square --}}
                 <div class="mb-3">
-                    <label for="mt_square" class="form-label">meters square</label>
+                    <label for="mt_square" class="form-label ms_font-color">meters square</label>
                     <input type="number" min="10" max="2500"
                         class="form-control @error('mt_square') is-invalid @enderror @if (!empty(old('mt_square')) && !$errors->has('mt_square')) is-valid @endif"
                         id="mt_square" name="mt_square"
@@ -126,7 +129,7 @@
                 </div>
 
                 {{-- services --}}
-                <h5 class="mt-4">Services</h5>
+                <h4 class="mt-4">Services</h4>
 
                 <div class="btn-group btn-group-sm my-3" role="group" aria-label="Basic checkbox toggle button group">
                     <div class="row g-2 justify-content-start align-items-center">
@@ -170,10 +173,10 @@
                 </div>
 
                 {{-- images --}}
-                <h5 class="mt-4">Images</h5>
+                <h4 class="mt-4">Images</h4>
 
-                <div class="mb-3 border rounded p-3">
-                    <label for="image_path" class="form-label">Apartment images</label>
+                <div class="mb-3 card ms_bg-small-card rounded p-3">
+                    <label for="image_path" class="form-label ms_font-color">Apartment images</label>
                     <input type="file"
                         class="form-control @error('image_path.*') is-invalid @enderror @if (!empty(old('image_path')) && !$errors->has('image_path')) is-valid @endif"
                         id="image_path" name="image_path[]" value="{{ old('image_path') }}" multiple>
@@ -187,7 +190,7 @@
 
 
                     @if (count($apartment->images) > 0)
-                        <h5 class="text-center my-3">Check to delete</h5>
+                        <h4 class="text-center my-3">Check to delete</h4>
                         <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 my-5">
                             @foreach ($apartment->images as $image)
                                 <div class="card col-12 col-md-6 col-lg-4">
@@ -210,9 +213,10 @@
                         </div>
                     @endif
 
-                    <button type="submit" class="my-btn-blue">send</button>
 
 
+                </div>
+                <button type="submit" class="my-btn-blue">send</button>
             </form>
         </div>
     @endsection

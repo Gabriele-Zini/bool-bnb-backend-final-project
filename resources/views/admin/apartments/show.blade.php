@@ -60,123 +60,94 @@
 
         </div>
 
-        {{-- card info --}}
-        <div class="col-12 col-md-6 mt-5  m-auto">
-            <div class="card w-100">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $apartment->title }}</h5>
-                </div>
-
-                <ul class="list-unstyled list-group list-group-flush">
-
-                    {{-- apartment address --}}
-                    <li class="list-group-item">
-                        <span class="fw-bold">Description:</span> {{ $apartment->title }}
-                    </li>
-                    <li class="list-group-item">
-                        <span class="fw-bold">Municipality:</span> {{ $apartment->city }}
-                    </li>
-                    <li class="list-group-item">
-                        <span class="fw-bold">Address:</span> {{ $apartment->street_name }},
-                        {{ $apartment->street_number }}
-                    </li>
-                    <li class="list-group-item">
-                        <span class="fw-bold">Postal code:</span> {{ $apartment->postal_code }}
-                    </li>
-                    <li class="list-group-item">
-                        @if ($apartment->visibility === 1)
-                            <p class=" my-0"><span class="fw-bold">Visibility: </span>on</p>
-                        @else
-                            <p class=" my-0"><span class="fw-bold">Visibility: </span>off</p>
-                        @endif
-                    </li>
-
-                    {{-- services --}}
-                    @if (count($apartment->services) > 0)
-                        <li class="list-group-item">
-                            <span class="fw-bold">Services: </span>
-                            @foreach ($apartment->services as $service)
-                                <p class="d-inline">{{ $service->name }}@if ($loop->last)
-                                    . @else,
-                                    @endif
-                                </p>
-                            @endforeach
-                        </li>
-                    @endif
-
-                    {{-- apartment infos --}}
-                    <li class="list-group-item">
-                        <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
-                    </li>
-
-                    <li class="list-group-item">
-                        <span class="fw-bold">Num. beds:</span> {{ $apartment->apartment_info->num_beds }}
-                    </li>
-
-                    <li class="list-group-item">
-                        <span class="fw-bold">Num. bathrooms:</span> {{ $apartment->apartment_info->num_bathrooms }}
-                    </li>
-
-                    <li class="list-group-item">
-                        <span class="fw-bold">Meters square:</span> {{ $apartment->apartment_info->mt_square }}
-                    </li>
-
-                    {{-- apartment views --}}
-                    <li class="list-group-item">
-                        <span class="fw-bold">Views:</span> {{ count($apartment->views) }}
-                    </li>
-
-                    {{-- apartment sponsorhip active --}}
-                    {{-- @foreach ($apartment->sponsorships as $sponsorship)
-                        <li class="list-group-item">
-                            <span class="fw-bold">Sponsorship:</span>
-                            {{ $sponsorship->name }}
-                        </li>
-                    @endforeach --}}
-                    <li class="list-group-item">
-                        <span class="fw-bold">Sponsorization:</span>
-                        {{ $sponsorship_type === 0 ? 'No sponsorizations' : $sponsorship_type[0]->name }}
-                    </li>
-
-                    <li class="list-group-item">
-                        <span class="fw-bold">Expiration date:</span>
-                        {{ $sponsorship_active[0]->expiration_date ?? 'No sponsorizations' }}
-                    </li>
-
-                    {{-- buttons --}}
-                    <li class="list-group-item d-flex justify-content-center gap-2">
-
-                        {{-- edit btn --}}
-                        <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
-
-                            class="my-btn-orange">edit
-
-                            
-
-                        </a>
-                        {{-- show messages --}}
-                        <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
-                            class="my-btn-message">Messages
-                        </a>
-                        {{-- sponsorships --}}
-                        <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
-                            class="my-btn-sponsor">Sponsorships
-                        </a>
-
-                        {{-- delete btn --}}
-                        <form class=""
-                            action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="my-btn-delete delete-btn" data-bs-toggle="modal"
-                                data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
-                        </form>
-
-                    </li>
-                </ul>
-            </div>
-
+       <div class="col-12 col-md-6 mt-5 m-auto">
+    <div class="card w-100 shadow">
+        <div class="card-body">
+            <h5 class="card-title">{{ $apartment->title }}</h5>
         </div>
+
+        <ul class="list-unstyled list-group list-group-flush">
+
+            {{-- apartment address --}}
+            <li class="list-group-item">
+                <span class="fw-bold">Description:</span> {{ $apartment->title }}
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold">Municipality:</span> {{ $apartment->city }}
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold">Address:</span> {{ $apartment->street_name }},
+                {{ $apartment->street_number }}
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold">Postal code:</span> {{ $apartment->postal_code }}
+            </li>
+            <li class="list-group-item">
+                @if ($apartment->visibility === 1)
+                    <p class="my-0"><span class="fw-bold">Visibility: </span>on</p>
+                @else
+                    <p class="my-0"><span class="fw-bold">Visibility: </span>off</p>
+                @endif
+            </li>
+
+            {{-- services --}}
+            @if (count($apartment->services) > 0)
+                <li class="list-group-item">
+                    <span class="fw-bold">Services: </span>
+                    @foreach ($apartment->services as $service)
+                        <span class="d-inline">{{ $service->name }}@if (!$loop->last),@endif</span>
+                    @endforeach
+                </li>
+            @endif
+
+            {{-- apartment infos --}}
+            <li class="list-group-item">
+                <span class="fw-bold">Num. rooms:</span> {{ $apartment->apartment_info->num_rooms }}
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold">Num. beds:</span> {{ $apartment->apartment_info->num_beds }}
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold">Num. bathrooms:</span> {{ $apartment->apartment_info->num_bathrooms }}
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold">Meters square:</span> {{ $apartment->apartment_info->mt_square }}
+            </li>
+
+            {{-- apartment views --}}
+            <li class="list-group-item">
+                <span class="fw-bold">Views:</span> {{ count($apartment->views) }}
+            </li>
+
+            {{-- apartment sponsorhip active --}}
+            <li class="list-group-item">
+                <span class="fw-bold">Sponsorization:</span>
+                {{ $sponsorship_type === 0 ? 'No sponsorizations' : $sponsorship_type[0]->name }}
+            </li>
+            <li class="list-group-item">
+                <span class="fw-bold">Expiration date:</span>
+                {{ $sponsorship_active[0]->expiration_date ?? 'No sponsorizations' }}
+            </li>
+
+            {{-- buttons --}}
+            <li class="list-group-item d-flex justify-content-center gap-2">
+                {{-- edit btn --}}
+                <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}" class="my-btn-orange">Edit</a>
+                {{-- show messages --}}
+                <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}" class="my-btn-message">Messages</a>
+                {{-- sponsorships --}}
+                <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}" class="my-btn-sponsor">Sponsorships</a>
+                {{-- delete btn --}}
+                <form action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="my-btn-delete delete-btn" data-bs-toggle="modal" data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
 
         {{-- modal --}}
