@@ -10,7 +10,7 @@
         @endif
 
 
-        <div class="card py-5 ms_bg-card px-3">
+        <div class="card py-5 ms_bg-card px-3 shadow">
             <form action="{{ route('apartments.store') }}" enctype="multipart/form-data" method="POST"
                 class="col-12 col-md-10 col-lg-9 col-xl-8 m-auto">
                 @csrf

@@ -8,7 +8,7 @@
                 {{ session('message') }}
             </div>
         @endif
-        <div class="card p-5 ms_bg-card ">
+        <div class="card shadow p-5 ms_bg-card ">
             @foreach ($apartment->images as $image)
                 @if ($image->cover_image)
                     <h4 class="text-center fs-2">Cover Image</h4>
@@ -60,7 +60,7 @@
             </div>
 
         </div>
-        <div class="card ms_bg-card py-4 my-5">
+        <div class="card ms_bg-card shadow py-4 my-5">
 
             <form action="{{ route('apartments.update', ['apartment' => $apartment->slug]) }}" enctype="multipart/form-data"
                 method="POST" class="col-12 col-md-10 col-lg-9 col-xl-8 m-auto">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="card my-5 px-3 pb-5 ms_bg-card">
+        <div class="card my-5 px-3 pb-5 ms_bg-card shadow">
             <h4 class="text-center my-5 fs-3">Sponsorships for {{ $apartment->title }}</h4>
             @if (session('message'))
                 <div class="alert text-center alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
@@ -16,7 +16,7 @@
             @endif
             <div class="container">
                 @foreach ($sponsorships as $sponsor)
-                    <div class="card mb-3 ms_bg-small-card">
+                    <div class="card mb-3 ms_bg-small-card shadow">
                         <div class="card-body">
                             <h5 class="card-title">Type:
                                 @switch($sponsor->sponsorship_id)

@@ -41,7 +41,7 @@
             <div class="row justify-content-center">
                 @foreach ($unsponsoredApartments as $apartment)
                     <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="alert ms_bg-color-sponsorships d-flex align-items-center gap-4" role="alert">
+                        <div class="alert ms_bg-color-sponsorships d-flex align-items-center gap-4 " role="alert">
                             <h4 class="text-center my-4 text-white"><strong>{{ $apartment->title }}</strong></h4>
                             <a class="btn btn-warning"
                                 href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}">Purchase</a>
