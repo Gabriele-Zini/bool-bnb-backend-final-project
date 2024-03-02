@@ -68,6 +68,17 @@
                             </span></i>
                         Sponsorships</a>
                 </li>
+                <li class="position-relative">
+                    <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active' : '' }}"
+                        href="{{ route('views.index') }}">
+                        <i class="fa-solid fa-chart-simple"></i><span
+                                class="{{ request()->routeIs('all_sponsorships') ? ' ms_dot ' : '' }}">
+                                @if (request()->routeIs('all_sponsorships'))
+                                    .
+                                @endif
+                            </span></i>
+                        Stats</a>
+                </li>
 
             </ul>
 
