@@ -10,7 +10,7 @@
 
 
     <div class="d-flex justify-content-center">
-        <div class="col-12 col-md-10 my-5""><canvas id="acquisitions"></canvas></div>
+        <div class="col-12 col-md-10 col-lg-5 my-5""><canvas id="acquisitions"></canvas></div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -39,32 +39,15 @@
             Chart.defaults.font.size = 12;
             new Chart(
     document.getElementById('acquisitions'), {
-        type: 'bar',
+        type: 'doughnut',
         data: {
             labels: ['Total Views', ...groupedData.map(row => row.apartmentName)],
             datasets: [{
                 label: 'Total views',
                 data: [totalViews, ...groupedData.map(row => row.count)],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)', // Colore di sfondo per il totale delle visualizzazioni
-                    ...groupedData.map(() => 'rgba(54, 162, 235, 0.2)') // Colore di sfondo per ogni barra
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)', // Colore del bordo per il totale delle visualizzazioni
-                    ...groupedData.map(() => 'rgba(54, 162, 235, 1)') // Colore del bordo per ogni barra
-                ],
                 borderWidth: 1
             }],
         },
-        options: {
-            plugins: {
-                legend: {
-                    labels: {
-                        fontColor: 'blue' // Colore della label nella legenda
-                    }
-                }
-            }
-        }
     }
 );
 
