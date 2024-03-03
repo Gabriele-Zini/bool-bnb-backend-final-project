@@ -1,28 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom ms_office-header">
     <div class="container-fluid">
         <!-- Logo -->
-        <div class="logo-back me-4 ms_logo-fixed">
+        <div class="logo-back me-4">
             <img src="{{ URL::asset('/img/b.png') }}">
         </div>
 
         <!-- Hamburger Button -->
-        <button class="navbar-toggler ms_hamburger-fixed" id="hamburger" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Navigation Links -->
-        <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
-            <ul class="navbar-nav ms_navlinks mb-2 mb-lg-0">
-                <li class="">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
                     <a class="nav-link{{ request()->routeIs('dashboard') ? ' ms_active' : '' }}"
                         href="{{ url('http://localhost:5173/') }}">
                         <i class="fa-solid fa-house me-1 nav-item"></i>
                         HomePage
                     </a>
                 </li>
-                <li class="position-relative">
+                <li class="nav-item">
 
                     <a class="nav-link{{ request()->routeIs('apartments.index') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('apartments.index') }}">
@@ -34,16 +33,16 @@
 
 
                 </li>
-                <li class="position-relative">
+                <li class="nav-item">
                     <a class="nav-link{{ request()->routeIs('all_messages') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('all_messages') }}">
                         <i class="fa-regular fa-envelope me-1 position-relative"><span
                                 class="{{ request()->routeIs('all_messages') ? ' ms_dot ' : '' }}">
-                                
+
                             </span></i>
                         Messages</a>
                 </li>
-                <li class="position-relative">
+                <li class="nav-item">
 
                     <a class="nav-link{{ request()->routeIs('apartments.create') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('apartments.create') }}"><i
@@ -52,7 +51,7 @@
                             </span></i> New apartments</a>
 
                 </li>
-                <li class="position-relative">
+                <li class="nav-item">
                     <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('all_sponsorships') }}">
                         <i class="fa-solid fa-coins me-1 position-relative"><span
@@ -60,8 +59,8 @@
                             </span></i>
                         Sponsor</a>
                 </li>
-                <li class="position-relative">
-                    <a class="nav-link{{ request()->routeIs('views.index') ? ' ms_active link-underline-light' : '' }}"
+                <li class="nav-item">
+                    <a class="nav-link{{ request()->routeIs('views.index') ? ' ms_active link-underline-dark' : '' }}"
                         href="{{ route('views.index') }}">
                         <i class="fa-solid fa-chart-simple me-1"></i><span
                             class="{{ request()->routeIs('views.index') ? ' ms_dot ' : '' }}">
