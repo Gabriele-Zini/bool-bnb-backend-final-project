@@ -97,7 +97,7 @@
 
                 {{-- rooms --}}
                 <div class="mb-3">
-                    <label for="num_rooms" class="form-label">rooms</label>
+                    <label for="num_rooms" class="form-label ms_font-color">rooms</label>
                     <input type="number" min="1" max="254"
                         class="form-control @error('num_rooms') is-invalid @enderror @if (!empty(old('num_rooms')) && !$errors->has('num_rooms')) is-valid @endif"
                         id="num_rooms" name="num_rooms" value="{{ old('num_rooms') }}">
