@@ -41,6 +41,7 @@
 
         <!-- Page Content -->
         <main>
+            <div style="height: 70px;"></div>
             @isset($slot)
                 {{ $slot }}
             @endisset

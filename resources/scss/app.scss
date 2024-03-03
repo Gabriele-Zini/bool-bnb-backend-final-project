@@ -2,6 +2,38 @@
 @import "~bootstrap/scss/bootstrap";
 @import '@fortawesome/fontawesome-free/css/all.css';
 
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ms_office-header {
+    height: 73px;
+    background-color: #f1f4f7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.ms_hamburger {
+    height: 400px;
+}
+
+.ms_logo-fixed {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1999;
+}
+
+.ms_hamburger-fixed {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1999;
+}
+
 .my-btn-delete {
     background: none;
     border: none;
@@ -110,14 +142,7 @@
 }
 
 .ms_dot {
-    position: absolute;
-    top: -48px;
-    left: -1px;
-    width: 20px;
-    height: 20px;
-    font-size: 3rem;
-    border-radius: 6px;
-    color: rgb(255, 0, 0);
+
 }
 
 #map {

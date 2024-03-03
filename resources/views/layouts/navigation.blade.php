@@ -1,82 +1,71 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom ms_office-header">
     <div class="container-fluid">
         <!-- Logo -->
-        <div class="logo-back me-4">
+        <div class="logo-back me-4 ms_logo-fixed">
             <img src="{{ URL::asset('/img/b.png') }}">
         </div>
 
         <!-- Hamburger Button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler ms_hamburger-fixed" id="hamburger" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Navigation Links -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link{{ request()->routeIs('dashboard') ? ' active' : '' }}"
+        <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+            <ul class="navbar-nav ms_navlinks mb-2 mb-lg-0">
+                <li class="">
+                    <a class="nav-link{{ request()->routeIs('dashboard') ? ' ms_active' : '' }}"
                         href="{{ url('http://localhost:5173/') }}">
-                        <i class="fa-solid fa-house nav-item"></i>
+                        <i class="fa-solid fa-house me-1 nav-item"></i>
                         HomePage
                     </a>
                 </li>
                 <li class="position-relative">
 
-                    <a class="nav-link{{ request()->routeIs('apartments.index') ? ' ms_active' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('apartments.index') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('apartments.index') }}">
-                        <i class="fa-solid fa-building position-relative"><span
+                        <i class="fa-solid fa-building me-1 position-relative"><span
                                 class="{{ request()->routeIs('apartments.index') ? ' ms_dot ' : '' }}">
-                                @if (request()->routeIs('apartments.index'))
-                                    .
-                                @endif
+
                             </span></i>
                         Apartments</a>
 
 
                 </li>
                 <li class="position-relative">
-                    <a class="nav-link{{ request()->routeIs('all_messages') ? ' ms_active' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('all_messages') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('all_messages') }}">
-                        <i class="fa-regular fa-envelope position-relative"><span
+                        <i class="fa-regular fa-envelope me-1 position-relative"><span
                                 class="{{ request()->routeIs('all_messages') ? ' ms_dot ' : '' }}">
-                                @if (request()->routeIs('all_messages'))
-                                    .
-                                @endif
+                                
                             </span></i>
                         Messages</a>
                 </li>
                 <li class="position-relative">
 
-                    <a class="nav-link{{ request()->routeIs('apartments.create') ? ' ms_active' : '' }}"
-                        href="{{ route('apartments.create') }}"><i class="fa-solid fa-plus position-relative"><span
+                    <a class="nav-link{{ request()->routeIs('apartments.create') ? ' ms_active link-underline-light' : '' }}"
+                        href="{{ route('apartments.create') }}"><i
+                            class="fa-solid fa-plus me-1 position-relative"><span
                                 class="{{ request()->routeIs('apartments.create') ? ' ms_dot ' : '' }}">
-                                @if (request()->routeIs('apartments.create'))
-                                    .
-                                @endif
                             </span></i> New apartments</a>
 
                 </li>
                 <li class="position-relative">
-                    <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('all_sponsorships') }}">
-                        <i class="fa-solid fa-coins position-relative"><span
+                        <i class="fa-solid fa-coins me-1 position-relative"><span
                                 class="{{ request()->routeIs('all_sponsorships') ? ' ms_dot ' : '' }}">
-                                @if (request()->routeIs('all_sponsorships'))
-                                    .
-                                @endif
                             </span></i>
-                        Sponsorships</a>
+                        Sponsor</a>
                 </li>
                 <li class="position-relative">
-                    <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('views.index') ? ' ms_active link-underline-light' : '' }}"
                         href="{{ route('views.index') }}">
-                        <i class="fa-solid fa-chart-simple"></i><span
-                                class="{{ request()->routeIs('all_sponsorships') ? ' ms_dot ' : '' }}">
-                                @if (request()->routeIs('all_sponsorships'))
-                                    .
-                                @endif
-                            </span></i>
+                        <i class="fa-solid fa-chart-simple me-1"></i><span
+                            class="{{ request()->routeIs('views.index') ? ' ms_dot ' : '' }}">
+                        </span></i>
                         Stats</a>
                 </li>
 
@@ -88,7 +77,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-
+                            <i class="fa-solid fa-user me-1"></i>
                             {{ Auth::user()->name }} {{ Auth::user()->lastname }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
