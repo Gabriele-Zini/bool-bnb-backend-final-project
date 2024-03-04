@@ -439,15 +439,15 @@ footer {
     ul {
         min-height: 120px;
         border-radius: 20px;
-        background-color: #52a3c0;
+        // background-color: #52a3c0;
         a {
-            color: black;
-            font-size: 1.2rem;
-            color: white;
+            color: #98A2B3;
+            font-size: .8rem;
             text-decoration: none;
             &:hover {
-                text-decoration: underline;
-                color: rgba(17, 24, 126, 0.858);
+                color: white;
+                // text-decoration: underline;
+                // color: rgba(17, 24, 126, 0.858);
             }
 
             i {
