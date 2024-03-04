@@ -20,14 +20,14 @@
 
                             <div class="card shadow d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
-                                <a class="ms_font-anchor" href="{{ route('apartments.index') }}">Your Apartments</a>
+                                <a class="ms_font-anchor fs-4" href="{{ route('apartments.index') }}">Apartments</a>
 
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
-                    <a class="ms_font-anchor" href="{{ route('all_messages') }}">
+                    <a class="ms_font-anchor fs-4" href="{{ route('all_messages') }}">
                         <div class="card ms_bg-small-card shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
                             style="aspect-ratio: 1/1;">
 
@@ -38,14 +38,14 @@
 
                             <div class="card shadow d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
-                                <a class="ms_font-anchor" href="{{ route('all_messages') }}">Your Messages</a>
+                                <a class="ms_font-anchor fs-4" href="{{ route('all_messages') }}">Messages</a>
 
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
-                    <a class="ms_font-anchor" href="{{ route('apartments.create') }}">
+                    <a class="ms_font-anchor fs-4" href="{{ route('apartments.create') }}">
                         <div class="card ms_bg-small-card shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
                             style="aspect-ratio: 1/1;">
 
@@ -56,14 +56,14 @@
 
                             <div class="card shadow d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
-                                <a class="ms_font-anchor" href="{{ route('apartments.create') }}">New Apartment</a>
+                                <a class="ms_font-anchor fs-4" href="{{ route('apartments.create') }}">New Apartment</a>
 
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
-                    <a class="ms_font-anchor" href="{{ route('all_sponsorships') }}">
+                    <a class="ms_font-anchor fs-4" href="{{ route('all_sponsorships') }}">
                         <div class="card ms_bg-small-card shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
                             style="aspect-ratio: 1/1;">
 
@@ -74,14 +74,14 @@
 
                             <div class="card shadow d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
-                                <a class="ms_font-anchor" href="{{ route('all_sponsorships') }}">Sponsorization</a>
+                                <a class="ms_font-anchor fs-4" href="{{ route('all_sponsorships') }}">Sponsorization</a>
 
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
-                    <a class="ms_font-anchor" href="{{ route('views.index') }}">
+                    <a class="ms_font-anchor fs-4" href="{{ route('views.index') }}">
                         <div class="card ms_bg-small-card shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
                             style="aspect-ratio: 1/1;">
 
@@ -92,14 +92,14 @@
 
                             <div class="card shadow d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
-                                <a class="ms_font-anchor" href="{{ route('views.index') }}">Your Stats</a>
+                                <a class="ms_font-anchor fs-4" href="{{ route('views.index') }}">Your Stats</a>
 
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4 col-xxl-3">
-                    <a class="ms_font-anchor" href="{{ route('profile.edit') }}">
+                    <a class="ms_font-anchor fs-4" href="{{ route('profile.edit') }}">
                         <div class="card ms_bg-small-card shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
                             style="aspect-ratio: 1/1;">
 
@@ -110,7 +110,7 @@
 
                             <div class="card shadow d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
-                                <a class="ms_font-anchor" href="{{ route('profile.edit') }}">Your Profile</a>
+                                <a class="ms_font-anchor fs-4" href="{{ route('profile.edit') }}">Your Profile</a>
 
                             </div>
                         </div>
