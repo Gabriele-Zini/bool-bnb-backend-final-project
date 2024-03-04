@@ -15,6 +15,7 @@
       type="text/css"
       href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css"
     />
+    <link href="https://api.fontshare.com/v2/css?f[]=montserrat@500,900,700,200,400,100,800,300&display=swap" rel="stylesheet">
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/<version>/SearchBox.css'>
 
