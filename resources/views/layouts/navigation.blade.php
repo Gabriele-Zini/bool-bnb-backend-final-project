@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light py-3 ms_office-header">
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom py-3 ms_office-header">
     <div class="container-fluid">
         <!-- Logo -->
         <div class="logo-back me-4">
