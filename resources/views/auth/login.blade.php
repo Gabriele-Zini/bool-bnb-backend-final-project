@@ -1,8 +1,10 @@
 @include('layouts.navigation')
+
+<x-guest-layout>
 <div class="container mt-5 d-flex justify-content-center d-flex align-items-center" style="height: 70vh;">
     @vite(['resources/js/app.js'])
     <div class="row justify-content-center w-75">
-        <div class="col-md-8 col-lg-6 rounded p-5 ms_bg-card">
+        <div class=" col-12 col-md-10 col-lg-8 rounded p-5 ms_bg-card">
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -43,8 +45,9 @@
                     <button type="submit" class="btn btn-primary">{{ __('Log in') }}</button>
                 </div>
             </form>
-
-            @if (Route::has('password.request'))
+            
+            <div class="col-12 text-start">
+                @if (Route::has('password.request'))
                 <a class="btn btn-link" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
@@ -53,7 +56,11 @@
                 <a href="{{ route('register') }}"
                     class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
             @endif
+
+            </div>
+          
         </div>
     </div>
 </div>
+</x-guest-layout>
 @include('layouts.partials.footer')
