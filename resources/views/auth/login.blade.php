@@ -2,6 +2,7 @@
 
 <x-guest-layout>
 <div class="container mt-5 d-flex justify-content-center d-flex align-items-center" style="height: 70vh;">
+
     @vite(['resources/js/app.js'])
     <div class="row justify-content-center w-75">
         <div class=" col-12 col-md-10 col-lg-8 rounded p-5 ms_bg-card" style= "background-color: aliceblue">
@@ -10,11 +11,11 @@
 
             <form method="POST" action="{{ route('login') }}" class="mb-4">
                 @csrf
-                
+
                 <div class="logo-back text-center me-2 mb-2">
                     <img  style="width: 50px; height: 50px;" src="{{ URL::asset('/img/b.png') }}">
                 </div>
-        
+
                 <h2 class="text-center">Sign In</h2>
 
                 <!-- Email Address -->
@@ -45,7 +46,7 @@
                     <button type="submit" class="btn btn-primary">{{ __('Log in') }}</button>
                 </div>
             </form>
-            
+
             <div class="col-12 text-center">
                 @if (Route::has('password.request'))
                 <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -58,7 +59,7 @@
             @endif
 
             </div>
-          
+
         </div>
     </div>
 </div>

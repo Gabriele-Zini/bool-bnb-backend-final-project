@@ -3,21 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" type="x-icon"  href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" type="x-icon" href="{{ asset('favicon.ico') }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>BoolBnB</title>
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css"
-    />
-    <link href="https://api.fontshare.com/v2/css?f[]=montserrat@500,900,700,200,400,100,800,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css" />
+    <link href="https://api.fontshare.com/v2/css?f[]=montserrat@500,900,700,200,400,100,800,300&display=swap"
+        rel="stylesheet">
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
-    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/<version>/SearchBox.css'>
+    <link rel='stylesheet' type='text/css'
+        href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/<version>/SearchBox.css'>
 
 
     <!-- Fonts -->
@@ -46,6 +44,7 @@
         <!-- Page Content -->
         <main>
             <div style="height: 70px;"></div>
+
             @isset($slot)
                 {{ $slot }}
             @endisset

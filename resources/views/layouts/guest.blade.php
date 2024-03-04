@@ -8,13 +8,10 @@
 
     <title>BoolBnB</title>
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css"
-    />
+    <link rel="stylesheet" type="text/css" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps.css" />
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.25.0/maps/maps-web.min.js"></script>
-    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/<version>/SearchBox.css'>
+    <link rel='stylesheet' type='text/css'
+        href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/<version>/SearchBox.css'>
 
 
     <!-- Fonts -->
@@ -33,7 +30,6 @@
             <a href="/">
             </a>
         </div>
-
         <div class="w-100 max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden rounded-3">
             {{ $slot }}
         </div>

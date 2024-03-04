@@ -55,6 +55,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('http://localhost:5173');
+        return redirect('http://127.0.0.1:8000')->with('status', 'profile deleted');
     }
 }
