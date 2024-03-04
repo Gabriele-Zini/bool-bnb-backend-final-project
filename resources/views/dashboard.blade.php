@@ -10,15 +10,15 @@
 
                 <div class="col-12 col-sm-6 col-lg-4">
                     <a class="ms_font-anchor" href="{{ route('apartments.index') }}">
-                        <div class="card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
-                            style="aspect-ratio: 1/1; background-color:#277c7ca1">
+                        <div class="ms_border border-0 card shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
+                            style="aspect-ratio: 1/1; background-color:#0000">
 
-                            <div class="ms_dashboard-avatar ms_bg-card mb-3 shadow">
+                            <div class="ms_dashboard-avatar ms_bg-card mb-3">
                                 <i class="fa-solid fa-building ms_icon-avatar"
                                     style="display: flex; justify-content: center; align-items: center; height: 100%;"></i>
                             </div>
 
-                            <div class="card shadow d-flex align-items-center justify-content-center"
+                            <div class="car  d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
                                 <a class="ms_font-anchor fs-4" href="{{ route('apartments.index') }}">Apartments</a>
 
@@ -28,15 +28,15 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <a class="ms_font-anchor fs-4" href="{{ route('all_messages') }}">
-                        <div class="card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
-                            style="aspect-ratio: 1/1; background-color:#5ccdcd"">
+                        <div class="ms_border border-0 card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
+                            style="aspect-ratio: 1/1; background-color:#0000">
 
-                            <div class="ms_dashboard-avatar ms_bg-card mb-3 shadow">
+                            <div class="ms_dashboard-avatar ms_bg-card mb-3">
                                 <i class="fa-solid fa-envelope ms_icon-avatar"
                                     style="display: flex; justify-content: center; align-items: center; height: 100%;"></i>
                             </div>
 
-                            <div class="card shadow d-flex align-items-center justify-content-center"
+                            <div class="car d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
                                 <a class="ms_font-anchor fs-4" href="{{ route('all_messages') }}">Messages</a>
 
@@ -46,15 +46,15 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <a class="ms_font-anchor fs-4" href="{{ route('apartments.create') }}">
-                        <div class="card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
-                            style="aspect-ratio: 1/1; background-color:#da3838cf"">
+                        <div class="ms_border border-0 card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
+                            style="aspect-ratio: 1/1; background-color:#0000">
 
                             <div class="ms_dashboard-avatar ms_bg-card mb-3 shadow">
                                 <i class="fa-solid fa-hammer ms_icon-avatar"
                                     style="display: flex; justify-content: center; align-items: center; height: 100%;"></i>
                             </div>
 
-                            <div class="card shadow d-flex align-items-center justify-content-center"
+                            <div class="car d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
                                 <a class="ms_font-anchor fs-4" href="{{ route('apartments.create') }}">New Apartment</a>
 
@@ -64,15 +64,15 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <a class="ms_font-anchor fs-4" href="{{ route('all_sponsorships') }}">
-                        <div class="card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
-                            style="aspect-ratio: 1/1; background-color:#277c7c63"">
+                        <div class="ms_border border-0 card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
+                            style="aspect-ratio: 1/1; background-color:#0000">
 
                             <div class="ms_dashboard-avatar ms_bg-card mb-3 shadow">
                                 <i class="fa-solid fa-coins ms_icon-avatar"
                                     style="display: flex; justify-content: center; align-items: center; height: 100%;"></i>
                             </div>
 
-                            <div class="card shadow d-flex align-items-center justify-content-center"
+                            <div class="car d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
                                 <a class="ms_font-anchor fs-4" href="{{ route('all_sponsorships') }}">Sponsorization</a>
 
@@ -82,15 +82,15 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <a class="ms_font-anchor fs-4" href="{{ route('views.index') }}">
-                        <div class="card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
-                            style="aspect-ratio: 1/1; background-color:#b4e2295f"">
+                        <div class="ms_border border-0 card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
+                            style="aspect-ratio: 1/1; background-color:#0000">
 
                             <div class="ms_dashboard-avatar ms_bg-card mb-3 shadow">
                                 <i class="fa-solid fa-chart-simple ms_icon-avatar"
                                     style="display: flex; justify-content: center; align-items: center; height: 100%;"></i>
                             </div>
 
-                            <div class="card shadow d-flex align-items-center justify-content-center"
+                            <div class="car d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
                                 <a class="ms_font-anchor fs-4" href="{{ route('views.index') }}">Your Stats</a>
 
@@ -100,15 +100,15 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-4">
                     <a class="ms_font-anchor fs-4" href="{{ route('profile.edit') }}">
-                        <div class="card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
-                            style="aspect-ratio: 1/1; background-color:#94436d70"">
+                        <div class="ms_border border-0 card  shadow d-flex align-items-center  justify-content-around mx-auto pb-5 pt-3"
+                            style="aspect-ratio: 1/1; background-color:#0000">
 
                             <div class="ms_dashboard-avatar ms_bg-card mb-3 shadow">
                                 <i class="fa-solid fa-user ms_icon-avatar"
                                     style="display: flex; justify-content: center; align-items: center; height: 100%;"></i>
                             </div>
 
-                            <div class="card shadow d-flex align-items-center justify-content-center"
+                            <div class="car d-flex align-items-center justify-content-center"
                                 style="width: 80%; height: 30%">
                                 <a class="ms_font-anchor fs-4" href="{{ route('profile.edit') }}">Your Profile</a>
 
@@ -125,7 +125,10 @@
             border-radius: 50%;
             width: 130px;
             height: 130px;
-            border: 1px solid #52a3c0
+            border: 1px solid #52a3c0;
+        }
+        .ms_dashboard-avatar:hover {
+            background-color: white;
         }
 
         .ms_icon-avatar {
@@ -138,6 +141,11 @@
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
+        }
+        .ms_border:hover {
+            border: 1px solid #52a3c0!important;
+            padding: 20px!important;
+            transition: padding 1s ease-in-out!important;
         }
     </style>
 </x-app-layout>
