@@ -15,7 +15,7 @@
                             <h4 class="text-center my-4">Messages for: <strong>{{ $apartment->title }}</strong></h4>
 
                             @foreach ($apartment as $message)
-                                <div class="card ms_bg-small-card shadow mb-4">
+                                <div class="card ms_bg-small-card  mb-4">
                                     <div class="card-body">
                                         <h4>From: {{ $message->name }} {{ $message->lastname }}</h4>
                                         <p class="card-text mb-0"><span class="fw-bold">Message:</span> {{ $message->message_content }}</p>
@@ -25,13 +25,13 @@
                                         </span>
                                         <div class="mt-2">
                                             <a href="{{ route('messages.show', ['message' => $message->id]) }}"
-                                                class="btn btn-primary"><i class="fas fa-file-lines"></i> View</a>
+                                                class="my-btn-blue"><i class="fas fa-file-lines"></i> View</a>
                                             <form class="d-inline"
                                                 action="{{ route('messages.destroy', ['message' => $message->id]) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
+                                                <button type="submit" class="my-btn-delete"
                                                     data-title="{{ $message->email }}"><i class="fas fa-trash-can"></i>
                                                     Delete</button>
                                             </form>
