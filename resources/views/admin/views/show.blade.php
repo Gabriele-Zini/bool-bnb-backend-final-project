@@ -47,12 +47,11 @@
                     },
                     options: {
                         scales: {
-                            yAxes: [{
+                            y: {
                                 ticks: {
                                     stepSize: 1,
-                                    precision: 0
                                 }
-                            }]
+                            }
                         }
                     },
                     plugins: {
@@ -67,7 +66,6 @@
                     }
                 }
             );
-
         });
     </script>
 @endsection
