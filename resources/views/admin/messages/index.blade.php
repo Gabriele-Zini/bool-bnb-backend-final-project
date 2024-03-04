@@ -22,6 +22,10 @@
                             <span class="fw-bold">{{ $message->name }} {{ $message->lastname }}:</span>
                             <span>{{ Str::limit($message->message_content, 100) }}</span>
                         </div>
+                        <div>
+                            <span class="fw-bold">Send at:</span>
+                            <span>{{ $message->created_at }}</span>
+                        </div>
                         <div class="d-flex gap-5 align-items-center">
                             @if ($message->readed)
                                 <span class="badge bg-warning">Readed</span>

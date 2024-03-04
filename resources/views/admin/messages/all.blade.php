@@ -18,7 +18,8 @@
                                 <div class="card ms_bg-small-card shadow mb-4">
                                     <div class="card-body">
                                         <h4>From: {{ $message->name }} {{ $message->lastname }}</h4>
-                                        <p class="card-text"><span class="fw-bold">Message:</span> {{ $message->message_content }}</p>
+                                        <p class="card-text mb-0"><span class="fw-bold">Message:</span> {{ $message->message_content }}</p>
+                                        <p class="card-text mt-0"><span class="fw-bold">Send at:</span> {{ $message->created_at }}</p>
                                         <span class="badge {{ $message->readed ? 'bg-secondary' : 'bg-primary' }}">
                                             <i class="fas fa-envelope{{ $message->readed ? '-open' : '' }}"></i>
                                         </span>
