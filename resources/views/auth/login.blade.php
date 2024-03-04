@@ -4,7 +4,7 @@
 <div class="container mt-5 d-flex justify-content-center d-flex align-items-center" style="height: 70vh;">
     @vite(['resources/js/app.js'])
     <div class="row justify-content-center w-75">
-        <div class=" col-12 col-md-10 col-lg-8 rounded p-5 ms_bg-card">
+        <div class=" col-12 col-md-10 col-lg-8 rounded p-5 ms_bg-card" style= "background-color: aliceblue">
             <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
