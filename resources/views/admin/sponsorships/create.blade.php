@@ -65,7 +65,7 @@
                         <input type="number" name="apartment_id" value="{{ $apartment->id }}">
                     </div>
                     <div class="d-flex justify-content-center my-5">
-                        <button type="submit" class="btn btn-success " id="submit-button">Buy</button>
+                        <button type="submit" class="btn my-btn-blue " id="submit-button">Chekout Payment</button>
                     </div>
                 </form>
             </div>

@@ -33,6 +33,9 @@
     right: 10px;
     z-index: 1999;
 }
+.my-btn {
+
+}
 
 .my-btn-delete {
     background: none;
@@ -65,20 +68,19 @@
     border: .5 solid white;
 }
 .my-btn-blue {
-    background: none;
-    border: none;
-    text-decoration: none;
     border: .5px solid #0BA5EC;
+    text-decoration: none;
     border-radius: 10px;
-    color: #0BA5EC;
-    padding: 5px;
-}
-.my-btn-blue:hover {
-    color: white;
     background-color: #0BA5EC;
-    transition: background-color 1s ease-in;
-    border: .5 solid white;
+    color: white;
+    padding: 8px 30px;
+    &:hover {
+        border: .5px solid #0BA5EC !important;
+        background-color: #0BA5EC;
+        color: white;
+    }
 }
+
 .my-btn-sponsor {
     background: none;
     border: none;
@@ -227,8 +229,8 @@ h4 {
         width: 30px;
         height: 30px;
         opacity: calc(.3);
-        transition: border-radius 1.2s;
-        transition: opacity 1.2s;
+        transition: border-radius .6s;
+        transition: opacity .6s;
 
         &:hover {
             opacity: calc(1.2);
@@ -454,8 +456,7 @@ footer {
 
     .bottom-bar {
         background-color: #d6e9f0;
-            h4 {
-        }
     }
+
 
 }

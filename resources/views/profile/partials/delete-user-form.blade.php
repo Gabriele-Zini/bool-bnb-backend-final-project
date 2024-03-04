@@ -1,10 +1,10 @@
 <section>
-    <header  class="d-flex align-items-center flex-column">
-        <h2 class="">
+    <header  class="d-flex align-items-center flex-column ">
+        <h2 class="ms_font-color">
             {{ __('Delete Account') }}
         </h2>
 
-        <p class="my-4">
+        <p class="my-4 ms_font-color">
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
         </p>
     </header>
@@ -22,14 +22,14 @@
                     @method('delete')
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="confirmUserDeletionModalLabel">{{ __('Confirm Account Deletion') }}
+                        <h5 class="modal-title ms_font-color" id="confirmUserDeletionModalLabel">{{ __('Confirm Account Deletion') }}
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <div class="modal-body">
-                        <p>{{ __('Are you sure you want to delete your account?') }}</p>
-                        <p>{{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                    <div class="modal-body ms_font-color">
+                        <p class="ms_font-color">{{ __('Are you sure you want to delete your account?') }}</p>
+                        <p class="ms_font-color">{{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                         </p>
 
                         <div class="mb-3">

@@ -15,15 +15,14 @@
                         <div class="card my-shadow border-2 rounded-4 p-2">
 
                             {{-- first image --}}
-                                    @foreach ($apartment->images as $image)
-                                        <div class="h-100">
-                                            @if ($image->cover_image == 1)
-                                                <img class="apartment-image rounded-4 h-100"
-                                                    src="{{ asset('storage/image_path/' . $image->image_path) }}"
-                                                    alt="">
-                                            @endif
-                                        </div>
-                                    @endforeach
+                            @foreach ($apartment->images as $image)
+                                <div class="h-100">
+                                    @if ($image->cover_image == 1)
+                                        <img class="apartment-image rounded-4 h-100"
+                                            src="{{ asset('storage/image_path/' . $image->image_path) }}" alt="">
+                                    @endif
+                                </div>
+                            @endforeach
                             {{-- end first image --}}
 
                             {{-- apartment infos --}}
@@ -52,32 +51,44 @@
 
                             {{-- buttons --}}
                             <div class="card-body d-flex justify-content-center gap-2 align-items-center">
-                                {{-- edit btn --}}
-                                <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
-
-                                    class="my-btn-orange">edit
-
-                                </a>
-
-                                {{-- delete btn --}}
-                                <form class="d-flex"
-                                    action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a type="submit" class="my-btn-delete delete-btn" data-bs-toggle="modal"
-                                        data-title={{ $apartment->title }} data-bs-target="#delete-modal">delete</a>
-                                </form>
-
-                                {{-- details btn --}}
-                                <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
-
-                                    class="my-btn-blue">details</a>
-
-                                    <a href="{{ route('views.show', ['apartment' => $apartment->slug]) }}"
-                                        class="my-btn-blue">stats</a>
-
+                                {{-- Dropdown button --}}
+                                <div class="dropdown">
+                                    <button class="btn my-btn-blue dropdown-toggle" type="button" id="dropdownMenuButton"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        {{-- edit btn --}}
+                                        <li>
+                                            <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
+                                                class="dropdown-item">Edit</a>
+                                        </li>
+                                        {{-- delete btn --}}
+                                        <li>
+                                            <form class="d-flex"
+                                                action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item delete-btn"
+                                                    data-bs-toggle="modal" data-title="{{ $apartment->title }}"
+                                                    data-bs-target="#delete-modal">Delete</button>
+                                            </form>
+                                        </li>
+                                        {{-- details btn --}}
+                                        <li>
+                                            <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
+                                                class="dropdown-item">Details</a>
+                                        </li>
+                                        {{-- stats btn --}}
+                                        <li>
+                                            <a href="{{ route('views.show', ['apartment' => $apartment->slug]) }}"
+                                                class="dropdown-item">Stats</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
+
 
                         </div>
                     </div>
@@ -89,7 +100,7 @@
         </div>
 
         {{-- modal --}}
-        <div class="modal" tabindex="-1" id="delete-modal">
+        <div class="modal ms_font-color" tabindex="-1" id="delete-modal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

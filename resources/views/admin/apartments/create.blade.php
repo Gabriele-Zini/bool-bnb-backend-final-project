@@ -206,7 +206,7 @@
 
 
                 </div>
-                <button type="submit" class="my-btn-blue mt-3">send</button>
+                <button type="submit" class="my-btn-blue mt-3">upload</button>
             </form>
         </div>
     </div>

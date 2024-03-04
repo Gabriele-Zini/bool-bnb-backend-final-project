@@ -216,7 +216,11 @@
 
 
                 </div>
-                <button type="submit" class="my-btn-blue">send</button>
+                <div class="d-flex gap-3">
+                    <button type="submit" class="my-btn-blue">upload</button>
+                    <a href="{{ route('apartments.show', ['apartment'=>$apartment->slug])}}" class="my-btn-blue ">back
+                    </a>
+                </div>
             </form>
         </div>
     @endsection

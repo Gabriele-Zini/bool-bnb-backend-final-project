@@ -16,7 +16,7 @@
             <input type="hidden" id="apartment_id" name="apartment_id" value="{{ $sponsorship['apartment_id'] }}">
             <div class=" col-12 col-md10 col-lg-6 col-xl-5 mx-auto">
                 <div id="dropin-container"></div>
-                <a id="submit-button" class="btn btn-sm btn-success mt-3 mb-5">Submit payment</a>
+                <a id="submit-button" class="btn my-btn-blue mt-3 mb-5">Submit Payment</a>
             </div>
         </div>
     </div>

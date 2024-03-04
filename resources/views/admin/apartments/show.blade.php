@@ -48,7 +48,7 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="my-btn-delete">Delete</button>
+                                        <button type="submit" class="">Delete</button>
                                     </form>
                                 </div>
                             </div>
@@ -131,26 +131,49 @@
                             {{ $sponsorship_active[0]->expiration_date ?? 'No sponsorizations' }}
                         </li>
 
-                        {{-- buttons --}}
+                        {{-- dropdown button --}}
                         <li class="list-group-item my-3 d-flex justify-content-center gap-2">
-                            {{-- edit btn --}}
-                            <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
-                                class="my-btn-orange">Edit</a>
-                            {{-- show messages --}}
-                            <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
-                                class="my-btn-message">Messages</a>
-                            {{-- sponsorships --}}
-                            <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
-                                class="my-btn-sponsor">Sponsorships</a>
-                            {{-- delete btn --}}
-                            <form action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="my-btn-delete delete-btn" data-bs-toggle="modal"
-                                    data-title={{ $apartment->title }} data-bs-target="#delete-modal">Delete</button>
-                            </form>
+                            <div class="dropdown">
+                                <button class="btn my-btn-blue dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    {{-- edit btn --}}
+                                    <li>
+                                        <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
+                                            class="dropdown-item">Edit</a>
+                                    </li>
+                                    {{-- show messages --}}
+                                    <li>
+                                        <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
+                                            class="dropdown-item">Messages</a>
+                                    </li>
+                                    {{-- sponsorships --}}
+                                    <li>
+                                        <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
+                                            class="dropdown-item">Sponsorships</a>
+                                    </li>
+                                    {{-- stats --}}
+                                    <li>
+                                        <a href="{{ route('views.show', ['apartment' => $apartment->slug]) }}"
+                                            class="dropdown-item">Stats</a>
+                                    </li>
+                                    {{-- delete btn --}}
+                                    <li>
+                                        <form action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item delete-btn" data-bs-toggle="modal"
+                                                data-title="{{ $apartment->title }}"
+                                                data-bs-target="#delete-modal">Delete</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
+
                     </ul>
                 </div>
             </div>

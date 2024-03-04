@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="h4 font-medium text-dark">
+        <h2 class="h4 font-medium ms_font-color ">
             {{ __('Profile Information') }}
         </h2>
 
-        <p class="mt-1 text-sm text-muted">
+        <p class="mt-1 text-sm ms_font-color">
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
@@ -18,7 +18,7 @@
         @method('patch')
 
         <div class="mb-3">
-            <label for="name" class="form-label">{{ __('Name') }}</label>
+            <label for="name" class="form-label ms_font-color ">{{ __('Name') }}</label>
             <input id="name" name="name" type="text" class="form-control"
                 value="{{ old('name', $user->name) }}" required autofocus autocomplete="name">
             @error('name')
@@ -27,7 +27,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="lastname" class="form-label">{{ __('Lastname') }}</label>
+            <label for="lastname" class="form-label ms_font-color">{{ __('Lastname') }}</label>
             <input id="lastname" name="lastname" type="text" class="form-control"
                 value="{{ old('lastname', $user->lastname) }}" required autofocus autocomplete="lastname">
             @error('lastname')
@@ -37,7 +37,7 @@
 
 
         <div class="mb-3">
-            <label for="email" class="form-label">{{ __('Email') }}</label>
+            <label for="email" class="form-label ms_font-color ">{{ __('Email') }}</label>
             <input id="email" name="email" type="email" class="form-control"
                 value="{{ old('email', $user->email) }}" required autocomplete="username">
             @error('email')
