@@ -1,8 +1,8 @@
 @include('layouts.navigation')
 <x-guest-layout>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 ms_bg-card p-4 rounded">
+        <div class="row justify-content-center ">
+            <div class="col-10 col-md-8 col-lg-6 ms_bg-card p-4 rounded">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
