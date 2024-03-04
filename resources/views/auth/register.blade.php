@@ -6,6 +6,12 @@
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
+                    <div class="logo-back text-center me-2 mb-2">
+                        <img  style="width: 50px; height: 50px;" src="{{ URL::asset('/img/b.png') }}">
+                    </div>
+            
+                    <h2 class="text-center">Sign Up</h2>
+
                     <!-- Name -->
                     <div class="mb-3">
                         <label for="name" class="form-label">{{ __('Name') }}</label>

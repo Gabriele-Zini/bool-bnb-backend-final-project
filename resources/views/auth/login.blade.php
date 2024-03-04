@@ -8,6 +8,12 @@
 
             <form method="POST" action="{{ route('login') }}" class="mb-4">
                 @csrf
+                
+                <div class="logo-back text-center me-2 mb-2">
+                    <img  style="width: 50px; height: 50px;" src="{{ URL::asset('/img/b.png') }}">
+                </div>
+        
+                <h2 class="text-center">Sign In</h2>
 
                 <!-- Email Address -->
                 <div class="mb-3">
