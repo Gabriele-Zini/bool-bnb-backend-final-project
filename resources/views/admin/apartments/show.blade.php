@@ -154,11 +154,6 @@
                                         <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
                                             class="dropdown-item">Sponsorships</a>
                                     </li>
-                                    {{-- stats --}}
-                                    <li>
-                                        <a href="{{ route('views.show', ['apartment' => $apartment->slug]) }}"
-                                            class="dropdown-item">Stats</a>
-                                    </li>
                                     {{-- delete btn --}}
                                     <li>
                                         <form action="{{ route('apartments.destroy', ['apartment' => $apartment->slug]) }}"
@@ -169,6 +164,11 @@
                                                 data-title="{{ $apartment->title }}"
                                                 data-bs-target="#delete-modal">Delete</button>
                                         </form>
+                                    </li>
+                                    {{-- stats --}}
+                                    <li>
+                                        <a href="{{ route('views.show', ['apartment' => $apartment->slug]) }}"
+                                            class="dropdown-item">Stats</a>
                                     </li>
                                 </ul>
                             </div>

@@ -63,6 +63,16 @@
                                             <a href="{{ route('apartments.edit', ['apartment' => $apartment->slug]) }}"
                                                 class="dropdown-item">Edit</a>
                                         </li>
+                                        {{-- show messages --}}
+                                        <li>
+                                            <a href="{{ route('messages.index', ['apartment' => $apartment->slug]) }}"
+                                                class="dropdown-item">Messages</a>
+                                        </li>
+                                        {{-- sponsorships --}}
+                                        <li>
+                                            <a href="{{ route('sponsorships.index', ['apartment' => $apartment->slug]) }}"
+                                                class="dropdown-item">Sponsorships</a>
+                                        </li>
                                         {{-- delete btn --}}
                                         <li>
                                             <form class="d-flex"
@@ -75,15 +85,15 @@
                                                     data-bs-target="#delete-modal">Delete</button>
                                             </form>
                                         </li>
-                                        {{-- details btn --}}
-                                        <li>
-                                            <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
-                                                class="dropdown-item">Details</a>
-                                        </li>
                                         {{-- stats btn --}}
                                         <li>
                                             <a href="{{ route('views.show', ['apartment' => $apartment->slug]) }}"
                                                 class="dropdown-item">Stats</a>
+                                        </li>
+                                        {{-- details btn --}}
+                                        <li>
+                                            <a href="{{ route('apartments.show', ['apartment' => $apartment->slug]) }}"
+                                                class="dropdown-item">Details</a>
                                         </li>
                                     </ul>
                                 </div>

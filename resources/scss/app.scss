@@ -120,29 +120,30 @@
 
 @keyframes active {
     0% {
-        color: rgb(133, 225, 255);
+        color: rgb(42, 119, 213);
     }
 
     25% {
-        color: rgb(162, 233, 255);
+        color: rgb(113, 169, 238);
     }
 
     50% {
-        color: rgb(196, 240, 255);
+        color: rgb(161, 196, 239);
     }
 
     75% {
-        color: rgb(162, 233, 255);
+        color: rgb(113, 169, 238);
     }
 
     100% {
-        color: rgb(133, 225, 255);
+        color: rgb(42, 119, 213);
     }
 }
 
 .ms_active {
-    color: rgb(186, 233, 249);
+    color: rgb(42, 119, 213);
     animation: active 3s linear infinite;
+    text-decoration: underline;
 }
 
 .ms_dot {

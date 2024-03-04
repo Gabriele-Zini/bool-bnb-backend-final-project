@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom ms_office-header">
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3 ms_office-header">
     <div class="container-fluid">
         <!-- Logo -->
         <div class="logo-back me-4">
@@ -25,7 +25,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link{{ request()->routeIs('apartments.index') ? ' ms_active link-underline-light' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('apartments.index') ? ' ms_active' : '' }}"
                         href="{{ route('apartments.index') }}">
                         <i class="fa-solid fa-building me-1 position-relative"><span
                                 class="{{ request()->routeIs('apartments.index') ? ' ms_dot ' : '' }}">
@@ -36,7 +36,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->routeIs('all_messages') ? ' ms_active link-underline-light' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('all_messages') ? ' ms_active' : '' }}"
                         href="{{ route('all_messages') }}">
                         <i class="fa-regular fa-envelope me-1 position-relative"><span
                                 class="{{ request()->routeIs('all_messages') ? ' ms_dot ' : '' }}">
@@ -46,7 +46,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <a class="nav-link{{ request()->routeIs('apartments.create') ? ' ms_active link-underline-light' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('apartments.create') ? ' ms_active' : '' }}"
                         href="{{ route('apartments.create') }}"><i
                             class="fa-solid fa-plus me-1 position-relative"><span
                                 class="{{ request()->routeIs('apartments.create') ? ' ms_dot ' : '' }}">
@@ -54,7 +54,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active link-underline-light' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('all_sponsorships') ? ' ms_active' : '' }}"
                         href="{{ route('all_sponsorships') }}">
                         <i class="fa-solid fa-coins me-1 position-relative"><span
                                 class="{{ request()->routeIs('all_sponsorships') ? ' ms_dot ' : '' }}">
@@ -62,7 +62,7 @@
                         Sponsor</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->routeIs('views.index') ? ' ms_active link-underline-dark' : '' }}"
+                    <a class="nav-link{{ request()->routeIs('views.index') ? ' ms_active' : '' }}"
                         href="{{ route('views.index') }}">
                         <i class="fa-solid fa-chart-simple me-1"></i><span
                             class="{{ request()->routeIs('views.index') ? ' ms_dot ' : '' }}">

@@ -27,9 +27,9 @@
                     @csrf
                     {{-- Sponsorization type --}}
                     <div class="text-center mt-2">
-                        <label for="sponsorship">Type:</label>
+                        <label class="mt-4 mb-1 ms_font-color fs-4" for="sponsorship">Type:</label>
                         <select
-                            class="form-control w-50 text-center mx-auto @error('sponsorship_id') is-invalid @enderror @if (!empty(old('sponsorship_id')) && !$errors->has('sponsorship_id')) is-valid @endif"
+                            class="form-control w-50 mt-2 text-center mx-auto @error('sponsorship_id') is-invalid @enderror @if (!empty(old('sponsorship_id')) && !$errors->has('sponsorship_id')) is-valid @endif"
                             name="sponsorship_id" id="sponsorship" required>
                             <option value="">Select a sponsorization type</option>
                             @foreach ($sponsorship as $sponsor)
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="text-center mt-2">
-                        <label for="startDate">Start date:</label>
+                        <label class="mt-4 mb-1 ms_font-color fs-4" for="startDate">Start date:</label>
                         <input type="date"
                             class="form-control w-50 mx-auto mt-2 @error('start_date') is-invalid @enderror @if (!empty(old('start_date')) && !$errors->has('start_date')) is-valid @endif"
                             name="start_date" id="startDate" min="{{ date('Y-m-d') }}" required>
@@ -52,7 +52,7 @@
                         @enderror
                     </div>
                     <div class="text-center mt-2">
-                        <label for="startTime">Start time:</label>
+                        <label class="mt-4 mb-1 ms_font-color fs-4" for="startTime">Start time:</label>
                         <input type="time"
                             class="form-control w-25 mx-auto mt-2 @error('start_time') is-invalid @enderror @if (!empty(old('start_time')) && !$errors->has('start_time')) is-valid @endif"
                             name="start_time" id="startTime" required>

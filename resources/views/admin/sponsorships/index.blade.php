@@ -18,7 +18,7 @@
                 @foreach ($sponsorships as $sponsor)
                     <div class="card mb-3 ms_bg-small-card shadow">
                         <div class="card-body">
-                            <h5 class="card-title">Type:
+                            <h4 class="card-title fw-semibold ms_font-color">Type:
                                 @switch($sponsor->sponsorship_id)
                                     @case($typeSponsorship[0]->id)
                                         {{ ucwords($typeSponsorship[0]->name) }}
@@ -35,9 +35,9 @@
                                     @default
                                         Not sponsored yet
                                 @endswitch
-                            </h5>
-                            <p class="card-text">From: {{ $sponsor->start_date }}</p>
-                            <p class="card-text">To: {{ $sponsor->expiration_date }}</p>
+                            </h4>
+                            <p class="card-text mt-3 mb-1"><strong class="me-1">From:</strong> {{ $sponsor->start_date }}</p>
+                            <p class="card-text"><strong class="me-1">To:</strong> {{ $sponsor->expiration_date }}</p>
                             <span
                                 class="badge
                         @if (round(strtotime($sponsor->expiration_date) - time()) < 0) bg-danger">Expired
@@ -48,19 +48,22 @@
                                 bg-warning">Started @endif
                         @endif
                     </span>
-                    <form class="d-inline"
-                                action="{{ route('sponsorships.destroy', ['sponsorship' => $sponsor->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
+                    @if ((round(strtotime($sponsor->expiration_date) - time()) < 0))
+                        
+                    <form class="d-inline ms-2"
+                        action="{{ route('sponsorships.destroy', ['sponsorship' => $sponsor->id]) }}"
+                        method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    @endif
                         </div>
                     </div>
                 @endforeach
                 <div class="d-flex gap-3 mt-5">
                     <a href="{{ route('sponsorships.create', ['apartment' => $apartment->slug]) }}"
-                        class="btn btn-warning">Activate a new sponsorship for this apartment</a>
+                        class="btn my-btn-blue">Purchase</a>
                 </div>
             </div>
         </div>
