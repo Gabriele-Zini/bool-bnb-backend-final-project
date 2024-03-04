@@ -12,14 +12,12 @@
         </button>
 
         <!-- Navigation Links -->
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->routeIs('dashboard') ? ' ms_active' : '' }}"
-        <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
-            <ul class="navbar-nav ms_navlinks mb-2 mb-lg-0">
-                <li class="">
-                    <a class="nav-link{{ request()->routeIs('dashboard') ? ' ' : '' }}"
+                    <a class="nav-link"
+
                         href="{{ url('http://localhost:5173/') }}">
                         <i class="fa-solid fa-house me-1 nav-item"></i>
                         HomePage
@@ -42,7 +40,6 @@
                         href="{{ route('all_messages') }}">
                         <i class="fa-regular fa-envelope me-1 position-relative"><span
                                 class="{{ request()->routeIs('all_messages') ? ' ms_dot ' : '' }}">
-
 
                             </span></i>
                         Messages</a>
@@ -82,7 +79,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-user me-1"></i>
-                            {{ Auth::user()->name }} {{ Auth::user()->lastname }}
+                            {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
