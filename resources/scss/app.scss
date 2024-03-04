@@ -40,20 +40,19 @@
 }
 
 .my-btn-delete {
-    background: none;
     border: none;
     text-decoration: none;
-    border: .5px solid #F04438;
+    background-color: #F04438;
     border-radius: 10px;
-    color: #F04438;
+    color: white;
     padding: 5px;
 }
-.my-btn-delete:hover {
-    color: white;
-    background-color: #F04438;
-    transition: background-color 1s ease-in;
-    border: .5 solid white;
-}
+// .my-btn-delete:hover {
+//     color: white;
+//     background-color: #F04438;
+//     transition: background-color 1s ease-in;
+//     border: .5 solid white;
+// }
 .my-btn-orange {
     background: none;
     border: none;
@@ -187,7 +186,7 @@ h4 {
 }
 .ms_bg-small-card:hover {
     background-color: #eaecf0;
-    transition: background-color 1s ease-in-out;
+    transition: background-color .2s ease-in-out;
 }
 
 .apartment-image {
