@@ -178,16 +178,20 @@ h4 {
 }
 
 .ms_bg-card {
-    background-color: #eaecf0;
+    border: none;
 }
 
+
 .ms_bg-small-card {
-    background-color: #d6e9f0;
+    border: none;
+}
+.ms_bg-small-card:hover {
+    background-color: #eaecf0;
+    transition: background-color 1s ease-in-out;
 }
 
 .apartment-image {
     position: relative;
-    // height: 300px;
     aspect-ratio: 1/1;
 
 

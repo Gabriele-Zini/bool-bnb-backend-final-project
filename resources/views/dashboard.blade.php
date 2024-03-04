@@ -144,7 +144,6 @@
         }
         .ms_border:hover {
             border: 1px solid #52a3c0!important;
-            padding: 20px!important;
         }
     </style>
 </x-app-layout>
