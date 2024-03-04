@@ -81,6 +81,6 @@ class ImageController extends Controller
     {
         $image->delete();
         Storage::delete('image_path/'.$image->image_path);
-        return redirect()->route('apartments.show', ['apartment'=>$image->apartment->slug]);
+        return redirect()->route('apartments.edit', ['apartment'=>$image->apartment->slug]);
     }
 }

@@ -102,7 +102,7 @@ class ApartmentController extends Controller
 
         if ($request->has('services'))
             $apartment->services()->attach($request->services);
-        return redirect(route('apartments.index'));
+        return redirect(route('apartments.index'))->with('message', 'New apartment created');
     }
 
     /**

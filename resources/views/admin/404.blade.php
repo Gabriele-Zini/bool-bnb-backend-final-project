@@ -9,8 +9,8 @@
             <div class="card ms_bg-small-card w-75v d-flex justify-content-center align-items-center p-5 shadow"
                 style="height:400px">
 
-                <div class="logo-back text-center me-2 mb-2 d-flex">
-                    <img style="width: 50px; height: 50px;" src="{{ URL::asset('/img/b.png') }}">
+                <div class="logo-back text-center me-2 mb-5 d-flex">
+                    <img style="width: 150px; height: 150px;" src="{{ URL::asset('/img/b.png') }}">
 
 
                 </div>

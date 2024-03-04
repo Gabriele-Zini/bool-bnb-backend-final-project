@@ -6,20 +6,21 @@ use App\Models\Apartment;
 use App\Models\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ViewController extends Controller
 {
     public function index()
     {
-        $views = View::all();
         $apartments = Apartment::where('user_id', '=', Auth::user()->id)->get();
-        foreach ($views as $view) {
-            foreach ($apartments as $apartment) {
-                if ($view->apartment_id === $apartment->id) {
-                    $view['apartment_title'] = $apartment->title;
-                }
-            }
-        };
+        $views = DB::table('views')
+            ->join('apartments', 'views.apartment_id', '=', 'apartments.id')
+            ->where('apartments.user_id', Auth::user()->id)
+            ->select('views.*', 'apartments.title as apartment_title')
+            ->get();
+
+
+
         return view('admin.views.index', ['views' => $views->toJson()]);
     }
 
@@ -28,7 +29,7 @@ class ViewController extends Controller
         //
         $this->checkUser($apartment);
         $views = View::where('apartment_id', '=', $apartment->id)->get();
-        return view('admin.views.show',  ['views' => $views->toJson()], compact('apartment', ));
+        return view('admin.views.show',  ['views' => $views->toJson()], compact('apartment',));
     }
 
     private function checkUser(Apartment $apartment)
@@ -37,5 +38,4 @@ class ViewController extends Controller
             abort(404);
         }
     }
-
 }

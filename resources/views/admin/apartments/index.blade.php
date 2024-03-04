@@ -3,7 +3,7 @@
 @section('content')
     <div class="container my-5">
         @if (session('message'))
-            <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
+            <div class=" text-center alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
                 {{ session('message') }}
             </div>
         @endif

@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (session('message'))
-        <div class="alert alert-success col-12 col-md-5 col-lg-4 mx-auto my-3">
-            {{ session('message') }}
-        </div>
-    @endif
+
     <div class="container-fluid">
+        @if (session('message'))
+            <div class="alert alert-success col-12 col-md-5 col-lg-4 m-auto my-3">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <div class="row justify-content-center mt-4">
             <div class="col-12 col-md-10">
                 @foreach ($a as $apartment)

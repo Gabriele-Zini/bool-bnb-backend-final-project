@@ -73,7 +73,7 @@ class MessageController extends Controller
         $selectApartment = Apartment::where("id", "=", $message->apartment_id)->get();
         $apartment = $selectApartment[0];
         $message->delete();
-        return redirect()->route('messages.index', ['apartment' => $apartment->slug])->with('message', 'you have deleted a message from ' . $message->name . " " . $message->lastname);
+        return redirect()->route('all_messages', ['apartment' => $apartment->slug])->with('message', 'you have deleted a message from ' . $message->name . " " . $message->lastname);
     }
 
     public function all()
@@ -87,15 +87,15 @@ class MessageController extends Controller
         }
         // return a collection of array each one with her relative apartment with messages
 
-        // dd($a); 
+        // dd($a);
         // $allMessages = [];
         // foreach ($a as $messages) {
-            
+
         //     foreach ($messages as $message) {
         //         foreach ($apartments as $apartment) {
         //             if ($apartment->id == $message->apartment_id) {
         //                 // dump($apartment->id);
-        //                 $title = $apartment->title; 
+        //                 $title = $apartment->title;
         //             }
         //         }
         //         $allMessages[] = [
@@ -105,10 +105,10 @@ class MessageController extends Controller
         //             'email' => $message['email'],
         //             'apartment' => $title
         //         ];
-                
+
         //     }
         // }
-        
+
         return view("admin.messages.all", compact("a"));
     }
 }
